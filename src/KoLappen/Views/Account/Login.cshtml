@@ -1,12 +1,36 @@
 ﻿@model KoLappen.ViewModels.LoginVM
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
+@{
+    Layout = null;
+}
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login</title>
+<style>
+header {
+    background-color:white;
+    color:limegreen;
+    text-align:center;
+    padding:60px;
+}
+footer {
+    background-color:white;
+    color:black;
+    clear:both;
+    text-align:center;
+    padding:60px;	 	 
+}
+</style>
 </head>
 <body>
-    <h1>Login</h1>
+    <header>
+        <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
+        <h1>Academic Work Academy</h1>
+    </header>
+    <h2>Login</h2>
     <div asp-validation-summary="ValidationSummary.All"></div>
     <form asp-controller="Account" asp-action="Login">
         <label asp-for="UserName"></label>
@@ -18,5 +42,8 @@
         <span asp-validation-for="Password"></span>
         <input type="submit" value="Login" />
     </form>
+    <footer>
+        <p>HOME OF THE YOUNG PROFESSIONALS</p>
+    </footer>
 </body>
 </html>
