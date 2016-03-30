@@ -15,9 +15,9 @@ namespace KoLappen.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<JobArea>().ToTable("JobAreas");
-            modelBuilder.Entity<Education>().ToTable("Educations");
+            modelBuilder.Entity<User>().ToTable("Users").HasKey("UserID");
+            modelBuilder.Entity<JobArea>().ToTable("JobAreas").HasKey("JobAreaID");
+            modelBuilder.Entity<Education>().ToTable("Educations").HasKey("EducationID");
         }
     }
 }

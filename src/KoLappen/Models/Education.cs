@@ -8,7 +8,6 @@ namespace KoLappen.Models
 {
     public class Education
     {
-        [Key]
         public int EducationID { get; set; }
         public string CourseName { get; set; }
         public string Semester { get; set; }
