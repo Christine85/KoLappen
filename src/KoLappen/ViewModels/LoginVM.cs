@@ -8,9 +8,11 @@ namespace KoLappen.ViewModels
 {
     public class LoginVM
     {
+        [Display(Name = "E-mail")]
         [Required]
         public string UserName { get; set; }
 
+        [Display(Name = "Lösenord")]
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
