@@ -1,0 +1,22 @@
+﻿@model KoLappen.ViewModels.LoginVM
+@addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div asp-validation-summary="ValidationSummary.All"></div>
+    <form asp-controller="Account" asp-action="Login">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+        <br />
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+        <input type="submit" value="Login" />
+    </form>
+</body>
+</html>
