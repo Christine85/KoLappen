@@ -50,11 +50,11 @@
                         <div asp-validation-summary="ValidationSummary.All"></div>
                         <form asp-controller="Account" asp-action="Login">
                             <label asp-for="UserName"></label>
-                            <input asp-for="UserName" class="form-control input-medium"  placeholder="input-medium"/>
+                            <input asp-for="UserName" class="form-control input-medium"  placeholder="E-mail"/>
                             <span asp-validation-for="UserName"></span>
                             <br />
                             <label asp-for="Password"></label>
-                            <input asp-for="Password" class="form-control input-medium" />
+                            <input asp-for="Password" class="form-control input-medium" placeholder="Lösenord" />
                             <span asp-validation-for="Password"></span>
                             <br />
                             <button type="submit" value="Login" class="btn btn-success">Logga in</button>
