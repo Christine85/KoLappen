@@ -22,9 +22,9 @@ namespace KoLappen
             //Connection String
             var identityConnString = @"Data Source=kolappen.database.windows.net;Initial Catalog=Projekt3;Integrated Security=False;User ID=AWAP3;Password=Woaow2016;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-            //services.AddEntityFramework()
-            //    .AddSqlServer()
-            //    .AddDbContext<PaskContext>(o => o.UseSqlServer(identityConnString));
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<DbContext>(o => o.UseSqlServer(identityConnString));
 
             //lagra användaren i databasen
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
