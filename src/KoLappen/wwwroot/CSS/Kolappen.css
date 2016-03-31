@@ -4,6 +4,12 @@
     bottom: 5%;
 }
 
+header.indexHeader {
+    background-color: white;
+    color: forestgreen;
+    text-align: left;
+    padding: 10px;
+}
 
 header.mainHeader {
     background-color: white;
@@ -11,6 +17,7 @@ header.mainHeader {
     text-align: left;
     padding: 60px;
 }
+
 footer.mainFooter {
     background-color: white;
     color: black;
@@ -18,15 +25,25 @@ footer.mainFooter {
     text-align: center;
     padding: 60px;
 }
+
 section.loginimg {
+    -ms-align-content: center;
+    -webkit-align-content: center;
     align-content: center;
     padding: 180px;
 }
+
 .btn-success {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
 }
-.custom{
-    width:360px;
+
+.custom {
+    width: 360px;
 }
+
+#settingsIcon{
+    font-size: 25px;
+}
+
