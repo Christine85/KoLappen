@@ -4,6 +4,13 @@
     bottom: 5%;
 }
 
+header.indexHeader {
+    background-color: white;
+    color: forestgreen;
+    text-align: left;
+    padding: 10px;
+}
+
 header.mainHeader {
     background-color: white;
     color: forestgreen;
@@ -19,8 +26,9 @@ footer.mainFooter {
     padding: 60px;
 }
 
-
 section.loginimg {
+    -ms-align-content: center;
+    -webkit-align-content: center;
     align-content: center;
     padding: 180px;
 }
@@ -32,6 +40,11 @@ section.loginimg {
 }
 
 /*@media (max-width: 360px) {*/
-    .custom {
-        width: 360px;
-    }
+.custom {
+    width: 360px;
+}
+
+#settingsIcon{
+    font-size: 25px;
+}
+
