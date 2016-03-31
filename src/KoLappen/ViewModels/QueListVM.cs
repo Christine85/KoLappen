@@ -12,5 +12,6 @@ namespace KoLappen.ViewModels
         public bool NeedHelp { get; set; }
         public DateTime HelpTime { get; set; }
         public int QueNr { get; set; }
+        public string UserName { get; set; }
     }
 }
