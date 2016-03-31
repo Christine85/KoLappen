@@ -15,5 +15,12 @@ namespace KoLappen.Controllers
         {
             return View();
         }
+
+        public IActionResult Calendar()
+        {
+            return View();
+        }
+
+
     }
 }
