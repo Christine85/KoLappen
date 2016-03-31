@@ -63,5 +63,12 @@ namespace KoLappen.Controllers
 
             return RedirectToAction(nameof(HomeController.Index),"home");
         }
+
+
+        public async Task<IActionResult> LogOut()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(nameof(AccountController.Login));
+        }
     }
 }
