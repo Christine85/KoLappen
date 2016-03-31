@@ -28,7 +28,7 @@
     }
     section {
         align-content: center;
-        padding: 180px;
+        padding: 220px;
     }
     btn-success {
         color: #fff;
@@ -45,22 +45,22 @@
     </header>
             
                 <section>
-            <div class="col-lg-5">
                     <center>
+            <div >
                         <div asp-validation-summary="ValidationSummary.All"></div>
                         <form asp-controller="Account" asp-action="Login">
                             <label asp-for="UserName"></label>
-                            <input asp-for="UserName" class="form-control"  />
+                            <input asp-for="UserName" class="form-control input-medium"  placeholder="input-medium"/>
                             <span asp-validation-for="UserName"></span>
                             <br />
                             <label asp-for="Password"></label>
-                            <input asp-for="Password" class="form-control" />
+                            <input asp-for="Password" class="form-control input-medium" />
                             <span asp-validation-for="Password"></span>
-                            <input type="submit" value="Login" />
-                            <button type="button" class="btn btn-success">Logga in</button>
+                            <br />
+                            <button type="submit" value="Login" class="btn btn-success">Logga in</button>
                         </form>
-                    </center>
             </div>
+                    </center>
                 </section>
             
         </div>
