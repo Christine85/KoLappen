@@ -1,1 +1,45 @@
-﻿
+﻿@model QueListVM[]
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<html>
+<head>
+    <style>
+        div.KoLappen {
+            background-image: url("img_tree.png");
+            background-repeat: no-repeat;
+            background-position: right top;
+            margin-right: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="KoLappen">
+
+        @foreach (var user in Model)
+        {
+            @if(ViewContext.HttpContext.User.Identity.Name == user.UserName)
+            {
+                <p>@user.QueNr</p>
+
+                <a asp-controller="Quelist" asp-action="@nameof(KoLappen.Controllers.QuelistController.NeedHelpFalse)">Problem löst</a>
+            }
+        }
+
+        <a asp-controller="Quelist" asp-action="@nameof(KoLappen.Controllers.QuelistController.NeedHelpTrue)">Hjälp</a>
+
+    </div>
+
+    <div>
+        @foreach (var user in Model)
+            {
+            <p>@user.Firstname + " " + @user.Lastname + " " + @user.HelpTime</p>
+        }
+    </div>
+
+
+
+        <a asp-controller="Account" asp-action="@nameof(KoLappen.Controllers.QuelistController.)"></a>
+    
+</body>
+</html>
