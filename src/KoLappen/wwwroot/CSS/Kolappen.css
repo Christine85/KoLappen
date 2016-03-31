@@ -54,3 +54,11 @@ section.loginimg {
     font-size: 25px;
 }
 
+#theQLappBackground {
+    background-image: url('../images/theqlapp.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    /*background-size: 259px 451px;*/
+    background-size: 155px 271px;
+}
