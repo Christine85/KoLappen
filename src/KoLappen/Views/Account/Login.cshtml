@@ -9,41 +9,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login</title>
+
 <style>
-header {
-    background-color:white;
-    color:limegreen;
-    text-align:center;
-    padding:60px;
-}
-footer {
-    background-color:white;
-    color:black;
-    clear:both;
-    text-align:center;
-    padding:60px;	 	 
-}
+    header {
+        background-color: white;
+        color: forestgreen;
+        text-align: left;
+        padding: 60px;
+    }
+    footer {
+        background-color: white;
+        color: black;
+        clear: both;
+        text-align: center;
+        padding: 60px;
+    }
+    section {
+        align-content: center;
+        padding: 180px;
+    }
 </style>
+
 </head>
 <body>
+        <div style="background-image: url(../images/academicwork_background2.jpg); background-position: 50% 50%;">
     <header>
         <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
-        <h1>Academic Work Academy</h1>
     </header>
-    <h2>Login</h2>
-    <div asp-validation-summary="ValidationSummary.All"></div>
-    <form asp-controller="Account" asp-action="Login">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName"></span>
-        <br />
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-        <input type="submit" value="Login" />
-    </form>
+            
+            <section>
+                <center>
+                    <h2>Login</h2>
+                    <div asp-validation-summary="ValidationSummary.All"></div>
+                    <form asp-controller="Account" asp-action="Login">
+                        <label asp-for="UserName"></label>
+                        <input asp-for="UserName" />
+                        <span asp-validation-for="UserName"></span>
+                        <br />
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" />
+                        <span asp-validation-for="Password"></span>
+                        <input type="submit" value="Login" />
+                    </form>
+                </center>
+            </section>
+            
+        </div>
     <footer>
         <p>HOME OF THE YOUNG PROFESSIONALS</p>
-    </footer>
+</footer>
 </body>
 </html>
