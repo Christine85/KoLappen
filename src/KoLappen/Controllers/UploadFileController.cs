@@ -8,19 +8,12 @@ using Microsoft.AspNet.Mvc;
 
 namespace KoLappen.Controllers
 {
-    public class HomeController : Controller
+    public class UploadFileController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Calendar()
-        {
-            return View();
-        }
-
-
     }
 }

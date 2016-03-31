@@ -24,7 +24,8 @@ namespace KoLappen.Models
                {
                    Firstname = o.Firstname,
                    Lastname = o.Lastname,
-                   HelpTime = o.HelpTime
+                   HelpTime = o.HelpTime,
+                   UserName = o.UserName
                })
                .ToArray();
         }
