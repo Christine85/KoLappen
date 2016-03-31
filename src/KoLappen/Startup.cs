@@ -41,6 +41,9 @@ namespace KoLappen
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<IdentityDbContext>(o => o.UseSqlServer(identityConnString));
+
+
+            services.AddTransient<IUsersRepository, DbUsersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
