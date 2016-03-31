@@ -10,62 +10,33 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
-    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-<style>
-    header {
-        background-color: white;
-        color: forestgreen;
-        text-align: left;
-        padding: 60px;
-    }
-    footer {
-        background-color: white;
-        color: black;
-        clear: both;
-        text-align: center;
-        padding: 60px;
-    }
-    section {
-        align-content: center;
-        padding: 220px;
-    }
-    btn-success {
-        color: #fff;
-        background-color: #00aa3c;
-        border-color: #00aa3c;
-    }
-</style>
+    <link href="~/css/kolappen.css" rel="stylesheet" />
 
 </head>
 <body>
         <div style="background-image: url(../images/academicwork_background2.jpg); background-position: 50% 50%;">
-    <header>
+    <header class="mainHeader">
         <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
     </header>
-            
-                <section>
-                    <center>
-            <div >
+                <section class="loginimg">
+                    <center>            
                         <div asp-validation-summary="ValidationSummary.All"></div>
                         <form asp-controller="Account" asp-action="Login">
                             <label asp-for="UserName"></label>
-                            <input asp-for="UserName" class="form-control input-medium"  placeholder="E-mail"/>
+                            <input asp-for="UserName" class="form-control custom"  placeholder="E-mail"/>
                             <span asp-validation-for="UserName"></span>
                             <br />
                             <label asp-for="Password"></label>
-                            <input asp-for="Password" class="form-control input-medium" placeholder="Lösenord" />
+                            <input asp-for="Password" class="form-control custom" placeholder="Lösenord" />
                             <span asp-validation-for="Password"></span>
                             <br />
                             <button type="submit" value="Login" class="btn btn-success">Logga in</button>
                         </form>
-            </div>
                     </center>
                 </section>
-            
         </div>
-    <footer>
+    <footer class="mainFooter">
         <p>HOME OF THE YOUNG PROFESSIONALS</p>
-</footer>
+    </footer>
 </body>
 </html>
