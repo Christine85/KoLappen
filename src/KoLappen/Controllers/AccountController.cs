@@ -47,18 +47,18 @@ namespace KoLappen.Controllers
                 return View(viewModel);
 
             //skapa DB-schemat
-            await contextIdentity.Database.EnsureCreatedAsync();
+            //await contextIdentity.Database.EnsureCreatedAsync();
 
             //skapa användaren
-            var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
-
+            //var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), viewModel.Password);
+            /*
             //visa ev. felmeddelande
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(nameof(LoginVM.UserName), result.Errors.First().Description);
                 return View(viewModel);
             }
-
+            */
             await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 
             return RedirectToAction(nameof(AccountController.Index));
