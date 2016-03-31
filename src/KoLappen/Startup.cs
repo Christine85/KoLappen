@@ -8,6 +8,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using KoLappen.Models;
 
 namespace KoLappen
 {
@@ -24,7 +25,7 @@ namespace KoLappen
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<DbContext>(o => o.UseSqlServer(identityConnString));
+                .AddDbContext<DBContext>(o => o.UseSqlServer(identityConnString));
 
             //lagra användaren i databasen
             services.AddIdentity<IdentityUser, IdentityRole>(o =>

@@ -19,21 +19,24 @@ namespace KoLappen.Controllers
             this.context = context;
         }
         // GET: /<controller>/
-        public IActionResult Index(QueListVM viewModel)
+        public IActionResult Index()
         {
-            return View();
+            var dataManager = new DataManager(context);
+            var queList = dataManager.GetQue();
+
+            return View(queList);
         }
 
         public IActionResult NeedHelpFalse(QueListVM viewModel)
         {
 
-            return View();
+            return RedirectToAction(nameof(QuelistController.Index));
         }
 
         public IActionResult NeedHelpTrue(QueListVM viewModel)
         {
 
-            return View();
+            return RedirectToAction(nameof(QuelistController.Index));
         }
     }
 }
