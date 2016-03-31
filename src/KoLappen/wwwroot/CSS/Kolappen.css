@@ -4,13 +4,13 @@
     bottom: 5%;
 }
 
-
 header.mainHeader {
     background-color: white;
     color: forestgreen;
     text-align: left;
     padding: 60px;
 }
+
 footer.mainFooter {
     background-color: white;
     color: black;
@@ -18,15 +18,20 @@ footer.mainFooter {
     text-align: center;
     padding: 60px;
 }
+
+
 section.loginimg {
     align-content: center;
     padding: 180px;
 }
+
 .btn-success {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
 }
-.custom{
-    width:360px;
-}
+
+/*@media (max-width: 360px) {*/
+    .custom {
+        width: 360px;
+    }
