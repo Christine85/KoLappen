@@ -38,7 +38,7 @@ namespace KoLappen.Models
         {
 
             var user = context.Users
-                .Where(o => o.Education == edu)
+                .Where(o => o.Education.EducationID == edu)
                 .Select(o => new ProfileVM
                 {
                     UserName = o.UserName,
@@ -61,7 +61,8 @@ namespace KoLappen.Models
                     LastName = item.LastName,
                     UserName = i.UserName,
                     Email = i.Email,
-                    PhoneNumber = i.PhoneNumber
+                    PhoneNumber = i.PhoneNumber,
+                    Education = item.Education
                 })
                 .ToList());
             }
