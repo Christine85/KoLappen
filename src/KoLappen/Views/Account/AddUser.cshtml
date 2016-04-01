@@ -1,0 +1,54 @@
+﻿@model KoLappen.ViewModels.AddUserViewModel
+@addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
+
+@{
+    Layout = null;
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="~/css/kolappen.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div style="background-image: url(../images/academicwork_background2.jpg); background-position: 50% 50%;">
+        <header class="mainHeader">
+            <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
+        </header>
+        <section class="loginimg">
+            <center>
+                <div asp-validation-summary="ValidationSummary.All"></div>
+                <form asp-controller="Account" asp-action="Register">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control custom" placeholder="E-mail" value="T1@test.com" />
+                    <span asp-validation-for="Email"></span>
+                    <br />
+                    <label asp-for="Firstname"></label>
+                    <input asp-for="Firstname" class="form-control custom" placeholder="Namn" value="test" />
+                    <span asp-validation-for="Firstname"></span>
+                    <br />
+                    <label asp-for="Lastname"></label>
+                    <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="test"/>
+                    <span asp-validation-for="Lastname"></span>
+                    <br />              
+                    <label asp-for="EducationID"></label>
+                    <input asp-for="EducationID" class="form-control custom" placeholder="Utbildnings ID" value="1" />
+                    <span asp-validation-for="EducationID"></span>
+                    <br />
+                    <label asp-for="JobAreaID"></label>
+                    <input asp-for="JobAreaID" class="form-control custom" placeholder="Jobbområde" value="tester"/>
+                    <span asp-validation-for="JobAreaID"></span>
+                    <br />
+                    <button type="submit" value="Register" class="btn btn-success">Registrera</button>
+                </form>
+            </center>
+        </section>
+    </div>
+    <footer class="mainFooter">
+        <p>HOME OF THE YOUNG PROFESSIONALS</p>
+    </footer>
+</body>
+</html>

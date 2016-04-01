@@ -24,7 +24,7 @@ namespace KoLappen.Controllers
             try
             {
                 var dataManager = new DataManager(context);
-                var queList = dataManager.GetQue();
+                var queList = dataManager.GetQue(User.Identity.Name);
                 return View(queList);
             }
           

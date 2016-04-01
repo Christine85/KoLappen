@@ -13,5 +13,6 @@ namespace KoLappen.ViewModels
         public DateTime HelpTime { get; set; }
         public int QueNr { get; set; }
         public string UserName { get; set; }
+        public bool IsUserItem { get; set; }
     }
 }

@@ -21,11 +21,11 @@ namespace KoLappen
             services.AddMvc();
 
             //Connection String
-            var identityConnString = @"Data Source=kolappen.database.windows.net;Initial Catalog=Projekt3;Integrated Security=False;User ID=AWAP3;Password=Woaow2016;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            var connString = @"Data Source=kolappen.database.windows.net;Initial Catalog=Projekt3;Integrated Security=False;User ID=AWAP3;Password=Woaow2016;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<DBContext>(o => o.UseSqlServer(identityConnString));
+                .AddDbContext<DBContext>(o => o.UseSqlServer(connString));
 
             //lagra användaren i databasen
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
@@ -40,7 +40,10 @@ namespace KoLappen
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<IdentityDbContext>(o => o.UseSqlServer(identityConnString));
+                .AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
+
+
+            services.AddTransient<IUsersRepository, DbUsersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
