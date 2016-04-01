@@ -29,11 +29,11 @@ namespace KoLappen.Models
                 LastName = user.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                Education = user.Education/*,*/
+                //Education = user.Education/*,*/
                 //JobAreas = user.UserJobAreas
             };
         }
-
+        
         public List<ProfileVM> GetOneClass(int edu)
         {
 
@@ -68,5 +68,6 @@ namespace KoLappen.Models
 
             return selectedClass;            
         }
+        
     }
 }

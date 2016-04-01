@@ -10,7 +10,7 @@ namespace KoLappen.ViewModels
 {
     public class ProfileVM
     {
-        [Display(Name = "Förnamn")]
+        [Display(Name = "Förnamn")] 
         public string Name { get; set; }
         [Display(Name = "Efternamn")]
         public string LastName { get; set; }
