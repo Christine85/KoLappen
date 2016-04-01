@@ -13,6 +13,8 @@ namespace KoLappen.Models
         public DbSet<JobArea> JobAreas { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<AspNetRole> AspNetRoles { get; set; }
+        public DbSet<UserJobArea> UserJobAreas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +23,8 @@ namespace KoLappen.Models
             modelBuilder.Entity<JobArea>().ToTable("JobAreas").HasKey("JobAreaID");
             modelBuilder.Entity<Education>().ToTable("Educations").HasKey("EducationID");
             modelBuilder.Entity<AspNetRole>().ToTable("AspNetRoles").HasKey("Id");
+            modelBuilder.Entity<UserJobArea>().ToTable("UserJobAreas").HasKey("UserJobAreaId");
+
         }
     }
 }
