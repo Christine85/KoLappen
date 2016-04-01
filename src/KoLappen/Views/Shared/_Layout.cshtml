@@ -2,16 +2,102 @@
 
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/kolappen.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <title>@ViewBag.Title</title>
 </head>
-<body style="text-align:center">
-    <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
-    <h1>Academic Work Academy</h1>
-    <div>
-        @RenderBody()
+<body>
+    @* row för loggan *@
+    <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-2"><img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" /></div>
+        <div class="col-md-8"></div>
     </div>
-    <footer>
-        <p>HOME OF THE YOUNG PROFESSIONALS</p>
-    </footer>
+
+    @* row för navbar *@
+    <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="~/home/index">AWA Int 1.0</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        @*<li class="active"><a href="#">Home</a></li>*@
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Page 1-1</a></li>
+                                <li><a href="#">Page 1-2</a></li>
+                                <li><a href="#">Page 1-3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-cog" id="settingsIcon"></span></a></li>
+                        <li><a asp-controller="Account" asp-action="Logout"><span class="glyphicon glyphicon-log-out btn btn-login" style="color: white" type="submit" value="Logout" id="settingsIcon" /></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+
+
+    @* row för main fönstret osv  *@
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+
+            @RenderBody()
+
+            Här ska det
+            <br />
+            finnas ett mainfönster......
+            <br />
+            som har samma bredd (6 av 12) som navbaren......
+        </div>
+        <div class="col-md-2" id="theQLappBackground">
+                        <br /><br /><br /><br /><br /><br /><br />
+            <center>
+                <p style="color: white; font-size: 36px; font-weight: bold">10</p>
+            </center>
+            <br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br />
+            <center>
+                <iframe src="https://calendar.google.com/calendar/embed?title=AWA%20VT16%20-%20C%23%20.NET&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=200&amp;wkst=2&amp;hl=sv&amp;bgcolor=%23FFFFFF&amp;src=qd4g3h2qi5vh2t873katrenqko%40group.calendar.google.com&amp;color=%23060D5E&amp;src=en.swedish%23holiday%40group.v.calendar.google.com&amp;color=%23711616&amp;src=e_2_en%23weeknum%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FStockholm" style="border-width:0" width="267" height="200" frameborder="0" scrolling="no"></iframe>
+            </center>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+
+
+
+
+    @* row för footer  *@
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2">
+            <p>HOME OF THE YOUNG PROFESSIONALS</p>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+
 </body>
 </html>
+
+
+
+
