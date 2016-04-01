@@ -46,16 +46,6 @@ namespace KoLappen.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public IActionResult Alumner()
-        {
-            return View();
-        }
-        [AllowAnonymous]
-        public IActionResult Katalog()
-        {
-            return View();
-        }
 
         [AllowAnonymous]
         [HttpPost]
@@ -96,8 +86,8 @@ namespace KoLappen.Controllers
             //ViewBag.Educations = new SelectList(dbContext.Educations, "EducationID", "CourseName");
             //ViewBag.JobAreas = new SelectList(dbContext.JobAreas, "JobAreaID", "JobAreaID");
             var viewModel = new AddUserViewModel();
-            viewModel.Educations = usersRepository.GetEducations();
-            viewModel.JobAreas = usersRepository.GetJobAreas();
+            //viewModel.allEducations = usersRepository.GetAllEducations();
+            //viewModel.allJobAreas = usersRepository.GetJobAreas();
             return View();
         }
 
@@ -114,12 +104,12 @@ namespace KoLappen.Controllers
 
             // Skapa användaren
             IdentityUser user = new IdentityUser
-            {                
+            {
                 UserName = viewModel.Email,
                 Email = viewModel.Email
             };
             var result = await userManager.CreateAsync(user, "P@ssw0rd");
-            
+
             if (result.Succeeded)
             {
                 // Om användaren skapades så skapas även en rad i tabellen 'Users'

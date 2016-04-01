@@ -20,12 +20,12 @@ namespace KoLappen.ViewModels
 
         [Required(ErrorMessage = "Fyll i utbildnings id nummer.")]
         [Display(Name = "Utbildnings ID")]
-        public Education EducationID { get; set; }
+        public int Education { get; set; }
         public IEnumerable<SelectListItem> Educations { get; set; }
 
         [Required(ErrorMessage = "Fyll i jobbområde.")]
         [Display(Name = "Jobbområde")]
-        public string JobAreaID { get; set; }
+        public string JobArea { get; set; }
         public IEnumerable<SelectListItem> JobAreas  { get; set; }
 
 
