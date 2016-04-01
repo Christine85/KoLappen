@@ -4,6 +4,12 @@
     bottom: 5%;
 }
 
+header.indexHeader {
+    background-color: white;
+    color: forestgreen;
+    text-align: left;
+    padding: 10px;
+}
 
 header.mainHeader {
     background-color: white;
@@ -21,24 +27,38 @@ footer.mainFooter {
 }
 
 section.loginimg {
+    -ms-align-content: center;
+    -webkit-align-content: center;
     align-content: center;
     padding: 180px;
 }
 
-.btn-success {
+.btn-login {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
 }
 
+.btn-logout {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+/*@media (max-width: 360px) {*/
 .custom {
     width: 360px;
 }
 
+#settingsIcon{
+    font-size: 25px;
+}
 
-.Kolappen {
-    background-image: url('../images/kolappen.jpg');
+#theQLappBackground {
+    background-image: url('../images/theqlapp.png');
     background-repeat: no-repeat;
-    background-position: center;
-    height: 217px;
+    background-position-x: center;
+    background-position-y: top;
+    /*background-size: 259px 451px;*/
+    background-size: 155px 271px;
 }

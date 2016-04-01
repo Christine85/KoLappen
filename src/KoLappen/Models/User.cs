@@ -13,8 +13,8 @@ namespace KoLappen.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public int EducationID { get; set; }
-        public int JobAreaID { get; set; }
         public bool NeedHelp { get; set; }
-        public DateTime? HelpTime { get; set; }
+        public DateTime HelpTime { get; set; }
+        public int ProfilePic { get; set; }
     }
 }
