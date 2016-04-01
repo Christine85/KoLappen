@@ -29,8 +29,8 @@ namespace KoLappen.Models
                 LastName = user.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                Education = user.Education,
-                JobAreas = user.JobAreas
+                Education = user.Education/*,*/
+                //JobAreas = user.UserJobAreas
             };
         }
     }

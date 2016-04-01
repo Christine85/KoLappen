@@ -21,15 +21,15 @@ namespace KoLappen.Models
                 .Where(o => o.NeedHelp == true)
                //.OrderBy(o => o.HelpTime)
                .Select(o => new QueListVM
-               {                   
+               {
                    Firstname = o.Firstname,
                    Lastname = o.Lastname,
                    //HelpTime = o.HelpTime.Value,
                    UserName = o.UserName,
                    QueNr = 0,
-                   IsUserItem = o.UserName == userName ? true:false
-            
-            })
+                   IsUserItem = o.UserName == userName ? true : false
+
+               })
                .ToArray();
 
             for (int i = 0; i < queList.Length; i++)
@@ -40,7 +40,7 @@ namespace KoLappen.Models
             return queList;
         }
 
-        public bool AskForHelp(QueListVM viewModel, string UserName)
+        public void HelpNeeded(string UserName)
         {
             //context.Users
             //  .Where(o => o.UserName == UserName)
@@ -89,8 +89,10 @@ namespace KoLappen.Models
             //context.SaveChanges();
 
             ////true om kund lagts till i DB
-            return true;
+        }
 
+        public void NoHelpNeeded(string UserName)
+        {
         }
     }
 }
