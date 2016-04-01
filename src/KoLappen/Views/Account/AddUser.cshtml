@@ -20,7 +20,7 @@
         </header>
         <section class="loginimg">
             <center>
-                <div asp-validation-summary="ValidationSummary.All"></div>
+                @*<div asp-validation-summary="ValidationSummary.All"></div>*@
                 <form asp-controller="Account" asp-action="Register">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control custom" placeholder="E-mail" value="T1@test.com" />
