@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace KoLappen.Models
     {
         void AddUser(AddUserViewModel viewModel, string userId);
         Education GetEducation(int eduId);
-        List<UserJobArea> GetUserJobAreas(int jobId);
+        List<UserJobArea> GetUserJobAreas(int jobId, string userId);
         //IEnumerable<SelectListItem> GetEducations();
         //IEnumerable<SelectListItem> GetJobAreas();
     }
@@ -39,7 +40,7 @@ namespace KoLappen.Models
                 Lastname = viewModel.Lastname,
                 Education = GetEducation(viewModel.Education),
                 //UserJobAreas = GetUserJobAreas(Convert.ToInt32(viewModel.JobArea)),
-                UserJobAreas = null,
+                //UserJobAreas = GetUserJobAreas(viewModel.JobArea, userId),
                 NeedHelp = false,
                 HelpTime = DateTime.Now,
                 ProfilePic = null
@@ -52,24 +53,43 @@ namespace KoLappen.Models
 
             dbContext.Users.Add(userProfile);
             dbContext.SaveChanges();
+
+            var userJobAreas = GetUserJobAreas(viewModel.JobArea, userId);
+
+            userProfile.UserJobAreas = userJobAreas;
+            dbContext.Entry(userProfile).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
 
-        public List<UserJobArea> GetUserJobAreas(int jobId)
+        public List<UserJobArea> GetUserJobAreas(int jobId, string userId)
         {
             List<UserJobArea> jobAreas = new List<UserJobArea>();
-            //var jobList = dbContext.JobAreas.Select(j =>
+            var userJobArea = new UserJobArea
+            {
+                UserID = userId,
+                JobAreaID = jobId
+            };
+
+            jobAreas.Add(userJobArea);
+            dbContext.UserJobAreas.Add(userJobArea);
+            dbContext.SaveChanges();
+
+            return jobAreas;
+
+            //List<UserJobArea> jobAreas = new List<UserJobArea>();
+            //jobAreas.Add(new UserJobArea { UserID = userId, JobAreaID = jobId})
+            //var jobList = dbContext.UserJobAreas.Select(j =>
             //new UserJobArea
             //{
-            //    JobAreaID = j.JobAreaID,
-
-            //    City = j.City,
-            //    UserJobAreas = j.UserJobAreas
+            //    UserJobAreaId = j.JobAreaID,
+            //    UserID = j.UserID,
+            //    JobAreaID = j.UserJobAreaId
             //});
             //foreach (var job in jobList)
             //{
             //    jobAreas.Add(job);
-            //}
-            return jobAreas;
+            ////}
+            //return jobAreas;
         }
 
         public Education GetEducation(int eduId)
@@ -83,12 +103,11 @@ namespace KoLappen.Models
                 Semester = e.Semester,
                 Location = e.Location,
                 Users = null
-
             });
             education = eduList.Single(e => e.EducationID == eduId);
             return education;
         }
-        
+
 
         //public IEnumerable<User> GetUser(int educationId)
         //{

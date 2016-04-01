@@ -34,13 +34,10 @@ namespace KoLappen.Models
 
             modelBuilder.Entity<UserJobArea>()
                 .HasOne(uja => uja.User)
-                .WithMany(u => u.UserJobAreas)
-                .HasForeignKey(uja => uja.UserID);
+                .WithMany(u => u.UserJobAreas);
             modelBuilder.Entity<UserJobArea>()
                 .HasOne(uja => uja.JobArea)
-                .WithMany(ja => ja.UserJobAreas)
-                .HasForeignKey(uja => uja.JobAreaID);
-
+                .WithMany(ja => ja.UserJobAreas);
 
         }
     }

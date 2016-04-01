@@ -29,9 +29,45 @@ namespace KoLappen.Models
                 LastName = user.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                Education = user.Education/*,*/
+                //Education = user.Education/*,*/
                 //JobAreas = user.UserJobAreas
             };
         }
+        
+        public List<ProfileVM> GetOneClass(int edu)
+        {
+
+            var user = context.Users
+                .Where(o => o.Education == edu)
+                .Select(o => new ProfileVM
+                {
+                    UserName = o.UserName,
+                    Name = o.Firstname,
+                    LastName = o.Lastname,
+                    Education = o.Education
+                })
+                .ToList();                
+
+
+            var selectedClass = new List<ProfileVM>();
+
+            foreach (var item in user)
+            {
+                selectedClass.AddRange(identityContext.Users
+                .Where(i => i.UserName == item.UserName)
+                .Select(i => new ProfileVM
+                {
+                    Name = item.Name,
+                    LastName = item.LastName,
+                    UserName = i.UserName,
+                    Email = i.Email,
+                    PhoneNumber = i.PhoneNumber
+                })
+                .ToList());
+            }
+
+            return selectedClass;            
+        }
+        
     }
 }
