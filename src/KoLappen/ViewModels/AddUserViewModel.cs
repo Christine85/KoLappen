@@ -25,7 +25,7 @@ namespace KoLappen.ViewModels
 
         [Required(ErrorMessage = "Fyll i jobbområde.")]
         [Display(Name = "Jobbområde")]
-        public string JobArea { get; set; }
+        public int JobArea { get; set; }
         public IEnumerable<SelectListItem> JobAreas  { get; set; }
 
 
