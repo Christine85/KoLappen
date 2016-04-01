@@ -35,10 +35,10 @@ namespace KoLappen.Models
                 UserName = viewModel.Email,
                 Firstname = viewModel.Firstname,
                 Lastname = viewModel.Lastname,
-                EducationID = viewModel.EducationID,
+                Education = viewModel.EducationID,
                 NeedHelp = false,
                 HelpTime = DateTime.Now,
-                ProfilePic = 1
+                ProfilePic = null
             };
 
             dbContext.Users.Add(userProfile);

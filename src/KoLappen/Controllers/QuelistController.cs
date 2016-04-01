@@ -37,14 +37,34 @@ namespace KoLappen.Controllers
 
         public IActionResult NeedHelpFalse(QueListVM viewModel)
         {
+            try
+            {
+                var dataManager = new DataManager(context);
+                dataManager.NoHelpNeeded(User.Identity.Name);
+                return RedirectToAction(nameof(QuelistController.Quelist));
+            }
 
-            return RedirectToAction(nameof(QuelistController.Quelist));
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+                return View();
+            }            
         }
 
         public IActionResult NeedHelpTrue(QueListVM viewModel)
         {
+            try
+            {
+                var dataManager = new DataManager(context);
+                dataManager.HelpNeeded(User.Identity.Name);
+                return RedirectToAction(nameof(QuelistController.Quelist));
+            }
 
-            return RedirectToAction(nameof(QuelistController.Quelist));
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+                return View();
+            }           
         }
     }
 }

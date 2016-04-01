@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc.Rendering;
+﻿using KoLappen.Models;
+using Microsoft.AspNet.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,7 +20,7 @@ namespace KoLappen.ViewModels
 
         [Required(ErrorMessage = "Fyll i utbildnings id nummer.")]
         [Display(Name = "Utbildnings ID")]
-        public int EducationID { get; set; }
+        public Education EducationID { get; set; }
         public IEnumerable<SelectListItem> Educations { get; set; }
 
         [Required(ErrorMessage = "Fyll i jobbområde.")]

@@ -1,0 +1,13 @@
+﻿@model ProfileVM
+<div>
+    <div>
+        <img src="@Model.Image" />
+    </div>
+    <p>@Model.Name @Model.LastName</p>
+    <p>@Model.Email</p>
+    <p>@Model.PhoneNumber</p>
+    <h6>Klass</h6>
+    <p>@Model.Education.CourseName @Model.Education.Semester</p>
+    <h6>Region</h6>
+    <p>@Model.JobAreas</p>
+</div>
