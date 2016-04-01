@@ -12,7 +12,10 @@ namespace KoLappen.Models
         public string UserName { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public Education Education { get; set; }
+        //public Education Education { get; set; }
+
+        public int Education { get; set; }
+
         public List<UserJobArea> UserJobAreas { get; set; }
         public bool NeedHelp { get; set; }
         public DateTime HelpTime { get; set; }
