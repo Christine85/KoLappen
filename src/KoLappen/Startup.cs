@@ -8,6 +8,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using KoLappen.Models;
 
 namespace KoLappen
 {
@@ -22,9 +23,9 @@ namespace KoLappen
             //Connection String
             var identityConnString = @"Data Source=kolappen.database.windows.net;Initial Catalog=Projekt3;Integrated Security=False;User ID=AWAP3;Password=Woaow2016;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-            //services.AddEntityFramework()
-            //    .AddSqlServer()
-            //    .AddDbContext<PaskContext>(o => o.UseSqlServer(identityConnString));
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<DBContext>(o => o.UseSqlServer(identityConnString));
 
             //lagra användaren i databasen
             services.AddIdentity<IdentityUser, IdentityRole>(o =>

@@ -10,5 +10,6 @@ namespace KoLappen.Models
     {
         public int JobAreaID { get; set; }
         public string City { get; set; }
+        public List<User> Users { get; set; }
     }
 }

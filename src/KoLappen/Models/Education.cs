@@ -12,5 +12,6 @@ namespace KoLappen.Models
         public string CourseName { get; set; }
         public string Semester { get; set; }
         public string Location { get; set; }
+        public List<User> Users { get; set; }
     }
 }
