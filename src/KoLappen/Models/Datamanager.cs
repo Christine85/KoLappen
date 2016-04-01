@@ -40,59 +40,17 @@ namespace KoLappen.Models
             return queList;
         }
 
-        public void HelpNeeded(string UserName)
+        public void HelpTrueOrFalse(string UserName, bool trueOrFalse)
         {
-            //context.Users
-            //  .Where(o => o.UserName == UserName)
-            //  .Select(o =>
-            //  {
+            var user = context.Users
+              .Where(o => o.UserName == UserName).SingleOrDefault();
 
-            //      o.NeedHelp = true
+            if(user != null)
+            {
+                user.NeedHelp = trueOrFalse;
 
-
-            //      });
-
-
-
-
-            ////kolla hur många som finns med samma email
-            //var result = context.Users.Count(o => o.Email.Equals(viewModel.Email));
-
-            //user.FirstName = viewModel.FirstName;
-            //user.LastName = viewModel.LastName;
-            //user.Email = viewModel.Email;
-            //user.PhoneNumber = viewModel.PhoneNumber;
-            //user.IsAdmin = "0";
-
-            //context.Users.Add(user);
-            //context.SaveChanges();
-
-            ////spara id för kunden
-            //userID = user.UserId;
-
-            //var adress = new Address();
-
-            //adress.Street = viewModel.Street;
-            //adress.Zip = viewModel.Zip;
-            //adress.City = viewModel.City;
-            //adress.UserID = userID;
-
-            //context.Addresses.Add(adress);
-            //context.SaveChanges();
-
-            //var security = new Security();
-
-            //security.Email = viewModel.Email;
-            //security.Password = viewModel.Password;
-
-            //context.Securitys.Add(security);
-            //context.SaveChanges();
-
-            ////true om kund lagts till i DB
-        }
-
-        public void NoHelpNeeded(string UserName)
-        {
+                context.SaveChanges();
+            }
         }
     }
 }
