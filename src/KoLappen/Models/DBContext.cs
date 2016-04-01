@@ -20,6 +20,15 @@ namespace KoLappen.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().ToTable("Users").HasKey("UserID");
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Education)
+                .WithMany(e => e.Users)
+                .HasForeignKey(u => u.UserID);
+            //modelBuilder.Entity<User>()/*.ToTable("Users")*/
+            //    .HasMany(o => o.Education)u.
+            //    .WithRequired(o => o.User)
+            //    .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<JobArea>().ToTable("JobAreas").HasKey("JobAreaID");
             modelBuilder.Entity<Education>().ToTable("Educations").HasKey("EducationID");
             modelBuilder.Entity<AspNetRole>().ToTable("AspNetRoles").HasKey("Id");

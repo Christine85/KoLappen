@@ -35,12 +35,12 @@ namespace KoLappen.Controllers
             }            
         }
 
-        public IActionResult NeedHelpFalse(QueListVM viewModel)
+        public IActionResult NeedHelpTreuOrFalse(bool trueOrFalse)
         {
             try
             {
                 var dataManager = new DataManager(context);
-                dataManager.NoHelpNeeded(User.Identity.Name);
+                dataManager.HelpTrueOrFalse(User.Identity.Name, trueOrFalse);
                 return RedirectToAction(nameof(QuelistController.Quelist));
             }
 
@@ -50,21 +50,6 @@ namespace KoLappen.Controllers
                 return View();
             }            
         }
-
-        public IActionResult NeedHelpTrue(QueListVM viewModel)
-        {
-            try
-            {
-                var dataManager = new DataManager(context);
-                dataManager.HelpNeeded(User.Identity.Name);
-                return RedirectToAction(nameof(QuelistController.Quelist));
-            }
-
-            catch (Exception e)
-            {
-                ModelState.AddModelError(string.Empty, e.Message);
-                return View();
-            }           
-        }
+       
     }
 }
