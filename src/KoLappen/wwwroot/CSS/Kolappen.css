@@ -37,6 +37,7 @@ section.loginImg {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
+    align-content:center;
 }
 
 .btn-logout {
