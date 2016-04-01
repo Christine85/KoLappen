@@ -58,7 +58,9 @@
         </div>
         <div class="col-md-2" id="theQLappBackground">
 
-            @Html.Partial("Quelist")
+            @Component.Invoke("QueList")
+
+            @*@Html.Partial("Quelist")*@
 
             @*<br /><br /><br /><br /><br /><br /><br />
                 <center>
