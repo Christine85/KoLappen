@@ -46,6 +46,16 @@ namespace KoLappen.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult Alumner()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult Katalog()
+        {
+            return View();
+        }
 
         [AllowAnonymous]
         [HttpPost]
