@@ -15,6 +15,6 @@ namespace KoLappen.Models
         public int EducationID { get; set; }
         public int JobAreaID { get; set; }
         public bool NeedHelp { get; set; }
-        public DateTime HelpTime { get; set; }
+        public DateTime? HelpTime { get; set; }
     }
 }

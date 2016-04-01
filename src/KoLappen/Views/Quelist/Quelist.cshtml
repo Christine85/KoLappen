@@ -1,39 +1,41 @@
 ﻿@model KoLappen.ViewModels.QueListVM[]
 @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
-
 <html>
 <head>
-    <style>
-        div.KoLappen {            
-            background-image: url('../../wwwroot/images/kölappen.jpg');
-            background-repeat: no-repeat;
-            background-position: right top;
-            margin-right: 200px;
-        }
-    </style>
+<link href="~/css/kolappen.css" rel="stylesheet" />
+   
 </head>
 <body>
 
-    <div class="KoLappen">
-
-        @foreach (var user in Model)
+    <div class="Kolappen">
+        jojojoj
+        @*@foreach (var item in collection)
         {
-            @if(ViewContext.HttpContext.User.Identity.Name == user.UserName)
+
+        }*@
+
+    </div>
+
+    <div>
+        @foreach (var item in Model)
+        {
+            if (item.IsUserItem)
             {
-                <p>@user.QueNr</p>
-
-                <a asp-controller="Quelist" asp-action="@nameof(KoLappen.Controllers.QuelistController.NeedHelpFalse)">Problem löst</a>
+                <input type="button" value="Problem löst" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpFalse", "QuelistController")'" />
+                break;
             }
-        }
-
-        <a asp-controller="Quelist" asp-action="@nameof(KoLappen.Controllers.QuelistController.NeedHelpTrue)">Hjälp</a>
+            else
+            { 
+                <input type="button" value="Hjälp" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpTrue", "QuelistController")'" />
+            }
+        }       
 
     </div>
 
     <div>
         @foreach (var user in Model)
             {
-            <p>@user.Firstname + " " + @user.Lastname + " " + @user.HelpTime</p>
+            <p>@user.Firstname @user.Lastname @user.HelpTime</p>
         }
     </div>
 </body>

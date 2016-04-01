@@ -59,6 +59,7 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
             */
+
             await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 
             return RedirectToAction(nameof(HomeController.Index),"home");

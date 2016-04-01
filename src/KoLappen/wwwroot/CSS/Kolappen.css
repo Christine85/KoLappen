@@ -11,6 +11,7 @@ header.mainHeader {
     text-align: left;
     padding: 60px;
 }
+
 footer.mainFooter {
     background-color: white;
     color: black;
@@ -18,15 +19,26 @@ footer.mainFooter {
     text-align: center;
     padding: 60px;
 }
+
 section.loginimg {
     align-content: center;
     padding: 180px;
 }
+
 .btn-success {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
 }
-.custom{
-    width:360px;
+
+.custom {
+    width: 360px;
+}
+
+
+.Kolappen {
+    background-image: url('../images/kolappen.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 217px;
 }
