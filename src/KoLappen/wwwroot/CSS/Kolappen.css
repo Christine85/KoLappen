@@ -50,7 +50,7 @@ section.loginImg {
     width: 360px;
 }
 
-#settingsIcon{
+#settingsIcon {
     font-size: 25px;
 }
 
@@ -59,7 +59,6 @@ section.loginImg {
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
-    /*background-size: 259px 451px;*/
     background-size: 155px 271px;
 }
 
@@ -129,6 +128,41 @@ section.loginImg {
   -webkit-transform: rotateY(180deg);
   opacity: 0;
 }
+
+
+
+
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    border-radius: 5px;
+}
+
+#commentRightBorder {
+    border-right: thin solid;
+}
+
+
+#commentLeftBorder {
+    border-left: thin solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
