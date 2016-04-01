@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Authorization;
 using KoLappen.ViewModels;
+using KoLappen.Models;
+using Microsoft.AspNet.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,22 +16,28 @@ namespace KoLappen.Controllers
 {
     public class AccountController : Controller
     {
+        DBContext dbContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         IdentityDbContext contextIdentity;
+        IUsersRepository usersRepository;
+
         public AccountController(
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
-             IdentityDbContext contextIdentity)
+            IdentityDbContext contextIdentity,
+            IUsersRepository usersRepository,
+            DBContext dbContext)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.contextIdentity = contextIdentity;            
-
+            this.contextIdentity = contextIdentity;
+            this.usersRepository = usersRepository;
+            this.dbContext = dbContext;
         }
         // GET: /<controller>/
         public IActionResult Index()
-        {            
+        {
             return View();
         }
 
@@ -59,9 +67,10 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
             */
+
             await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 
-            return RedirectToAction(nameof(HomeController.Index),"home");
+            return RedirectToAction(nameof(HomeController.Index), "home");
         }
 
 
@@ -69,6 +78,58 @@ namespace KoLappen.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction(nameof(AccountController.Login));
+        }
+
+        [AllowAnonymous]
+        public ActionResult AddUser()
+        {
+            //ViewBag.Educations = new SelectList(dbContext.Educations, "EducationID", "CourseName");
+            //ViewBag.JobAreas = new SelectList(dbContext.JobAreas, "JobAreaID", "JobAreaID");
+            var viewModel = new AddUserViewModel();
+            viewModel.Educations = usersRepository.GetEducations();
+            viewModel.JobAreas = usersRepository.GetJobAreas();
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddUser(AddUserViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            // Skapa DB-schemat
+            await contextIdentity.Database.EnsureCreatedAsync();
+
+            // Skapa användaren
+            IdentityUser user = new IdentityUser
+            {                
+                UserName = viewModel.Email,
+                Email = viewModel.Email
+            };
+            var result = await userManager.CreateAsync(user, "P@ssw0rd");
+            
+            if (result.Succeeded)
+            {
+                // Om användaren skapades så skapas även en rad i tabellen 'Users'
+                usersRepository.AddUser(viewModel, user.Id);
+
+                await signInManager.PasswordSignInAsync(
+                    viewModel.Email, "P@ssw0rd", false, false);
+
+                return RedirectToAction(nameof(HomeController.Index), "home");
+            }
+
+            // Visa ev. fel-meddelande
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(nameof(AddUserViewModel.Email),
+                    result.Errors.First().Description);
+
+                return View(viewModel);
+            }
+            return View(viewModel);
         }
     }
 }

@@ -15,19 +15,29 @@ namespace KoLappen.Models
             this.context = context;
         }
 
-        public QueListVM[] GetQue()
+        public QueListVM[] GetQue(string userName)
         {
-            return context.Users
+            var queList = context.Users
                 .Where(o => o.NeedHelp == true)
-               .OrderBy(o => o.HelpTime)
+               //.OrderBy(o => o.HelpTime)
                .Select(o => new QueListVM
-               {
+               {                   
                    Firstname = o.Firstname,
                    Lastname = o.Lastname,
-                   HelpTime = o.HelpTime,
-                   UserName = o.UserName
-               })
+                   //HelpTime = o.HelpTime.Value,
+                   UserName = o.UserName,
+                   QueNr = 0,
+                   IsUserItem = o.UserName == userName ? true:false
+            
+            })
                .ToArray();
+
+            for (int i = 0; i < queList.Length; i++)
+            {
+                queList[i].QueNr = i + 1;
+            }
+
+            return queList;
         }
 
         public bool AskForHelp(QueListVM viewModel, string UserName)

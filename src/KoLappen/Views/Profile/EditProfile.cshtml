@@ -1,0 +1,21 @@
+﻿@model ProfileVM
+<div asp-validation-summary="ValidationSummary.All"></div>
+<form asp-controller="profile" asp-action="editprofile" enctype="multipart/form-data">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    <br />
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <span asp-validation-for="LastName"></span>
+    <br />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+    <br />
+    <label asp-for="PhoneNumber"></label>
+    <input asp-for="PhoneNumber" />
+    <span asp-validation-for="PhoneNumber"></span>
+    <br />
+    <input type="submit" value="Uppdatera" />
+</form>

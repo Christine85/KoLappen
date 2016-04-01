@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using KoLappen.Models;
+using KoLappen.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,17 +16,26 @@ namespace KoLappen.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-
-        DBContext context;
-
-        public ProfileController(DBContext context)
+        ProfileDataManager dataManager;
+        public ProfileController(DBContext context,
+        IdentityDbContext identityContext)
         {
-            this.context = context;
+            dataManager = new ProfileDataManager(context, identityContext);
         }
-        // GET: /<controller>/
+        
         public IActionResult Profile()
         {
+            return View(dataManager.GetProfile(User.Identity.Name));
+        }
+        // GET: /<controller>/
+        public IActionResult EditProfile()
+        {
             return View();
+        }
+        [HttpPost]
+        public IActionResult EditProfile(ProfileVM model)
+        {
+            return RedirectToAction(nameof(ProfileController.Profile));
         }
 
     }
