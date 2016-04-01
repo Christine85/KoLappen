@@ -34,10 +34,10 @@
                     </div>
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meny 1<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mina sidor<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Undermeny 1</a></li>
-                                <li><a href="#">Undermeny 2</a></li>
+                                <li><a href="~/profile/profile">Min profil</a></li>
+                                <li><a href="~/home/calendar">Kalender</a></li>
                                 <li><a href="#">Undermeny 3</a></li>
                             </ul>
                         </li>
@@ -51,7 +51,7 @@
                         <li><a href="#">Meny 3</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-cog" id="settingsIcon"></span></a></li>
+                        <li><a href="~/profile/editprofile"><span class="glyphicon glyphicon-cog" id="settingsIcon"></span></a></li>
                         <li><a asp-controller="Account" asp-action="Logout"><span class="glyphicon glyphicon-log-out" id="settingsIcon" /></a></li>
                     </ul>
                 </div>
@@ -89,13 +89,9 @@
         </div>
     </div>
 
-
-    @* footer *@
-
-    <footer>
-        <p style="text-align: center">HOME OF THE YOUNG PROFESSIONALS</p>
-    </footer>
-
+  
+            @*<div class="panel-footer">HOME OF THE YOUNG PROFESSIONALS</div>*@
+  
 
 
 
