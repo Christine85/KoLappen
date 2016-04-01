@@ -13,7 +13,7 @@ namespace KoLappen.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public Education Education { get; set; }
-        public List<JobArea> JobAreas { get; set; }
+        public List<UserJobArea> UserJobAreas { get; set; }
         public bool NeedHelp { get; set; }
         public DateTime HelpTime { get; set; }
         public byte[] ProfilePic { get; set; }

@@ -8,7 +8,12 @@ namespace KoLappen.Models
     public class UserJobArea
     {
         public int UserJobAreaId { get; set; }
-        public int JobAreaID { get; set; }
+        //public int JobAreaID { get; set; }
+        //public string UserID { get; set; }
         public string UserID { get; set; }
+        public User User { get; set; }
+
+        public int JobAreaID { get; set; }
+        public JobArea JobArea { get; set; }
     }
 }

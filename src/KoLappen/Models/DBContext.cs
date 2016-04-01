@@ -25,6 +25,16 @@ namespace KoLappen.Models
             modelBuilder.Entity<AspNetRole>().ToTable("AspNetRoles").HasKey("Id");
             modelBuilder.Entity<UserJobArea>().ToTable("UserJobAreas").HasKey("UserJobAreaId");
 
+            modelBuilder.Entity<UserJobArea>()
+                .HasOne(uja => uja.User)
+                .WithMany(u => u.UserJobAreas)
+                .HasForeignKey(uja => uja.UserID);
+            modelBuilder.Entity<UserJobArea>()
+                .HasOne(uja => uja.JobArea)
+                .WithMany(ja => ja.UserJobAreas)
+                .HasForeignKey(uja => uja.JobAreaID);
+
+
         }
     }
 }
