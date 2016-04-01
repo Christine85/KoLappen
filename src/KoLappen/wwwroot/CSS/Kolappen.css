@@ -37,7 +37,7 @@ section.loginImg {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
-    align-content:center;
+    align-content: center;
 }
 
 .btn-logout {
@@ -179,11 +179,11 @@ body {
     overflow: hidden;
 }
 
-#mainScrollable{
+#mainScrollable {
     overflow: scroll;
 }
 
-#noScroll{
+#noScroll {
     overflow: hidden;
 }
 
@@ -200,6 +200,11 @@ body {
     top: 500px;
 }
 
+
+#bottomFooterAWA {
+    position: absolute;
+    bottom: 20px;
+}
 
 
 /*
