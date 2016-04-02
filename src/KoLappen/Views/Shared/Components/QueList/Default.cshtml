@@ -5,6 +5,16 @@
 
 </head>
 <body>
+
+    <script type="text/javascript">
+        var container = document.getElementById("Queue");
+        var refreshComponent = function () {
+            $.get("ViewComponents/QueListViewComponents", function (data) { container[data]; });
+        };
+        $(function () { window.setInterval(refreshComponent, 10000); });
+    </script>
+
+
     <div id="QueNr">
         @foreach (var item in Model)
         {
@@ -35,44 +45,6 @@
         </form>
 
     </div>
-
-    <script type="text/javascript">
-
-        $(".td").hover(function () {
-            var name = $(this).html();
-            $.get("/customer/GetCustomer",
-                { "id": name }, function (result) {
-                    $("#divResult").html(result);
-                });
-        });
-
-        //$("#btnClick").click(
-        //function ButtonClickHelp() {
-        //    $.get("/Quelist/NeedHelpTreuOrFalse", false)
-        //    });
-
-        //,
-        //function (result) {
-        //    $("#divBtn").html(result.length);
-        //})
-
-        @*$(document).ready(function () {
-            var interval = window.setInterval(function () {
-                $.ajax({
-                    url: "@Url.Action("JsonData", "Home")",
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#counter').html(data);
-                        if (data == 20) { //<-- make sure data has value 20 and is not an object or anything
-                            window.clearInterval(interval);
-                        }
-                    }
-                });
-            }, 1000); //<-- Give interval in milliseconds here
-        });*@
-
-    </script>
-
     <div id="QueName">
         @foreach (var user in Model)
             {
