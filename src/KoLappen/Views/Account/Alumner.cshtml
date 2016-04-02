@@ -11,7 +11,11 @@
     *@
 
 <div class="alumner">
-    <p><b><a href="/Account/Katalog" style="color:#00aa3c">HT 15</a></b></p>
+    @foreach (var alumn in Model)
+    {
+        <p><b><a href="/Account/Katalog/@alumn." style="color:#00aa3c">HT 15</a></b></p>
+    }
+    <p><b><a href="/Account/Katalog/" style="color:#00aa3c">HT 15</a></b></p>
     <p><b><a href="/Account/Katalog" style="color:#00aa3c">VT 16</a></b></p>
     <p><b><a href="/Account/Katalog" style="color:#00aa3c">Sommar kurs 16</a></b></p>
 </div>

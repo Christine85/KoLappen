@@ -41,6 +41,12 @@ namespace KoLappen.Controllers
             return View();
         }
 
+        public IActionResult Katalog()
+        {
+            ProfileDataManager pdm = new ProfileDataManager(dbContext, contextIdentity);
+            return View(pdm.GetOneClass(1));
+        }
+
         [AllowAnonymous]
         public IActionResult Login()
         {
