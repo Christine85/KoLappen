@@ -1,0 +1,18 @@
+﻿<h2 style="color:#00aa3c">ALUMNER</h2>
+<h3 style="color:#00aa3c">TERMIN</h3>
+
+@*@foreach (var item in Model)
+    {
+        <td>@item.education</td>
+    }
+*@
+
+<div class="alumner">
+    
+    <p><b><a href="@Url.Action("Account", "Katalog", new { id = 0 })" style="color:#00aa3c">test</a></b></p>
+    
+
+    <p><b><a href="/Account/Katalog/1" style="color:#00aa3c">HT 15</a></b></p>
+    <p><b><a href="/Account/Katalog/2" style="color:#00aa3c">VT 16</a></b></p>
+    <p><b><a href="/Account/Katalog/3" style="color:#00aa3c">Sommar 16</a></b></p>
+</div>

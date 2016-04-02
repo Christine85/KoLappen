@@ -41,6 +41,15 @@ namespace KoLappen.Controllers
             return View();
         }
 
+        public IActionResult Alumner()
+        {
+            return View();
+        }
+        public IActionResult Semester()
+        {
+            return View();
+        }
+
         public IActionResult Katalog()
         {
             ProfileDataManager pdm = new ProfileDataManager(dbContext, contextIdentity);
