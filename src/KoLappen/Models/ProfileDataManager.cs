@@ -38,37 +38,37 @@ namespace KoLappen.Models
         {
             var idUser = identityContext.Users.ToList();
 
-            //var users = context.Users
-            //    //.Where(o => o.Education.EducationID == edu)
-            //    .Select(o => new ProfileVM
-            //    {
-            //        UserName = o.UserName,
-            //        Name = o.Firstname,
-            //        LastName = o.Lastname,
-            //        Education = o.Education
-            //    })
-            //    .ToList();                
+            var users = context.Users
+                .Where(o => o.Education.EducationID == edu)
+                .Select(o => new ProfileVM
+                {
+                    UserName = o.UserName,
+                    Name = o.Firstname,
+                    LastName = o.Lastname,
+                    Education = o.Education
+                })
+                .ToList();
 
 
             var selectedClass = new List<ProfileVM>();
 
-            //foreach (var item in users)
-            //{
-            //    selectedClass.AddRange(identityContext.Users
-            //    .Where(i => i.UserName == item.UserName)
-            //    .Select(i => new ProfileVM
-            //    {
-            //        Name = item.Name,
-            //        LastName = item.LastName,
-            //        UserName = i.UserName,
-            //        Email = i.Email,
-            //        PhoneNumber = i.PhoneNumber,
-            //        Education = item.Education
-            //    })
-            //    .ToList());
-            //}
+            foreach (var item in users)
+            {
+                selectedClass.AddRange(identityContext.Users
+                .Where(i => i.UserName == item.UserName)
+                .Select(i => new ProfileVM
+                {
+                    Name = item.Name,
+                    LastName = item.LastName,
+                    UserName = i.UserName,
+                    Email = i.Email,
+                    PhoneNumber = i.PhoneNumber,
+                    Education = item.Education
+                })
+                .ToList());
+            }
 
-            return null;            
+            return selectedClass;            
         }
         
     }

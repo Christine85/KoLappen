@@ -16,22 +16,22 @@
         }
     </div>
 
-    <div>
-        <form asp-controller="QueList" asp-action="NeedHelpTreuOrFalse">
+    <div id="QueBtn">
+        <form asp-controller="QueList" asp-action="NeedHelpTrueOrFalse">
             @foreach (var item in Model)
             {
                 if (item.IsUserItem)
-                {
-                    @*<asp:Button runat="server" Text="Whatever" OnClick="NeedHelpTreuOrFalse" />
-                        <asp:Button OnClick="submit" Text="Fått hjälp" runat="server" />*@
-                    <input type="button" value="Problem löst" class="btn btn-success" />
+                {       
+                    <input type="hidden" name="trueOrFalse" value="false" />
+                    <input type="submit" id="btnClick" value="Problem löst" class="btn btn-success" />
                     break;
                 }
                 else
                 {
-                    <input type="button" value="Hjälp" class="btn btn-success" />
+                    <input type="hidden" name="trueOrFalse" value="true" />
+                    <input type="submit" id="btnClick" value="Hjälp" class="btn btn-success" />
                 }
-            }
+            }            
         </form>
 
     </div>
@@ -46,15 +46,17 @@
                 });
         });
 
-        $("#GetNr").click(
-        function GetNrOfCustomers() {
-            $.get("/customer/GetViewModels", null,
-                function (result) {
-                    $("#divRes").html(result.length);
-                })
-        })
+        //$("#btnClick").click(
+        //function ButtonClickHelp() {
+        //    $.get("/Quelist/NeedHelpTreuOrFalse", false)
+        //    });
 
-        $(document).ready(function () {
+        //,
+        //function (result) {
+        //    $("#divBtn").html(result.length);
+        //})
+
+        @*$(document).ready(function () {
             var interval = window.setInterval(function () {
                 $.ajax({
                     url: "@Url.Action("JsonData", "Home")",
@@ -67,11 +69,11 @@
                     }
                 });
             }, 1000); //<-- Give interval in milliseconds here
-        });
+        });*@
 
     </script>
 
-    <div>
+    <div id="QueName">
         @foreach (var user in Model)
             {
             <p>@user.Firstname @user.Lastname @user.HelpTime</p>
