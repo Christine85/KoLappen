@@ -109,6 +109,12 @@ namespace KoLappen.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult AddCourse()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -147,6 +153,23 @@ namespace KoLappen.Controllers
 
                 return View(viewModel);
             }
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCourse(AddCourseVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
+            usersRepository.AddCourse(viewModel);
+            
+
+
             return View(viewModel);
         }
     }

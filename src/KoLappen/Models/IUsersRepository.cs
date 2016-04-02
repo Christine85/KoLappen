@@ -19,6 +19,7 @@ namespace KoLappen.Models
         List<UserJobArea> GetUserJobAreas(int jobId, string userId);
         //IEnumerable<SelectListItem> GetEducations();
         //IEnumerable<SelectListItem> GetJobAreas();
+        void AddCourse(AddCourseVM viewModel);
     }
 
     public class DbUsersRepository : IUsersRepository
@@ -108,6 +109,17 @@ namespace KoLappen.Models
             return education;
         }
 
+        public void AddCourse(AddCourseVM viewModel)
+        {
+            var course = new Education();
+
+            course.CourseName = viewModel.CourseName;
+            course.CourseName = viewModel.Semester;
+            course.CourseName = viewModel.Location;
+
+            dbContext.Educations.Add(course);
+            dbContext.SaveChanges();
+        }
 
         //public IEnumerable<User> GetUser(int educationId)
         //{
