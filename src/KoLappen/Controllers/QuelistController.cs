@@ -16,7 +16,7 @@ namespace KoLappen.Controllers
 
         public QuelistController(DBContext context)
         {
-            this.context = context;            
+            this.context = context;
         }
         // GET: /<controller>/
         //public IActionResult Quelist()
@@ -27,7 +27,7 @@ namespace KoLappen.Controllers
         //        var queList = dataManager.GetQue(User.Identity.Name);
         //        return View(queList);
         //    }
-          
+
         //    catch (Exception e)
         //    {
         //        ModelState.AddModelError(string.Empty, e.Message);
@@ -35,24 +35,21 @@ namespace KoLappen.Controllers
         //    }            
         //}
 
-        public IActionResult NeedHelpTreuOrFalse(bool trueOrFalse)
+        public IActionResult NeedHelpTrueOrFalse(bool trueOrFalse)
         {
             try
             {
                 var dataManager = new DataManager(context);
                 dataManager.HelpTrueOrFalse(User.Identity.Name, trueOrFalse);
-                //return RedirectToAction(nameof(QuelistController.Quelist));
                 return ViewComponent("QueListViewComponent");
-
-                //return View();
             }
 
             catch (Exception e)
             {
                 ModelState.AddModelError(string.Empty, e.Message);
                 return View();
-            }            
+            }
         }
-       
+
     }
 }
