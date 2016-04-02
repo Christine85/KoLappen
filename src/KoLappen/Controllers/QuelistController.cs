@@ -35,17 +35,14 @@ namespace KoLappen.Controllers
         //    }            
         //}
 
-        public IActionResult NeedHelpTreuOrFalse(bool trueOrFalse)
+        public IActionResult NeedHelpTrueOrFalse(bool trueOrFalse)
         {
             try
             {
                 var dataManager = new DataManager(context);
                 dataManager.HelpTrueOrFalse(User.Identity.Name, trueOrFalse);
-                //return RedirectToAction(nameof(QuelistController.Quelist));
                 return ViewComponent("QueListViewComponent");
-
-                //return View();
-            }
+                            }
 
             catch (Exception e)
             {
