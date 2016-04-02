@@ -36,7 +36,6 @@ namespace KoLappen.Models
             {
                 queList[i].QueNr = i + 1;
             }
-
             return queList;
         }
 

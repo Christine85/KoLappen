@@ -26,7 +26,7 @@ namespace KoLappen.Controllers
             if (autoLogin)
             {
                 await signInManager.PasswordSignInAsync("Christine", "Hejsan/7", false, false);
-                return RedirectToAction(nameof(QuelistController.Quelist), "quelist");
+                return RedirectToAction(nameof(ProfileController.Profile), "profile");
             }
 
             return View();
