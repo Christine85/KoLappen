@@ -2,35 +2,74 @@
 @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 <html>
 <head>
-    <link href="~/css/kolappen.css" rel="stylesheet" />
 
 </head>
 <body>
-
-    <div class="Kolappen">
-        jojojoj
-        @*@foreach (var item in collection)
-            {
-
-            }*@
-
-    </div>
-
-    <div>
+    <div id="QueNr">
         @foreach (var item in Model)
         {
             if (item.IsUserItem)
             {
-                <input type="button" value="Problem löst" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpFalse", "QuelistController")'" />
+                @item.QueNr;
                 break;
             }
-            else
-            {
-                <input type="button" value="Hjälp" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpTrue", "QuelistController")'" />
-            }
         }
+    </div>
+
+    <div>
+        <form asp-controller="QueList" asp-action="NeedHelpTreuOrFalse">
+            @foreach (var item in Model)
+            {
+                if (item.IsUserItem)
+                {
+                    @*<asp:Button runat="server" Text="Whatever" OnClick="NeedHelpTreuOrFalse" />
+                        <asp:Button OnClick="submit" Text="Fått hjälp" runat="server" />*@
+                    <input type="button" value="Problem löst" class="btn btn-success" />
+                    break;
+                }
+                else
+                {
+                    <input type="button" value="Hjälp" class="btn btn-success" />
+                }
+            }
+        </form>
 
     </div>
+
+    <script type="text/javascript">
+
+        $(".td").hover(function () {
+            var name = $(this).html();
+            $.get("/customer/GetCustomer",
+                { "id": name }, function (result) {
+                    $("#divResult").html(result);
+                });
+        });
+
+        $("#GetNr").click(
+        function GetNrOfCustomers() {
+            $.get("/customer/GetViewModels", null,
+                function (result) {
+                    $("#divRes").html(result.length);
+                })
+        })
+
+        $(document).ready(function () {
+            var interval = window.setInterval(function () {
+                $.ajax({
+                    url: "@Url.Action("JsonData", "Home")",
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#counter').html(data);
+                        if (data == 20) { //<-- make sure data has value 20 and is not an object or anything
+                            window.clearInterval(interval);
+                        }
+                    }
+                });
+            }, 1000); //<-- Give interval in milliseconds here
+        });
+
+    </script>
 
     <div>
         @foreach (var user in Model)
