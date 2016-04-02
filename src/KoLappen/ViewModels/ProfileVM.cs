@@ -10,7 +10,7 @@ namespace KoLappen.ViewModels
 {
     public class ProfileVM
     {
-        [Display(Name = "Förnamn")]
+        [Display(Name = "Förnamn")] 
         public string Name { get; set; }
         [Display(Name = "Efternamn")]
         public string LastName { get; set; }
@@ -21,6 +21,11 @@ namespace KoLappen.ViewModels
         public string Image { get; set; }
         public List<JobArea> JobAreas { get; set; }
         public Education Education { get; set; }
+        //public int Education { get; set; }
+
+        public string UserName { get; set; }
+
+
 
         //[Display(Name = "Profilbild")]
         //[DataType(DataType.Upload)]

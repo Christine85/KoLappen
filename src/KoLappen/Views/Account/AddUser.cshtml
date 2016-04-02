@@ -20,7 +20,7 @@
         </header>
         <section class="loginimg">
             <center>
-                <div asp-validation-summary="ValidationSummary.All"></div>
+                @*<div asp-validation-summary="ValidationSummary.All"></div>*@
                 <form asp-controller="Account" asp-action="Register">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control custom" placeholder="E-mail" value="T1@test.com" />
@@ -34,13 +34,13 @@
                     <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="test"/>
                     <span asp-validation-for="Lastname"></span>
                     <br />              
-                    <label asp-for="EducationID"></label>
-                    <input asp-for="EducationID" class="form-control custom" placeholder="Utbildnings ID" value="1" />
-                    <span asp-validation-for="EducationID"></span>
+                    <label asp-for="Education"></label>
+                    <input asp-for="Education" class="form-control custom" placeholder="Utbildnings ID" value="1" />
+                    <span asp-validation-for="Education"></span>
                     <br />
-                    <label asp-for="JobAreaID"></label>
-                    <input asp-for="JobAreaID" class="form-control custom" placeholder="Jobbområde" value="tester"/>
-                    <span asp-validation-for="JobAreaID"></span>
+                    <label asp-for="JobArea"></label>
+                    <input asp-for="JobArea" class="form-control custom" placeholder="Jobbområde" value="tester"/>
+                    <span asp-validation-for="JobArea"></span>
                     <br />
                     <button type="submit" value="Register" class="btn btn-success">Registrera</button>
                 </form>
