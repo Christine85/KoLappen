@@ -41,13 +41,17 @@ namespace KoLappen.Models
 
         public void HelpTrueOrFalse(string UserName, bool trueOrFalse)
         {
-            var user = context.Users
-              .Where(o => o.UserName == UserName).SingleOrDefault();
+            var userNeedHelpOrNot = context.Users
+              .Where(i => i.UserName == UserName)
+              .Select(i => new QueListVM
+              {
+                  NeedHelp = i.NeedHelp
+              })
+              .SingleOrDefault();
 
-            if(user != null)
+            if (userNeedHelpOrNot != null)
             {
-                user.NeedHelp = trueOrFalse;
-
+                userNeedHelpOrNot.NeedHelp = trueOrFalse;
                 context.SaveChanges();
             }
         }

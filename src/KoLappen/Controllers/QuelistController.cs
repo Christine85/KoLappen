@@ -41,7 +41,7 @@ namespace KoLappen.Controllers
             {
                 var dataManager = new DataManager(context);
                 dataManager.HelpTrueOrFalse(User.Identity.Name, trueOrFalse);
-                return ViewComponent("QueListViewComponent");
+                return ViewComponent("QueList");
             }
 
             catch (Exception e)
@@ -50,6 +50,5 @@ namespace KoLappen.Controllers
                 return View();
             }
         }
-
     }
 }
