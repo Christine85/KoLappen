@@ -19,7 +19,7 @@ namespace KoLappen.Controllers
             this.signInManager = signInManager;
         }
         // GET: /<controller>/
-        public /*async Task*/IActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var autoLogin = true;
 
