@@ -86,10 +86,8 @@
         <div class="row">
             <div class="col-md-2" id="theQLappBackground">
 
-                <div id="Queue" >
-
-                    
-                    @*@Component.Invoke("QueList")*@
+                @*Här displayas infon för köplappen*@
+                <div id="Queue" > 
                 </div>
 
                  <br /><br /><br /><br /><br /><br /><br /><br />
@@ -105,24 +103,26 @@
 
     <script type="text/javascript">
 
+        //Funktion för knapptrycken 
         function updateNeedHelp(isEqueue)
         {
-            var action = isEqueue ? "Enqueue" : "Dequeue";
-            $.post("/Quelist/" + action, function (html) {
+            var action = isEqueue ? "EnQueue" : "DeQueue";
+            $.post("/Queuelist/" + action, function (html) {
                 $("#Queue").html(html);
             });
         }
 
+        //Uppdaterar Köplappen inom ett visst tidintervall (kallar på Controllerna/Action för att hämta listan)
         var refreshQueue = function () {
-            $.get("/Quelist/GetQuelist", function (html) {                
+            $.get("/Queuelist/GetQueuelist", function (html) {                
                 $("#Queue").html(html);
             });
         };
         refreshQueue();
         window.setInterval("refreshQueue()", 30000);
+
     </script>
-
-
+        
 </body>
 </html>
 

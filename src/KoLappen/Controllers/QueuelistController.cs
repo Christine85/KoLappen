@@ -10,30 +10,31 @@ using KoLappen.ViewModels;
 
 namespace KoLappen.Controllers
 {
-    public class QuelistController : Controller
+    public class QueuelistController : Controller
     {
         DBContext context;
 
-        public QuelistController(DBContext context)
+        public QueuelistController(DBContext context)
         {
             this.context = context;
         }
         // GET: /<controller>/
-        public IActionResult GetQuelist()
+        public IActionResult GetQueuelist()
         {
             var dataManager = new DataManager(context);
-            var queList = dataManager.GetQue(User.Identity.Name);
-            return PartialView("_QueForm", queList);
+            //Hämta lista på folk i kö
+            var queueList = dataManager.GetQueue(User.Identity.Name);
+            return PartialView("_QueueForm", queueList);
         }
 
         [HttpPost]
-        public IActionResult Dequeue()
+        public IActionResult DeQueue()
         {
             return UpdateNeedHelp(false);
         }
 
         [HttpPost]
-        public IActionResult Enqueue()
+        public IActionResult EnQueue()
         {
             return UpdateNeedHelp(true);
         }
@@ -41,9 +42,12 @@ namespace KoLappen.Controllers
         private IActionResult UpdateNeedHelp(bool isEnqueue)
         {
             var dataManager = new DataManager(context);
+
+            //Sätt värde i DB till true eller false för användaren
             dataManager.HelpTrueOrFalse(User.Identity.Name, isEnqueue);
-            var queList = dataManager.GetQue(User.Identity.Name);
-            return PartialView("_QueForm", queList);
+            //Hämta ny updaterad lista
+            var queueList = dataManager.GetQueue(User.Identity.Name);
+            return PartialView("_QueueForm", queueList);
         }
     }
 }
