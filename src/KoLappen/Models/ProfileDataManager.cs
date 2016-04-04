@@ -22,18 +22,25 @@ namespace KoLappen.Models
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
-            var user = context.Users
-                .Where(o => o.UserName == userName)
-                .Select(o => new ProfileVM
-                {
-                    Name = o.Firstname,
-                    LastName = o.Lastname,
-                    Email = idUser.Email,
-                    PhoneNumber = idUser.PhoneNumber,
-                    Education = o.Education
-                })
-                .Single();
-            return user;
+            var user = context.Users.SingleOrDefault(o => o.UserName == userName);
+                //.Where(o => o.UserName == userName)
+                //.Select(o => new ProfileVM
+                //{
+                //    Name = o.Firstname,
+                //    LastName = o.Lastname,
+                //    Email = idUser.Email,
+                //    PhoneNumber = idUser.PhoneNumber,
+                //    Education = o.Education
+                //})
+                //.Single();
+            return new ProfileVM
+            {
+                Name = user.Firstname,
+                LastName = user.Lastname,
+                Email = idUser.Email,
+                PhoneNumber = idUser.PhoneNumber,
+                Education = user.Education
+            };
         }
         
         public List<ProfileVM> GetOneClass(int edu)
