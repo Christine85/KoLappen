@@ -37,7 +37,7 @@ section.loginImg {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
-    align-content:center;
+    align-content: center;
 }
 
 .btn-logout {
@@ -61,6 +61,7 @@ section.loginImg {
     background-position-x: center;
     background-position-y: top;
     background-size: 155px 271px;
+    /*text-align: center;*/
 }
 
 .alumner {
@@ -179,11 +180,11 @@ body {
     overflow: hidden;
 }
 
-#mainScrollable{
+#mainScrollable {
     overflow: scroll;
 }
 
-#noScroll{
+#noScroll {
     overflow: hidden;
 }
 
@@ -198,6 +199,38 @@ body {
     width: 100%;
     position: absolute;
     top: 500px;
+}
+
+
+#bottomFooterAWA {
+    position: absolute;
+    bottom: 20px;
+}
+
+#QueNr {
+    margin: auto;
+    margin-top: 140px;
+    width: 30%;
+    /*border: 3px solid #73ad21;*/
+    padding: 10px;
+    text-align: center;
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#QueBtn {
+    position: absolute;
+    top: 300px;
+    left: 30%;
+}
+
+
+#QueName {
+    position: absolute;
+    top: 350px;
+    /*left: 10%;*/
+    text-align: center;
 }
 
 

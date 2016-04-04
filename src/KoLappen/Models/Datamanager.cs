@@ -19,12 +19,13 @@ namespace KoLappen.Models
         {
             var queList = context.Users
                 .Where(o => o.NeedHelp == true)
-               //.OrderBy(o => o.HelpTime)
+                .OrderBy(o => o.HelpTime)
                .Select(o => new QueListVM
                {
                    Firstname = o.Firstname,
                    Lastname = o.Lastname,
-                   //HelpTime = o.HelpTime.Value,
+                   HelpTime = o.HelpTime,
+                   TimeWaitedInMin = 0,
                    UserName = o.UserName,
                    QueNr = 0,
                    IsUserItem = o.UserName == userName ? true : false
@@ -35,21 +36,39 @@ namespace KoLappen.Models
             for (int i = 0; i < queList.Length; i++)
             {
                 queList[i].QueNr = i + 1;
+                var timeNow = DateTime.Now;
+                var timeAskedForHelp = queList[i].HelpTime;
+                TimeSpan result = timeNow - timeAskedForHelp;
+                int resultInMin = Convert.ToInt32(result.TotalMinutes);
+                queList[i].TimeWaitedInMin = resultInMin;
             }
-
             return queList;
         }
 
         public void HelpTrueOrFalse(string UserName, bool trueOrFalse)
         {
-            var user = context.Users
-              .Where(o => o.UserName == UserName).SingleOrDefault();
+            var userNeedHelpOrNot = context.Users
+              .Where(i => i.UserName == UserName)
+              .Select(i => new QueListVM
+              {
+                  NeedHelp = i.NeedHelp,
+                  HelpTime = i.HelpTime
+              })
+              .SingleOrDefault();
 
-            if(user != null)
+            if (userNeedHelpOrNot != null)
             {
-                user.NeedHelp = trueOrFalse;
-
-                context.SaveChanges();
+                if (trueOrFalse == true)
+                {
+                    userNeedHelpOrNot.NeedHelp = trueOrFalse;
+                    userNeedHelpOrNot.HelpTime = DateTime.Now;
+                    context.SaveChanges();
+                }
+                else if (trueOrFalse == false)
+                {
+                    userNeedHelpOrNot.NeedHelp = trueOrFalse;
+                    context.SaveChanges();
+                }
             }
         }
     }

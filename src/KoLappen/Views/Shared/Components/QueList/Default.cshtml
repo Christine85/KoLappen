@@ -2,40 +2,53 @@
 @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 <html>
 <head>
-    <link href="~/css/kolappen.css" rel="stylesheet" />
 
 </head>
 <body>
 
-    <div class="Kolappen">
-        jojojoj
-        @*@foreach (var item in collection)
-            {
+    <script type="text/javascript">
+        var container = document.getElementById("Queue");
+        var refreshComponent = function () {
+            $.get("ViewComponents/QueListViewComponents", function (data) { container[data]; });
+        };
+        $(function () { window.setInterval(refreshComponent, 10000); });
+    </script>
 
-            }*@
 
-    </div>
-
-    <div>
+    <div id="QueNr">
         @foreach (var item in Model)
         {
             if (item.IsUserItem)
             {
-                <input type="button" value="Problem löst" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpFalse", "QuelistController")'" />
+                @item.QueNr;
                 break;
             }
-            else
-            {
-                <input type="button" value="Hjälp" class="btn btn-success" onclick="location.href='@Url.Action("NeedHelpTrue", "QuelistController")'" />
-            }
         }
-
     </div>
 
-    <div>
-        @foreach (var user in Model)
+    <div id="QueBtn">
+        <form asp-controller="QueList" asp-action="NeedHelpTrueOrFalse">
+            @foreach (var item in Model)
             {
-            <p>@user.Firstname @user.Lastname @user.HelpTime</p>
+                if (item.IsUserItem)
+                {       
+                    <input type="hidden" name="trueOrFalse" value="false" />
+                    <input type="submit" id="btnClick" value="Problem löst" class="btn btn-success" />
+                    break;
+                }
+                else
+                {
+                    <input type="hidden" name="trueOrFalse" value="true" />
+                    <input type="submit" id="btnClick" value="Hjälp" class="btn btn-success" />
+                }
+            }            
+        </form>
+
+    </div>
+    <div id="QueName">
+        @foreach (var user in Model)
+        {
+            <p>@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
         }
     </div>
 </body>

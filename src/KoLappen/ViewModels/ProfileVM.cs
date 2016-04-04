@@ -20,10 +20,12 @@ namespace KoLappen.ViewModels
         public string PhoneNumber { get; set; }
         public string Image { get; set; }
         public List<JobArea> JobAreas { get; set; }
-        //public Education Education { get; set; }
-        public int Education { get; set; }
+        public Education Education { get; set; }
+        //public int Education { get; set; }
 
         public string UserName { get; set; }
+
+
 
         //[Display(Name = "Profilbild")]
         //[DataType(DataType.Upload)]

@@ -9,17 +9,16 @@
         <h2>Emelie informerar</h2> @* admin.Name informerar *@
         <p>
             <textarea rows="10" cols="60">
-                Ska det gå att editera detta direkt eller köra en modal när Emelie vill ändra/uppdatera?
-Hemsidan:
-Kalender, så enkelt som möjligt.
-(Gemensamt, kopplat till Outlook för att ha i mobilen?)
-Informationsflöde (Internt, inga kunder.)
-Kategorisering (För att slippa scrolla.)
-Utvärderingar (Användarvänligt, kan läsa av resultatet och kunna exportera, excel, pdf.)
-Fylla i profil om geografisk placering (Lätt att se var folk vill gärna jobba.)
-Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
-"Titta på" konton (ITT (IT Team Manager) kanske ha konton utöver Admin, Elev, Lärare?Boka in personliga framtida möten efter skolgången, fika etc. (Behålla elever även efter kursen)
-         </textarea>
+                Hemsidan:
+                Kalender, så enkelt som möjligt.
+                (Gemensamt, kopplat till Outlook för att ha i mobilen?)
+                Informationsflöde (Internt, inga kunder.)
+                Kategorisering (För att slippa scrolla.)
+                Utvärderingar (Användarvänligt, kan läsa av resultatet och kunna exportera, excel, pdf.)
+                Fylla i profil om geografisk placering (Lätt att se var folk vill gärna jobba.)
+                Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
+                "Titta på" konton (ITT (IT Team Manager) kanske ha konton utöver Admin, Elev, Lärare?Boka in personliga framtida möten efter skolgången, fika etc. (Behålla elever även efter kursen)
+            </textarea>
         </p>
     </div>
 
@@ -31,7 +30,7 @@ Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
             <b>Senad</b> -
             Här kommer en bra länk för glyphs
             <br />
-            <a href="http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp">bootstrap_ref_comp_glyphs</a>
+            <a href="http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp" target="_blank">bootstrap_ref_comp_glyphs</a>
         </p>
     </div>
 </div>
@@ -45,13 +44,66 @@ Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
         <div class="col-md-2" style="background-color: blue">hå</div>*@
 
 
-    <div class="col-md-1 col-md-offset-11" style="background-color: yellow">
+    <div class="col-md-1 col-md-offset-11">
 
-        <p>
-            <button type="button" class="btn btn-default btn-sm">
-                Nytt inlägg@*<span class="glyphicon glyphicon-plus"></span>*@
-            </button>
-        </p>
+
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost">Nytt inlägg</button>
+
+
+
+        <!-- Modal -->
+        <div id="newPost" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="font-weight: bold">Nytt inlägg</h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>Text</b>
+                        <textarea class="form-control" rows="7" style="min-width: 100%"></textarea>
+                        <br />
+                        <b>Länk</b>
+                        <textarea class="form-control" rows="1" style="min-width: 100%"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#youFool">Skapa inlägg</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div id="youFool" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Men lurad</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Det går ju inte att göra några inlägg ännu......
+                            <br />
+                            Försök igen senare.........
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
     </div>
 </div>

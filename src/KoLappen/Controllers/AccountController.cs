@@ -21,24 +21,42 @@ namespace KoLappen.Controllers
         SignInManager<IdentityUser> signInManager;
         IdentityDbContext contextIdentity;
         IUsersRepository usersRepository;
+        IProfileRepository profileDataManager;
 
         public AccountController(
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
             IdentityDbContext contextIdentity,
             IUsersRepository usersRepository,
-            DBContext dbContext)
+            DBContext dbContext,
+            IProfileRepository profileDataManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.contextIdentity = contextIdentity;
             this.usersRepository = usersRepository;
             this.dbContext = dbContext;
+            this.profileDataManager = profileDataManager;
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Alumner()
+        {
+            return View();
+        }
+        public IActionResult Semester()
+        {
+            return View();
+        }
+
+        public IActionResult Katalog(int id)
+        {
+            var viewModel = profileDataManager.GetOneClass(id);
+            return View(viewModel);
         }
 
         [AllowAnonymous]
@@ -91,6 +109,12 @@ namespace KoLappen.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult AddCourse()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -129,6 +153,23 @@ namespace KoLappen.Controllers
 
                 return View(viewModel);
             }
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCourse(AddCourseVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
+            usersRepository.AddCourse(viewModel);
+            
+
+
             return View(viewModel);
         }
     }
