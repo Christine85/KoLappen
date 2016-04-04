@@ -85,8 +85,11 @@
         @* kölappen *@
         <div class="row">
             <div class="col-md-2" id="theQLappBackground">
+
                 <div id="Queue" >
-                    @Component.Invoke("QueList")
+
+                    
+                    @*@Component.Invoke("QueList")*@
                 </div>
 
                  <br /><br /><br /><br /><br /><br /><br /><br />
@@ -100,7 +103,24 @@
 
     @*<div class="panel-footer">HOME OF THE YOUNG PROFESSIONALS</div>*@
 
+    <script type="text/javascript">
 
+        function updateNeedHelp(isEqueue)
+        {
+            var action = isEqueue ? "Enqueue" : "Dequeue";
+            $.post("/Quelist/" + action, function (html) {
+                $("#Queue").html(html);
+            });
+        }
+
+        var refreshQueue = function () {
+            $.get("/Quelist/GetQuelist", function (html) {                
+                $("#Queue").html(html);
+            });
+        };
+        refreshQueue();
+        window.setInterval("refreshQueue()", 30000);
+    </script>
 
 
 </body>
