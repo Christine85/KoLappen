@@ -21,19 +21,22 @@ namespace KoLappen.Controllers
         SignInManager<IdentityUser> signInManager;
         IdentityDbContext contextIdentity;
         IUsersRepository usersRepository;
+        IProfileRepository profileDataManager;
 
         public AccountController(
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
             IdentityDbContext contextIdentity,
             IUsersRepository usersRepository,
-            DBContext dbContext)
+            DBContext dbContext,
+            IProfileRepository profileDataManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.contextIdentity = contextIdentity;
             this.usersRepository = usersRepository;
             this.dbContext = dbContext;
+            this.profileDataManager = profileDataManager;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -43,8 +46,8 @@ namespace KoLappen.Controllers
 
         public IActionResult Katalog()
         {
-            ProfileDataManager pdm = new ProfileDataManager(dbContext, contextIdentity);
-            return View(pdm.GetOneClass(1));
+            //ProfileDataManager pdm = new ProfileDataManager(dbContext, contextIdentity);
+            return View(profileDataManager.GetOneClass(1));
         }
 
         [AllowAnonymous]

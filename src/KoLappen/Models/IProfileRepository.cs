@@ -9,5 +9,6 @@ namespace KoLappen.Models
     public interface IProfileRepository
     {
         ProfileVM GetProfile(string userName);
+        List<ProfileVM> GetOneClass(int edu);
     }
 }

@@ -99,5 +99,10 @@ namespace KoLappen.Models
                 })
                 .Single();
         }
+
+        public List<ProfileVM> GetOneClass(int edu)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
