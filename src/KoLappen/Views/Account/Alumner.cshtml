@@ -1,5 +1,5 @@
 ﻿@using KoLappen.ViewModels
-@model AddUserViewModel
+@model EducationVM[]
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
 <h2 style="color:#00aa3c">ALUMNER</h2>
@@ -12,10 +12,19 @@
     *@
 
 <div class="alumner">
-    <p><b><a href="@Url.Action("Semester", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>
+    @*<p><b><a href="@Url.Action("Semester", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>*@
     
-    <p><b><a href="/Account/Semester/1" style="color:#00aa3c">C#</a></b></p>
+    @*<p><b><a href="/Account/Semester/1" style="color:#00aa3c">C#</a></b></p>
     <p><b><a href="/Account/Semester/2" style="color:#00aa3c">JAVA</a></b></p>
-    <p><b><a href="/Account/Semester/3" style="color:#00aa3c">Försäljning</a></b></p>
+    <p><b><a href="/Account/Semester/3" style="color:#00aa3c">Försäljning</a></b></p>*@
+
+    @foreach (var item in Model)
+    {
+        @*<h2>@item.CourseName</h2>*@
+        @*<p><b><a href="/Account/Semester" style="color:#00aa3c">@item</a></b></p>*@
+
+
+        <p><b><a asp-controller="Account" asp-action="Semester" asp-route-id="@item.EducationID" style="color:#00aa3c">@item.CourseName</a></b></p>
+    }
 </div>
 
