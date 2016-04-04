@@ -114,8 +114,8 @@ namespace KoLappen.Models
             var course = new Education();
 
             course.CourseName = viewModel.CourseName;
-            course.CourseName = viewModel.Semester;
-            course.CourseName = viewModel.Location;
+            course.Semester = viewModel.Semester;
+            course.Location = viewModel.Location;
 
             dbContext.Educations.Add(course);
             dbContext.SaveChanges();

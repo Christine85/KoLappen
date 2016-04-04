@@ -46,6 +46,7 @@ namespace KoLappen.Controllers
 
         public IActionResult Alumner()
         {
+            //getCourses
             return View();
         }
         public IActionResult Semester()
@@ -168,8 +169,6 @@ namespace KoLappen.Controllers
 
             usersRepository.AddCourse(viewModel);
             
-
-
             return View(viewModel);
         }
     }
