@@ -25,7 +25,7 @@ namespace KoLappen.Controllers
 
             if (autoLogin)
             {
-                await signInManager.PasswordSignInAsync("Christine", "Hejsan/7", false, false);
+                await signInManager.PasswordSignInAsync("T13@test.com", "P@ssw0rd", false, false);
                 return View();
             }
 
@@ -36,7 +36,5 @@ namespace KoLappen.Controllers
         {
             return View();
         }
-
-
     }
 }
