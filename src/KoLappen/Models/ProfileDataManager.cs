@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
-    public class ProfileDataManager
+    public class ProfileDataManager : IProfileRepository
     {
         DBContext context;
         IdentityDbContext identityContext;
@@ -22,22 +22,31 @@ namespace KoLappen.Models
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
-            var user = context.Users.Single(o => o.UserName == userName);
+            var user = context.Users.SingleOrDefault(o => o.UserName == userName);
+                //.Where(o => o.UserName == userName)
+                //.Select(o => new ProfileVM
+                //{
+                //    Name = o.Firstname,
+                //    LastName = o.Lastname,
+                //    Email = idUser.Email,
+                //    PhoneNumber = idUser.PhoneNumber,
+                //    Education = o.Education
+                //})
+                //.Single();
             return new ProfileVM
             {
                 Name = user.Firstname,
                 LastName = user.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                //Education = user.Education/*,*/
-                //JobAreas = user.UserJobAreas
+                Education = user.Education
             };
         }
         
         public List<ProfileVM> GetOneClass(int edu)
         {
             var idUser = identityContext.Users.ToList();
-
+            var u = context.Users;
             var users = context.Users
                 .Where(o => o.Education.EducationID == edu)
                 .Select(o => new ProfileVM

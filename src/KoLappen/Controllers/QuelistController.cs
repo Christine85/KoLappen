@@ -19,36 +19,31 @@ namespace KoLappen.Controllers
             this.context = context;
         }
         // GET: /<controller>/
-        //public IActionResult Quelist()
-        //{
-        //    try
-        //    {
-        //        var dataManager = new DataManager(context);
-        //        var queList = dataManager.GetQue(User.Identity.Name);
-        //        return View(queList);
-        //    }
-
-        //    catch (Exception e)
-        //    {
-        //        ModelState.AddModelError(string.Empty, e.Message);
-        //        return View();
-        //    }            
-        //}
-
-        public IActionResult NeedHelpTrueOrFalse(bool trueOrFalse)
+        public IActionResult GetQuelist()
         {
-            try
-            {
-                var dataManager = new DataManager(context);
-                dataManager.HelpTrueOrFalse(User.Identity.Name, trueOrFalse);
-                return ViewComponent("QueList");
-            }
+            var dataManager = new DataManager(context);
+            var queList = dataManager.GetQue(User.Identity.Name);
+            return PartialView("_QueForm", queList);
+        }
 
-            catch (Exception e)
-            {
-                ModelState.AddModelError(string.Empty, e.Message);
-                return View();
-            }
+        [HttpPost]
+        public IActionResult Dequeue()
+        {
+            return UpdateNeedHelp(false);
+        }
+
+        [HttpPost]
+        public IActionResult Enqueue()
+        {
+            return UpdateNeedHelp(true);
+        }
+
+        private IActionResult UpdateNeedHelp(bool isEnqueue)
+        {
+            var dataManager = new DataManager(context);
+            dataManager.HelpTrueOrFalse(User.Identity.Name, isEnqueue);
+            var queList = dataManager.GetQue(User.Identity.Name);
+            return PartialView("_QueForm", queList);
         }
     }
 }

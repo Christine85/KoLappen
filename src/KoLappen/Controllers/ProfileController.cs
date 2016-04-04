@@ -16,11 +16,14 @@ namespace KoLappen.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        ProfileDataManager dataManager;
+        IProfileRepository dataManager;
+        //ProfileDataManager dataManager;
         public ProfileController(DBContext context,
-        IdentityDbContext identityContext)
+        IdentityDbContext identityContext,
+        IProfileRepository repo)
         {
-            dataManager = new ProfileDataManager(context, identityContext);
+            dataManager = repo;
+            //dataManager = new ProfileDataManager(context, identityContext);
         }
         
         public IActionResult Profile()
