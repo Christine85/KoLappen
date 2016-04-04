@@ -10,38 +10,53 @@
         {
             @item.QueueNr;
             break;
-        }        
+        }
     }
 </div>
 
 @*Knappar för hjälp eller problemlöst*@
 <div id="QueueBtn">
     <form>
-      
+
         @if (Model.Any(o => o.IsUserItem))
         {
-            <input type="button" onclick="updateNeedHelp(false)" value="Problem löst" class="btn btn-success" />                
+            <input type="button" onclick="updateNeedHelp(false)" style="width:130px" value="Problem löst" class="btn btn-success" />
         }
         else
         {
-            <input type="button" onclick="updateNeedHelp(true)" value="Hjälp" class="btn btn-success" />
+            <input type="button" onclick="updateNeedHelp(true)" style="width:130px" value="Hjälp" class="btn btn-success" />
         }
     </form>
 </div>
 
 @*Skriver ut för- och efternamn samt hur många minuter man stått i kö*@
 <div id="QueueName">
-    @foreach (var user in Model)
-    {
-        if (user.IsUserItem)
+    <table id="QueueTable">
+        <tr>           
+            <th>Namn</th>
+            <th>Tid (min)</th>
+        </tr>
+        @foreach (var user in Model)
         {
-            <p style="color:crimson">@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
+
+            if (user.IsUserItem)
+            {
+                <tr>
+                    <td style="color:crimson">@user.Firstname @user.Lastname</td>                    
+                    <td style="color:crimson">@user.TimeWaitedInMin</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@user.Firstname @user.Lastname</td>                    
+                    <td>@user.TimeWaitedInMin</td>
+                </tr>
+            }
+
+
         }
-        else
-        {
-            <p>@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
-        }
-    }
+    </table>
 </div>
 
 
@@ -52,13 +67,13 @@
 
 
 @*<script type="text/javascript">
-    $("btnDeQueue").click(function () {
-        alert("btnDeQueue");
-        ;
-    });
-    $("btnEnQueue").click(function () {
-        alert("btnEnQueue");
+        $("btnDeQueue").click(function () {
+            alert("btnDeQueue");
+            ;
+        });
+        $("btnEnQueue").click(function () {
+            alert("btnEnQueue");
 
-        updateNeedHelp(true);
-    });
-</script>*@
+            updateNeedHelp(true);
+        });
+    </script>*@
