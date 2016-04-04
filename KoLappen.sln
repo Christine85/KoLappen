@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KoLappen", "src\KoLappen\KoLappen.xproj", "{E9020BCE-B880-42E4-B2E0-3D951BF67008}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "KolappenTTD", "src\KolappenTTD\KolappenTTD.xproj", "{A98C578D-616D-4177-B1B2-BCE529D5AED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +24,16 @@ Global
 		{E9020BCE-B880-42E4-B2E0-3D951BF67008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9020BCE-B880-42E4-B2E0-3D951BF67008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9020BCE-B880-42E4-B2E0-3D951BF67008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98C578D-616D-4177-B1B2-BCE529D5AED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98C578D-616D-4177-B1B2-BCE529D5AED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98C578D-616D-4177-B1B2-BCE529D5AED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98C578D-616D-4177-B1B2-BCE529D5AED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E9020BCE-B880-42E4-B2E0-3D951BF67008} = {587560B8-54D7-448F-BD6C-E784E31908C4}
+		{A98C578D-616D-4177-B1B2-BCE529D5AED5} = {587560B8-54D7-448F-BD6C-E784E31908C4}
 	EndGlobalSection
 EndGlobal

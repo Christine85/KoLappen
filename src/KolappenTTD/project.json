@@ -1,0 +1,21 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "KolappenTTD Class Library",
+  "authors": [ "Administrator" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "dnx451": {
+    }
+  },
+  "dependencies": {
+    "KoLappen": "1.0.0",
+    "xunit": "2.2.0-beta1-build3239",
+    "xunit.runner.dnx": "2.1.0-rc1-build204"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  }
+}
