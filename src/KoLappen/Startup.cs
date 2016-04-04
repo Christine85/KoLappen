@@ -57,6 +57,7 @@ namespace KoLappen
             // ------------------ Patrik som håller på och testar med inlägg ------------------- //
 
 
+            services.AddTransient<IEducationRepository, DbEducationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
