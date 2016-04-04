@@ -218,22 +218,29 @@ body {
     bottom: 20px;
 }
 
-#QueNr {
+#QueueNr {
+    margin: auto;
     margin-top: 140px;
+    width: 30%;
+    /*border: 3px solid #73ad21;*/
+    padding: 10px;
     text-align: center;
     font-size: 36px;
     color: #ffffff;
     font-weight: bold;
 }
 
-#QueBtn {
-    margin-top: 90px;
-    text-align: center;
+#QueueBtn {
+    position: absolute;
+    top: 300px;
+    left: 30%;
+    width: 200px;
 }
 
 
-#QueName {
-    margin-top: 10px;
+#QueueName {
+    position: absolute;
+    top: 350px;    
     text-align: center;
 }
 
