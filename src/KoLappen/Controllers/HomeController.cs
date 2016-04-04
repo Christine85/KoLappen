@@ -21,14 +21,13 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public async Task<IActionResult> Index()
         {
-            var autoLogin = true;
+            //var autoLogin = true;
 
-            if (autoLogin)
-            {
-                await signInManager.PasswordSignInAsync("Christine", "Hejsan/7", false, false);
-                //return View();
-                return RedirectToAction(nameof(ProfileController.Profile), "profile");
-            }
+            //if (autoLogin)
+            //{
+            //    await signInManager.PasswordSignInAsync("Christine", "Hejsan/7", false, false);
+            //    return View();
+            //}
 
             return View();
         }

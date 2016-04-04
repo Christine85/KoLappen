@@ -45,31 +45,37 @@ namespace KoLappen.Models
             return queList;
         }
 
-        public void HelpTrueOrFalse(string UserName, bool trueOrFalse)
+        public void HelpTrueOrFalse(string userName, bool needHelp)
         {
-            var userNeedHelpOrNot = context.Users
-              .Where(i => i.UserName == UserName)
-              .Select(i => new QueListVM
-              {
-                  NeedHelp = i.NeedHelp,
-                  HelpTime = i.HelpTime
-              })
-              .SingleOrDefault();
-
-            if (userNeedHelpOrNot != null)
+            var user = context.Users.SingleOrDefault(o => o.UserName == userName);
+            if (user != null)
             {
-                if (trueOrFalse == true)
-                {
-                    userNeedHelpOrNot.NeedHelp = trueOrFalse;
-                    userNeedHelpOrNot.HelpTime = DateTime.Now;
-                    context.SaveChanges();
-                }
-                else if (trueOrFalse == false)
-                {
-                    userNeedHelpOrNot.NeedHelp = trueOrFalse;
-                    context.SaveChanges();
-                }
+                user.NeedHelp = needHelp;
+                context.SaveChanges();
             }
+            //var userNeedHelpOrNot = context.Users
+            //  .Where(i => i.UserName == UserName)
+            //  .Select(i => new QueListVM
+            //  {
+            //      NeedHelp = i.NeedHelp,
+            //      HelpTime = i.HelpTime
+            //  })
+            //  .SingleOrDefault();
+
+            //if (userNeedHelpOrNot != null)
+            //{
+            //    if (trueOrFalse == true)
+            //    {
+            //        userNeedHelpOrNot.NeedHelp = trueOrFalse;
+            //        userNeedHelpOrNot.HelpTime = DateTime.Now;
+            //        context.SaveChanges();
+            //    }
+            //    else if (trueOrFalse == false)
+            //    {
+            //        userNeedHelpOrNot.NeedHelp = trueOrFalse;
+            //        context.SaveChanges();
+            //    }
+            //}
         }
     }
 }
