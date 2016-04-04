@@ -3,6 +3,7 @@
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
 <h2 style="color:#00aa3c">ALUMNER</h2>
+<h3 style="color:#00aa3c">KURSER</h3>
 
     @*@foreach (var item in Model)
     {
@@ -11,12 +12,10 @@
     *@
 
 <div class="alumner">
-    @foreach (var alumn in Model)
-    {
-        <p><b><a href="/Account/Katalog/@alumn." style="color:#00aa3c">HT 15</a></b></p>
-    }
-    <p><b><a href="/Account/Katalog/" style="color:#00aa3c">HT 15</a></b></p>
-    <p><b><a href="/Account/Katalog" style="color:#00aa3c">VT 16</a></b></p>
-    <p><b><a href="/Account/Katalog" style="color:#00aa3c">Sommar kurs 16</a></b></p>
+    <p><b><a href="@Url.Action("Semester", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>
+    
+    <p><b><a href="/Account/Semester/1" style="color:#00aa3c">C#</a></b></p>
+    <p><b><a href="/Account/Semester/2" style="color:#00aa3c">JAVA</a></b></p>
+    <p><b><a href="/Account/Semester/3" style="color:#00aa3c">Försäljning</a></b></p>
 </div>
 

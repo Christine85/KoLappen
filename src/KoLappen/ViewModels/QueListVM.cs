@@ -14,5 +14,6 @@ namespace KoLappen.ViewModels
         public int QueNr { get; set; }
         public string UserName { get; set; }
         public bool IsUserItem { get; set; }
+        public int TimeWaitedInMin { get; set; }
     }
 }

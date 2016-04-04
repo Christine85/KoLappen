@@ -44,10 +44,19 @@ namespace KoLappen.Controllers
             return View();
         }
 
-        public IActionResult Katalog()
+        public IActionResult Alumner()
         {
-            //ProfileDataManager pdm = new ProfileDataManager(dbContext, contextIdentity);
-            return View(profileDataManager.GetOneClass(1));
+            return View();
+        }
+        public IActionResult Semester()
+        {
+            return View();
+        }
+
+        public IActionResult Katalog(int id)
+        {
+            var viewModel = profileDataManager.GetOneClass(id);
+            return View(viewModel);
         }
 
         [AllowAnonymous]
@@ -100,6 +109,12 @@ namespace KoLappen.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult AddCourse()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -138,6 +153,23 @@ namespace KoLappen.Controllers
 
                 return View(viewModel);
             }
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCourse(AddCourseVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
+            usersRepository.AddCourse(viewModel);
+            
+
+
             return View(viewModel);
         }
     }
