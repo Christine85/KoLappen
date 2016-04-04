@@ -1,4 +1,9 @@
-﻿@{
+﻿@using KoLappen.ViewModels
+@model AddPostVM
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+
+@{
     ViewBag.Title = "AWA Intranet";
 }
 <link href="~/css/kolappen.css" rel="stylesheet" />
@@ -8,17 +13,17 @@
     <div class="col-md-6" id="commentRightBorder">
         <h2>Emelie informerar</h2> @* admin.Name informerar *@
         <p>
-            <textarea rows="10" cols="60">
-                Hemsidan:
-                Kalender, så enkelt som möjligt.
-                (Gemensamt, kopplat till Outlook för att ha i mobilen?)
-                Informationsflöde (Internt, inga kunder.)
-                Kategorisering (För att slippa scrolla.)
-                Utvärderingar (Användarvänligt, kan läsa av resultatet och kunna exportera, excel, pdf.)
-                Fylla i profil om geografisk placering (Lätt att se var folk vill gärna jobba.)
-                Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
-                "Titta på" konton (ITT (IT Team Manager) kanske ha konton utöver Admin, Elev, Lärare?Boka in personliga framtida möten efter skolgången, fika etc. (Behålla elever även efter kursen)
-            </textarea>
+            @*<textarea rows="10" cols="60">*@
+            <br /><br />Hemsidan:
+            <br /><br />Kalender, så enkelt som möjligt.
+            <br /><br />(Gemensamt, kopplat till Outlook för att ha i mobilen?)
+            <br /><br />Informationsflöde (Internt, inga kunder.)
+            <br /><br />Kategorisering (För att slippa scrolla.)
+            <br /><br />Utvärderingar (Användarvänligt, kan läsa av resultatet och kunna exportera, excel, pdf.)
+            <br /><br />Fylla i profil om geografisk placering (Lätt att se var folk vill gärna jobba.)
+            <br /><br />Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
+            <br /><br />"Titta på" konton (ITT (IT Team Manager) kanske ha konton utöver Admin, Elev, Lärare?Boka in personliga framtida möten efter skolgången, fika etc. (Behålla elever även efter kursen)
+            @*</textarea>*@
         </p>
     </div>
 
@@ -26,6 +31,13 @@
 
     <div class="col-md-6" id="commentLeftBorder">
         <h2>Klassens inlägg</h2>
+
+        <div>
+            @Component.Invoke("ClassPosts")
+        </div>
+        
+
+
         <p>
             <b>Senad</b> -
             Här kommer en bra länk för glyphs
@@ -71,7 +83,23 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#youFool">Skapa inlägg</button>
+
+                        <div asp-validation-summary="ValidationSummary.All"></div>
+                        <form asp-controller="Post" asp-action="AddPost">
+                            <label asp-for="PostText"></label>
+                            <input asp-for="PostText" />
+                            <span asp-validation-for="PostText"></span>
+                            <br />
+                            <label asp-for="Link"></label>
+                            <input asp-for="Link" />
+                            <span asp-validation-for="Link"></span>
+                            <br />
+
+
+                            <input type="submit" value="Posta inlägg" />
+                        </form>
+
+                        @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#youFool">Skapa inlägg</button>*@
                     </div>
                 </div>
 
@@ -108,3 +136,28 @@
     </div>
 </div>
 
+
+@*Ska ordna nedan till modalen för att posta inlägg.......*@
+
+@*<h1>Lägg till bil</h1>
+    <div asp-validation-summary="ValidationSummary.All"></div>
+    <form asp-controller="Car" asp-action="AddCar">
+        <label asp-for="Maker"></label>
+        <input asp-for="Maker" />
+        <span asp-validation-for="Maker"></span>
+        <br />
+        <label asp-for="Model"></label>
+        <input asp-for="Model" />
+        <span asp-validation-for="Model"></span>
+        <br />
+        <label asp-for="Year"></label>
+        <input asp-for="Year" />
+        <span asp-validation-for="Year"></span>
+        <br />
+        <label asp-for="Color"></label>
+        <input asp-for="Color" />
+        <span asp-validation-for="Color"></span>
+        <br />
+
+        <input type="submit" value="Lägg till" />
+    </form>*@
