@@ -1,0 +1,18 @@
+﻿@model KoLappen.ViewModels.PostListVM[]
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+
+<div>
+    @foreach (var item in Model)
+    {
+        <b>@item.PostedByFirstname @item.PostedByLastname - </b>
+        @item.PostText;
+        <br />
+        <a href="@item.Link" target="_blank">@item.Link</a>;
+        <br />
+        @item.TimePosted
+        <br />
+        <br />
+    }
+</div>
+

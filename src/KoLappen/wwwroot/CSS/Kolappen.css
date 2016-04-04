@@ -37,6 +37,8 @@ section.loginImg {
     color: #fff;
     background-color: #00aa3c;
     border-color: #00aa3c;
+    -ms-align-content: center;
+    -webkit-align-content: center;
     align-content: center;
 }
 
@@ -75,12 +77,12 @@ section.loginImg {
     margin: 120px auto 120px;
     background-color: lightgreen;
     padding: 0 20px 20px;
-    border-radius: 6px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+    border-radius: 6px;
     -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
     -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.075);
     text-align: center;
     font-size: 16px;
     line-height: 26px;
@@ -88,8 +90,11 @@ section.loginImg {
 }
 
     .container:hover .avatar-flip {
-        transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
         -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
 
         .container:hover .avatar-flip img:first-child {
@@ -108,12 +113,13 @@ section.loginImg {
     position: relative;
     margin: auto;
     top: -60px;
-    transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 0 13px #f0f0f0;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     -webkit-box-shadow: 0 0 0 13px #f0f0f0;
     -moz-box-shadow: 0 0 0 13px #f0f0f0;
+    box-shadow: 0 0 0 13px #f0f0f0;
 }
 
     .avatar-flip img {
@@ -121,9 +127,10 @@ section.loginImg {
         left: 0;
         top: 0;
         border-radius: 100px;
-        transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
         .avatar-flip img:first-child {
@@ -132,8 +139,11 @@ section.loginImg {
 
         .avatar-flip img:last-child {
             z-index: 0;
-            transform: rotateY(180deg);
             -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
+            transform: rotateY(180deg);
             opacity: 0;
         }
 
@@ -181,7 +191,8 @@ body {
 }
 
 #mainScrollable {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #noScroll {
@@ -207,26 +218,21 @@ body {
     bottom: 20px;
 }
 
-#QueueNr {
-    margin: auto;
+#QueNr {
     margin-top: 140px;
-    width: 30%;
-    /*border: 3px solid #73ad21;*/
-    padding: 10px;
     text-align: center;
     font-size: 36px;
     color: #ffffff;
     font-weight: bold;
 }
 
-#QueueBtn {
-    position: absolute;
-    top: 300px;
-    left: 30%;
+#QueBtn {
+    margin-top: 90px;
+    text-align: center;
 }
 
 
-#QueueName {
+#QueName {
     position: absolute;
     top: 350px;
     /*left: 10%;*/
