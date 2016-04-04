@@ -15,67 +15,50 @@ namespace KoLappen.Models
             this.context = context;
         }
 
-        public QueListVM[] GetQue(string userName)
+        public QueueListVM[] GetQueue(string userName)
         {
-            var queList = context.Users
+            //Hämta lista på användare som behöver hjälp
+            var queueList = context.Users
                 .Where(o => o.NeedHelp == true)
                 .OrderBy(o => o.HelpTime)
-               .Select(o => new QueListVM
+               .Select(o => new QueueListVM
                {
                    Firstname = o.Firstname,
                    Lastname = o.Lastname,
                    HelpTime = o.HelpTime,
-                   TimeWaitedInMin = 0,
                    UserName = o.UserName,
-                   QueNr = 0,
+                   //Om den som är inloggad finns i kön, sätt till true
                    IsUserItem = o.UserName == userName ? true : false
 
                })
                .ToArray();
 
-            for (int i = 0; i < queList.Length; i++)
+            //Sätt vilket kö nr som varje användare har, gör om DateTime till TotalMinutes för att visa upp
+            for (int i = 0; i < queueList.Length; i++)
             {
-                queList[i].QueNr = i + 1;
-                var timeNow = DateTime.Now;
-                var timeAskedForHelp = queList[i].HelpTime;
-                TimeSpan result = timeNow - timeAskedForHelp;
+                queueList[i].QueueNr = i + 1;                
+                TimeSpan result = DateTime.Now - queueList[i].HelpTime;
                 int resultInMin = Convert.ToInt32(result.TotalMinutes);
-                queList[i].TimeWaitedInMin = resultInMin;
+                queueList[i].TimeWaitedInMin = resultInMin;
             }
-            return queList;
+            return queueList;
         }
 
         public void HelpTrueOrFalse(string userName, bool needHelp)
         {
+            //Hämtar användaren som skall ändras i DB
             var user = context.Users.SingleOrDefault(o => o.UserName == userName);
+
+            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp)
             if (user != null)
             {
+                if (needHelp == true)
+                {
+                    user.HelpTime = DateTime.Now;
+                }
                 user.NeedHelp = needHelp;
                 context.SaveChanges();
-            }
-            //var userNeedHelpOrNot = context.Users
-            //  .Where(i => i.UserName == UserName)
-            //  .Select(i => new QueListVM
-            //  {
-            //      NeedHelp = i.NeedHelp,
-            //      HelpTime = i.HelpTime
-            //  })
-            //  .SingleOrDefault();
-
-            //if (userNeedHelpOrNot != null)
-            //{
-            //    if (trueOrFalse == true)
-            //    {
-            //        userNeedHelpOrNot.NeedHelp = trueOrFalse;
-            //        userNeedHelpOrNot.HelpTime = DateTime.Now;
-            //        context.SaveChanges();
-            //    }
-            //    else if (trueOrFalse == false)
-            //    {
-            //        userNeedHelpOrNot.NeedHelp = trueOrFalse;
-            //        context.SaveChanges();
-            //    }
-            //}
+            }           
         }
     }
 }

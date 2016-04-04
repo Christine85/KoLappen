@@ -1,20 +1,21 @@
-﻿@model KoLappen.ViewModels.QueListVM[]
+﻿@model KoLappen.ViewModels.QueueListVM[]
 @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 
 
-
-<div id="QueNr">
+@*Skriver ut kö nr om du är i kö*@
+<div id="QueueNr">
     @foreach (var item in Model)
     {
         if (item.IsUserItem)
         {
-            @item.QueNr;
+            @item.QueueNr;
             break;
-        }
+        }        
     }
 </div>
 
-<div id="QueBtn">
+@*Knappar för hjälp eller problemlöst*@
+<div id="QueueBtn">
     <form>
       
         @if (Model.Any(o => o.IsUserItem))
@@ -23,16 +24,33 @@
         }
         else
         {
-            <input type="button" onclick="updateNeedHelp(true)" id="btnEnQueue" value="Hjälp" class="btn btn-success" />
+            <input type="button" onclick="updateNeedHelp(true)" value="Hjälp" class="btn btn-success" />
         }
     </form>
 </div>
-<div id="QueName">
+
+@*Skriver ut för- och efternamn samt hur många minuter man stått i kö*@
+<div id="QueueName">
     @foreach (var user in Model)
     {
-        <p>@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
+        if (user.IsUserItem)
+        {
+            <p style="color:crimson">@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
+        }
+        else
+        {
+            <p>@user.Firstname @user.Lastname @user.TimeWaitedInMin</p>
+        }
     }
 </div>
+
+
+
+
+
+
+
+
 @*<script type="text/javascript">
     $("btnDeQueue").click(function () {
         alert("btnDeQueue");
