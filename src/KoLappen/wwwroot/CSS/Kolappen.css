@@ -218,7 +218,7 @@ body {
     bottom: 20px;
 }
 
-#QueNr {
+#QueueNr {
     margin-top: 140px;
     text-align: center;
     font-size: 36px;
@@ -226,13 +226,13 @@ body {
     font-weight: bold;
 }
 
-#QueBtn {
+#QueueBtn {
     margin-top: 90px;
     text-align: center;
 }
 
 
-#QueName {
+#QueueName {
     position: absolute;
     top: 350px;
     /*left: 10%;*/
