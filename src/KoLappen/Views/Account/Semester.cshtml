@@ -11,15 +11,14 @@
 
 <div class="alumner">
     
-    <p><b><a href="@Url.Action("Katalog", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>
+    @*<p><b><a href="@Url.Action("Katalog", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>*@
     
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(i => i.CourseName == "C#"))
     {
-        <p><b><a href="/Account/Katalog/@item.Education.CourseName" style="color:#00aa3c">HT 15</a></b></p>
-        
+        <p><b><a href="/Account/Katalog/@item.EducationID" style="color:#00aa3c">@item.Semester</a></b></p>
     }
    
-    <p><b><a href="/Account/Katalog/2" style="color:#00aa3c">VT 16</a></b></p>
+    @*<p><b><a href="/Account/Katalog/2" style="color:#00aa3c">VT 16</a></b></p>
     <p><b><a href="/Account/Katalog/3" style="color:#00aa3c">Sommar 16</a></b></p>
-    <p><b><a href="/Account/Katalog/12" style="color:#00aa3c">C++</a></b></p>
+    <p><b><a href="/Account/Katalog/12" style="color:#00aa3c">C++</a></b></p>*@
 </div>

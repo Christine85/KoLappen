@@ -45,6 +45,7 @@ namespace KoLappen
 
             services.AddTransient<IUsersRepository, DbUsersRepository>();
             services.AddTransient<IProfileRepository, ProfileDataManager>();
+            services.AddTransient<IEducationRepository, DbEducationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

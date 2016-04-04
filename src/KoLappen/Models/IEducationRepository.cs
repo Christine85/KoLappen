@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
-    interface IEducationRepository
+    public interface IEducationRepository
     {
         EducationVM[] GetAllCourses();
     }
@@ -21,17 +21,16 @@ namespace KoLappen.Models
         }
 
 
-
         public EducationVM[] GetAllCourses()
         {
-            //var allCourses = dbContext.Educations.Group Education By(
-                
-            //    )
-
-            //return 
-
-            var allCourses = 
-                from Education in edu
+            return dbContext.Educations
+                .Select(o => new EducationVM
+                {
+                    CourseName = o.CourseName,
+                    Semester = o.Semester,
+                    EducationID = o.EducationID
+                })
+                .ToArray();
         }
     }
 }

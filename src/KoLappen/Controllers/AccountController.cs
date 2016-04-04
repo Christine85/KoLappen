@@ -22,6 +22,7 @@ namespace KoLappen.Controllers
         IdentityDbContext contextIdentity;
         IUsersRepository usersRepository;
         IProfileRepository profileDataManager;
+        IEducationRepository educationRepository;
 
         public AccountController(
             UserManager<IdentityUser> userManager, //skapa ny användare
@@ -29,7 +30,8 @@ namespace KoLappen.Controllers
             IdentityDbContext contextIdentity,
             IUsersRepository usersRepository,
             DBContext dbContext,
-            IProfileRepository profileDataManager)
+            IProfileRepository profileDataManager,
+            IEducationRepository educationRepository)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -37,6 +39,7 @@ namespace KoLappen.Controllers
             this.usersRepository = usersRepository;
             this.dbContext = dbContext;
             this.profileDataManager = profileDataManager;
+            this.educationRepository = educationRepository;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -46,12 +49,13 @@ namespace KoLappen.Controllers
 
         public IActionResult Alumner()
         {
-            //getCourses
-            return View();
+            var viewModel = educationRepository.GetAllCourses();
+            return View(viewModel);
         }
         public IActionResult Semester()
         {
-            return View();
+            var viewModel = educationRepository.GetAllCourses();
+            return View(viewModel);
         }
 
         public IActionResult Katalog(int id)
