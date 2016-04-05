@@ -54,7 +54,7 @@ namespace KoLappen.Models
 
             var userJobAreas = GetUserJobLocation(model.JobArea, userId);
 
-            //userProfile. = userJobAreas;
+            //userProfile.UserJobAreas = userJobAreas;
             dbContext.Entry(userProfile).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
@@ -62,15 +62,15 @@ namespace KoLappen.Models
         public List<UserJobLocation> GetUserJobLocation(int jobId, string userId)
         {
             List<UserJobLocation> jobAreas = new List<UserJobLocation>();
-            var userJobArea = new UserJobLocation
-            {
-                UserId = userId,
-                LocationId = jobId
-            };
+            //var userJobArea = new UserJobArea
+            //{
+            //    UserID = userId,
+            //    JobAreaID = jobId
+            //};
 
-            jobAreas.Add(userJobArea);
+            //jobAreas.Add(userJobArea);
             //dbContext.UserJobAreas.Add(userJobArea);
-            dbContext.SaveChanges();
+            //dbContext.SaveChanges();
 
             return jobAreas;
 

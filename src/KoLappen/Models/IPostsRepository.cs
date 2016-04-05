@@ -8,8 +8,8 @@ namespace KoLappen.Models
 {
     public interface IPostsRepository
     {
-        //PostListVM[] GetAll();
-        void AddPost(AddPostVM viewModel, string postedByName);
+        PostListVM[] GetAll();
+        void AddPost(AddPostVM viewModel, string postedBy);
     }
 
     public class DbPostsRepository : IPostsRepository
@@ -19,32 +19,34 @@ namespace KoLappen.Models
         {
             _context = context;
         }
-        //public PostListVM[] GetAll()
-        //{
-        //    return _context.Posts
-        //        .OrderBy(o => o.TimePosted)
-        //        .Select(o => new PostListVM
-        //        {
-        //            PostText = o.PostText,
-        //            Link = o.Link,
-        //            PostedByFirstname = o.PostedByFirstname,
-        //            PostedByLastname = o.PostedByLastname
-        //        })
-        //        .ToArray();
-        //}
-
-
-
-
-
-        public void AddPost(AddPostVM viewModel, string postedByName)
+        public PostListVM[] GetAll()
         {
+            return _context.Posts
+                .OrderBy(o => o.TimePosted)
+                .Select(o => new PostListVM
+                {
+                    PostText = o.PostText,
+                    Link = o.Link,
+                    PostedByFirstname = o.User.Firstname,
+                    PostedByLastname = o.User.Lastname,
+                    TimePosted = o.TimePosted
+                })
+                .ToArray();
+        }
+
+
+
+
+
+        public void AddPost(AddPostVM viewModel, string postedBy)
+        {
+            var user = _context.Users.Where(u => u.UserName == postedBy).Single();
             _context.Posts.Add(new Post
             {
+                UserID = user.UserId,
                 PostText = viewModel.PostText,
                 Link = viewModel.Link,
-                //PostedByFirstname = postedByName,
-
+                TimePosted = DateTime.Now
             });
             _context.SaveChanges();
         }
