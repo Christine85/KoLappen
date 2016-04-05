@@ -11,5 +11,7 @@ namespace KoLappen.Models
         public int EducationId { get; set; }
         public int EducationWeek { get; set; }
         public string Question { get; set; }
+        public bool SaveQuestion { get; set; }
+        public int MaxScore { get; set; }
     }
 }
