@@ -14,8 +14,8 @@ namespace KoLappen.Models
 
     public class DbPostsRepository : IPostsRepository
     {
-        PostContext _context;
-        public DbPostsRepository(PostContext context)
+        DBContext _context;
+        public DbPostsRepository(DBContext context)
         {
             _context = context;
         }
