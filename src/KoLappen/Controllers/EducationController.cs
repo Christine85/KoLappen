@@ -12,7 +12,7 @@ namespace KoLappen.Controllers
     public class EducationController : Controller
     {
         DBContext dbContext;
-        IUsersRepository usersRepository;
+        //IUsersRepository usersRepository;
         IProfileRepository profileDataManager;
         IEducationRepository educationRepository;
 
