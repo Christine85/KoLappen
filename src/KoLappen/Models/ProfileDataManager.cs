@@ -39,7 +39,7 @@ namespace KoLappen.Models
                 LastName = user.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                Education = user.Education
+                //Education = user.Education
             };
         }
         
@@ -48,13 +48,13 @@ namespace KoLappen.Models
             var idUser = identityContext.Users.ToList();
             var u = context.Users;
             var users = context.Users
-                .Where(o => o.Education.EducationID == edu)
+                //.Where(o => o.Education.EducationID == edu)
                 .Select(o => new ProfileVM
                 {
                     UserName = o.UserName,
                     Name = o.Firstname,
                     LastName = o.Lastname,
-                    Education = o.Education
+                    //Education = o.Education
                 })
                 .ToList();
 

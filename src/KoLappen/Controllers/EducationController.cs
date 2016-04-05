@@ -66,7 +66,7 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
 
-            usersRepository.AddCourse(viewModel);
+            //usersRepository.AddCourse(viewModel);
 
             return View(viewModel);
         }

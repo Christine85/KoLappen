@@ -44,33 +44,33 @@ namespace KoLappen.Models
                 //ProfilePic = null
             };
 
-            userProfile.Education = new Education
-            {
-                EducationID = model.Education
-            };
+            //userProfile.Education = new Education
+            //{
+            //    EducationID = model.Education
+            //};
 
             dbContext.Users.Add(userProfile);
             dbContext.SaveChanges();
 
             var userJobAreas = GetUserJobLocation(model.JobArea, userId);
 
-            userProfile.UserJobAreas = userJobAreas;
+            //userProfile.UserJobAreas = userJobAreas;
             dbContext.Entry(userProfile).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
 
         public List<UserJobLocation> GetUserJobLocation(int jobId, string userId)
         {
-            List<UserJobArea> jobAreas = new List<UserJobArea>();
-            var userJobArea = new UserJobArea
-            {
-                UserID = userId,
-                JobAreaID = jobId
-            };
+            List<UserJobLocation> jobAreas = new List<UserJobLocation>();
+            //var userJobArea = new UserJobArea
+            //{
+            //    UserID = userId,
+            //    JobAreaID = jobId
+            //};
 
-            jobAreas.Add(userJobArea);
-            dbContext.UserJobAreas.Add(userJobArea);
-            dbContext.SaveChanges();
+            //jobAreas.Add(userJobArea);
+            //dbContext.UserJobAreas.Add(userJobArea);
+            //dbContext.SaveChanges();
 
             return jobAreas;
 
@@ -93,16 +93,16 @@ namespace KoLappen.Models
         public Education GetEducation(int eduId)
         {
             Education education = new Education();
-            var eduList = dbContext.Educations.Select(e =>
-            new Education
-            {
-                EducationID = e.EducationID,
-                CourseName = e.CourseName,
-                Semester = e.Semester,
-                Location = e.Location,
-                Users = null
-            });
-            education = eduList.Single(e => e.EducationID == eduId);
+            //var eduList = dbContext.Educations.Select(e =>
+            //new Education
+            //{
+            //    EducationID = e.EducationID,
+            //    CourseName = e.CourseName,
+            //    Semester = e.Semester,
+            //    Location = e.Location,
+            //    Users = null
+            //});
+            //education = eduList.Single(e => e.EducationID == eduId);
             return education;
         }
 
