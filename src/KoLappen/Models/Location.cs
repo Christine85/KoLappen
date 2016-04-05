@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
-    public class JobArea
+    public class Location
     {
-        public int JobAreaID { get; set; }
+        public int LocationIs { get; set; }
         public string City { get; set; }
-        public List<UserJobArea> UserJobAreas { get; set; }
+        public List<Education> Education { get; set; }
     }
 }
