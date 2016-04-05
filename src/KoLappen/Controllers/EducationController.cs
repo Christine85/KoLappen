@@ -46,8 +46,8 @@ namespace KoLappen.Controllers
 
         public IActionResult Katalog(int id)
         {
-            var viewModel = profileDataManager.GetOneClass(id);
-            return View(viewModel);
+            //var viewModel = profileDataManager.GetOneClass(id);
+            return View(/*viewModel*/);
         }
 
         [AllowAnonymous]
@@ -66,7 +66,7 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
 
-            usersRepository.AddCourse(viewModel);
+            //usersRepository.AddCourse(viewModel);
 
             return View(viewModel);
         }

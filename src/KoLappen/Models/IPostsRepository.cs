@@ -8,7 +8,7 @@ namespace KoLappen.Models
 {
     public interface IPostsRepository
     {
-        PostListVM[] GetAll();
+        //PostListVM[] GetAll();
         void AddPost(AddPostVM viewModel, string postedByName);
     }
 
@@ -19,19 +19,19 @@ namespace KoLappen.Models
         {
             _context = context;
         }
-        public PostListVM[] GetAll()
-        {
-            return _context.Posts
-                .OrderBy(o => o.TimePosted)
-                .Select(o => new PostListVM
-                {
-                    PostText = o.PostText,
-                    Link = o.Link,
-                    PostedByFirstname = o.PostedByFirstname,
-                    PostedByLastname = o.PostedByLastname
-                })
-                .ToArray();
-        }
+        //public PostListVM[] GetAll()
+        //{
+        //    return _context.Posts
+        //        .OrderBy(o => o.TimePosted)
+        //        .Select(o => new PostListVM
+        //        {
+        //            PostText = o.PostText,
+        //            Link = o.Link,
+        //            PostedByFirstname = o.PostedByFirstname,
+        //            PostedByLastname = o.PostedByLastname
+        //        })
+        //        .ToArray();
+        //}
 
 
 
@@ -43,7 +43,7 @@ namespace KoLappen.Models
             {
                 PostText = viewModel.PostText,
                 Link = viewModel.Link,
-                PostedByFirstname = postedByName,
+                //PostedByFirstname = postedByName,
 
             });
             _context.SaveChanges();
