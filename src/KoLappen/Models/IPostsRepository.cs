@@ -9,13 +9,13 @@ namespace KoLappen.Models
     public interface IPostsRepository
     {
         PostListVM[] GetAll();
-        void AddPost(AddPostVM viewModel, string postedByName);
+        void AddPost(AddPostVM viewModel, string postedBy);
     }
 
     public class DbPostsRepository : IPostsRepository
     {
-        PostContext _context;
-        public DbPostsRepository(PostContext context)
+        DBContext _context;
+        public DbPostsRepository(DBContext context)
         {
             _context = context;
         }
@@ -27,8 +27,9 @@ namespace KoLappen.Models
                 {
                     PostText = o.PostText,
                     Link = o.Link,
-                    PostedByFirstname = o.PostedByFirstname,
-                    PostedByLastname = o.PostedByLastname
+                    PostedByFirstname = o.User.Firstname,
+                    PostedByLastname = o.User.Lastname,
+                    TimePosted = o.TimePosted
                 })
                 .ToArray();
         }
@@ -37,14 +38,15 @@ namespace KoLappen.Models
 
 
 
-        public void AddPost(AddPostVM viewModel, string postedByName)
+        public void AddPost(AddPostVM viewModel, string postedBy)
         {
+            var user = _context.Users.Where(u => u.UserName == postedBy).Single();
             _context.Posts.Add(new Post
             {
+                UserID = user.UserId,
                 PostText = viewModel.PostText,
                 Link = viewModel.Link,
-                PostedByFirstname = postedByName,
-
+                TimePosted = DateTime.Now
             });
             _context.SaveChanges();
         }

@@ -14,6 +14,7 @@ namespace KoLappen.Models
         public DbSet<Course> Course { get; set; }
         public DbSet<Semester> Semester { get; set; }
         public DbSet<UserJobLocation> UserJobLocation { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +29,7 @@ namespace KoLappen.Models
             modelBuilder.Entity<Course>().ToTable("Courses").HasKey("CourseId");
             modelBuilder.Entity<Semester>().ToTable("Semesters").HasKey("SemesterId");
             modelBuilder.Entity<UserJobLocation>().ToTable("UserJobLocations").HasKey("UserJobLocationId");
-
+            modelBuilder.Entity<Post>().ToTable("Posts");
 
             //    modelBuilder.Entity<User>()
             //        .HasOne(u => u.Education)
