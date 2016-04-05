@@ -36,7 +36,7 @@ namespace KoLappen.Controllers
             this.contextIdentity = contextIdentity;
             this.usersRepository = usersRepository;
             this.dbContext = dbContext;
-            this.profileDataManager = profileDataManager;
+            this.profileDataManager = profileDataManager;            
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -86,8 +86,18 @@ namespace KoLappen.Controllers
             }
             */
 
-            await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 
+            //om admin eller lärare loggar in, skall de få en annan view
+            var user = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
+            if (await userManager.IsInRoleAsync(user, "Admin"))
+            {
+                return RedirectToAction(nameof(AdminController.Index), "Admin");
+            }
+            else if (await userManager.IsInRoleAsync(user, "Lärare"))
+            {
+                return RedirectToAction(nameof(TeacherController.Index), "Teacher");
+            }
             return RedirectToAction(nameof(HomeController.Index), "home");
         }
 
