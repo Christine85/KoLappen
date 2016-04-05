@@ -22,7 +22,7 @@ namespace KoLappen.Models
             modelBuilder.Entity<User>().ToTable("Users").HasKey("UserId");
             modelBuilder.Entity<Teacher>().ToTable("Teachers").HasKey("TeacherId");
             modelBuilder.Entity<Consultant>().ToTable("Consultants").HasKey("ConsultantId");
-            modelBuilder.Entity<TeacherEducation>().ToTable("TeacherEducation").HasKey("TeacherEducationId");
+            modelBuilder.Entity<TeacherEducation>().ToTable("TeacherEducations").HasKey("TeacherEducationId");
             modelBuilder.Entity<TeacherRole>().ToTable("TeacherRoles").HasKey("TeacherRoleId");
             modelBuilder.Entity<Education>().ToTable("Educations").HasKey("EducationId");
             modelBuilder.Entity<Location>().ToTable("Locations").HasKey("LocationId");
