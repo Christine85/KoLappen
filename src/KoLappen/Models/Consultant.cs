@@ -8,7 +8,7 @@ namespace KoLappen.Models
         public int ConsultantId { get; set; }
         public string UserId { get; set; }
         public int EducationId { get; set; }
-        public List<UserJobArea> UserJobAreas { get; set; }
+        public List<UserJobLocation> UserJobLocation { get; set; }
         public bool NeedHelp { get; set; }
         public DateTime HelpTime { get; set; }
     }
