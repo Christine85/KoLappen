@@ -36,7 +36,5 @@ namespace KoLappen.Controllers
         {
             return View();
         }
-
-
     }
 }

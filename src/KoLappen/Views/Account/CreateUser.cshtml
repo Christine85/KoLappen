@@ -1,4 +1,4 @@
-﻿@model KoLappen.ViewModels.AddUserViewModel
+﻿@model KoLappen.ViewModels.CreateUserViewModel
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
 @{
@@ -35,11 +35,11 @@
                     <span asp-validation-for="Lastname"></span>
                     <br />              
                     <label asp-for="Education"></label>
-                    <input asp-for="Education" class="form-control custom" placeholder="Utbildnings ID" value="1" />
+                    <input asp-for="Education" class="form-control custom" placeholder="Utbildnings ID" value="17" />
                     <span asp-validation-for="Education"></span>
                     <br />
                     <label asp-for="JobArea"></label>
-                    <input asp-for="JobArea" class="form-control custom" placeholder="Jobbområde" value="tester"/>
+                    <input asp-for="JobArea" class="form-control custom" placeholder="Jobbområde" value="17"/>
                     <span asp-validation-for="JobArea"></span>
                     <br />
                     <button type="submit" value="Register" class="btn btn-success">Registrera</button>

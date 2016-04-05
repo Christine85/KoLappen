@@ -21,42 +21,25 @@ namespace KoLappen.Controllers
         SignInManager<IdentityUser> signInManager;
         IdentityDbContext contextIdentity;
         IUsersRepository usersRepository;
-        IProfileRepository profileDataManager;
 
         public AccountController(
+            DBContext dbContext,
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
             IdentityDbContext contextIdentity,
-            IUsersRepository usersRepository,
-            DBContext dbContext,
-            IProfileRepository profileDataManager)
+            IUsersRepository usersRepository
+            )
         {
+            this.dbContext = dbContext;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.contextIdentity = contextIdentity;
             this.usersRepository = usersRepository;
-            this.dbContext = dbContext;
-            this.profileDataManager = profileDataManager;            
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Alumner()
-        {
-            return View();
-        }
-        public IActionResult Semester()
-        {
-            return View();
-        }
-
-        public IActionResult Katalog(int id)
-        {
-            var viewModel = profileDataManager.GetOneClass(id);
-            return View(viewModel);
         }
 
         [AllowAnonymous]
@@ -108,30 +91,25 @@ namespace KoLappen.Controllers
             return RedirectToAction(nameof(AccountController.Login));
         }
 
+
         [AllowAnonymous]
-        public ActionResult AddUser()
+        public ActionResult CreateUser()
         {
             //ViewBag.Educations = new SelectList(dbContext.Educations, "EducationID", "CourseName");
             //ViewBag.JobAreas = new SelectList(dbContext.JobAreas, "JobAreaID", "JobAreaID");
-            var viewModel = new AddUserViewModel();
             //viewModel.allEducations = usersRepository.GetAllEducations();
             //viewModel.allJobAreas = usersRepository.GetJobAreas();
-            return View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult AddCourse()
-        {
+            var viewModel = new CreateUserViewModel();
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUser(AddUserViewModel viewModel)
+        public async Task<IActionResult> AddUser(CreateUserViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return View(model);
 
             // Skapa DB-schemat
             await contextIdentity.Database.EnsureCreatedAsync();
@@ -139,18 +117,18 @@ namespace KoLappen.Controllers
             // Skapa användaren
             IdentityUser user = new IdentityUser
             {
-                UserName = viewModel.Email,
-                Email = viewModel.Email
+                UserName = model.Email,
+                Email = model.Email
             };
             var result = await userManager.CreateAsync(user, "P@ssw0rd");
 
             if (result.Succeeded)
             {
                 // Om användaren skapades så skapas även en rad i tabellen 'Users'
-                usersRepository.AddUser(viewModel, user.Id);
+                usersRepository.CreateUser(model, user.Id);
 
                 await signInManager.PasswordSignInAsync(
-                    viewModel.Email, "P@ssw0rd", false, false);
+                    model.Email, "P@ssw0rd", false, false);
 
                 return RedirectToAction(nameof(HomeController.Index), "home");
             }
@@ -158,29 +136,12 @@ namespace KoLappen.Controllers
             // Visa ev. fel-meddelande
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(nameof(AddUserViewModel.Email),
+                ModelState.AddModelError(nameof(CreateUserViewModel.Email),
                     result.Errors.First().Description);
 
-                return View(viewModel);
+                return View(model);
             }
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddCourse(AddCourseVM viewModel)
-        {
-            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
-            {
-                return View(viewModel);
-            }
-
-            usersRepository.AddCourse(viewModel);
-            
-
-
-            return View(viewModel);
+            return View(model);
         }
     }
 }
