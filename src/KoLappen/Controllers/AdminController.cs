@@ -15,7 +15,9 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            return Content("admin");
         }
+
+
     }
 }
