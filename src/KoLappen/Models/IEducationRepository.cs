@@ -1,14 +1,12 @@
 ﻿using KoLappen.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
     public interface IEducationRepository
     {
         EducationVM[] GetAllCourses();
+        void AddCourse(AddCourseVM viewModel);
     }
 
     public class DbEducationRepository : IEducationRepository
@@ -23,14 +21,25 @@ namespace KoLappen.Models
 
         public EducationVM[] GetAllCourses()
         {
-            return dbContext.Educations
+            return dbContext.Education
                 .Select(o => new EducationVM
                 {
-                    CourseName = o.CourseName,
-                    Semester = o.Semester,
-                    EducationID = o.EducationID
+                    //CourseName = o.CourseName,
+                    //Semester = o.Semester,
+                    //EducationID = o.EducationID
                 })
                 .ToArray();
+        }
+        public void AddCourse(AddCourseVM model)
+        {
+            var course = new Education();
+
+            //course.CourseName = model.CourseName;
+            //course.Semester = model.Semester;
+            //course.Location = model.Location;
+
+            dbContext.Education.Add(course);
+            dbContext.SaveChanges();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KoLappen.ViewModels
 {
-    public class AddUserViewModel
+    public class CreateUserViewModel
     {
         [Required(ErrorMessage = "Fyll i förnamn.")]
         [Display(Name = "Förnamn")]
