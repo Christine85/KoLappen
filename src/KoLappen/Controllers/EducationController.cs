@@ -38,9 +38,9 @@ namespace KoLappen.Controllers
             var viewModel = educationRepository.GetAllCourses();
             return View(viewModel);
         }
-        public IActionResult Semester()
+        public IActionResult Semester(int courseID)
         {
-            var viewModel = educationRepository.GetAllCourses();
+            var viewModel = educationRepository.GetAllSemesters(courseID);
             return View(viewModel);
         }
 

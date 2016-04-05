@@ -54,6 +54,7 @@ namespace KoLappen.Models
                     UserName = o.UserName,
                     Name = o.Firstname,
                     LastName = o.Lastname,
+
                     //Education = o.Education
                 })
                 .ToList();
