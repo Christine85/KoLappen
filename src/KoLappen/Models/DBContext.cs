@@ -16,6 +16,15 @@ namespace KoLappen.Models
         public DbSet<UserJobLocation> UserJobLocation { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        //Forms i DB
+        public DbSet<Form> Forms { get; set; }
+        public DbSet<FormToQuestion> FormToQuestions { get; set; }
+        public DbSet<FormQuestion> FormQuestions { get; set; }
+        public DbSet<FormConsultAnswer> FormConsultAnswers { get; set; }
+        public DbSet<FormQuestionToOption> FormQuestionToOptions { get; set; }
+        public DbSet<FormOption> FormOptions { get; set; }
+        public DbSet<FormType> FormTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,6 +39,15 @@ namespace KoLappen.Models
             modelBuilder.Entity<Semester>().ToTable("Semesters").HasKey("SemesterId");
             modelBuilder.Entity<UserJobLocation>().ToTable("UserJobLocations").HasKey("UserJobLocationId");
             modelBuilder.Entity<Post>().ToTable("Posts");
+
+            //Forms i DB
+            modelBuilder.Entity<Form>().ToTable("Forms").HasKey("FormId");
+            modelBuilder.Entity<FormToQuestion>().ToTable("FormToQuestions").HasKey("FormId");
+            modelBuilder.Entity<FormQuestion>().ToTable("FormQuestions").HasKey("QuestionId");
+            modelBuilder.Entity<FormConsultAnswer>().ToTable("FormConsultAnswers").HasKey("QuestionId");
+            modelBuilder.Entity<FormQuestionToOption>().ToTable("FormQuestionToOptions").HasKey("OptionId");
+            modelBuilder.Entity<FormOption>().ToTable("FormOptions").HasKey("OptionId");
+            modelBuilder.Entity<FormType>().ToTable("FormTypes").HasKey("FormTypeId");
 
             //    modelBuilder.Entity<User>()
             //        .HasOne(u => u.Education)
