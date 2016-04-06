@@ -45,7 +45,7 @@ namespace KoLappen.Models
         {
             //Hämtar användaren som skall ändras i DB
             var user = context.Consultant.SingleOrDefault(o => o.User.UserName == userName);
-
+            
             //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp)
             if (user != null)
             {
