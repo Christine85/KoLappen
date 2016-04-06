@@ -15,7 +15,8 @@
     
     @foreach (var item in Model)
     {
-        <p><b><a href="/Account/Katalog/@item.CourseID" style="color:#00aa3c">@item.Semester</a></b></p>
+        @*<p><b><a href="/Account/Katalog/@item.CourseID" style="color:#00aa3c">@item.Semester</a></b></p>*@
+        <p><b><a asp-controller="Education" asp-action="Katalog" asp-route-semesterId="@item.SemesterId" asp-route-courseId="@item.CourseID" style="color:#00aa3c">@item.Semester</a></b></p>
     }
    
     @*<p><b><a href="/Account/Katalog/2" style="color:#00aa3c">VT 16</a></b></p>

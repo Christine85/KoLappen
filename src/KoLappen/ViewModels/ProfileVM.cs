@@ -19,7 +19,7 @@ namespace KoLappen.ViewModels
         [Display(Name = "Telefonnummer")]
         public string PhoneNumber { get; set; }
         public string Image { get; set; }
-        public List<UserJobLocation> JobAreas { get; set; }
+        public List<Location> UserJobLocation { get; set; }
         public string EducationName { get; set; }
         public string SemesterName { get; set; }
         //public int Education { get; set; }

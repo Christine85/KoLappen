@@ -33,7 +33,6 @@ namespace KoLappen.Controllers
         {
             return View();
         }
-
         //[Authorize]
         [HttpPost]
         public IActionResult AddPost(AddPostVM viewModel)

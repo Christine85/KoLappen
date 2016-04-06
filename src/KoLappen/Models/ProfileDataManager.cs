@@ -29,8 +29,8 @@ namespace KoLappen.Models
             {
                     Name = o.User.Firstname,
                     LastName = o.User.Lastname,
-                Email = idUser.Email,
-                PhoneNumber = idUser.PhoneNumber,
+                    Email = idUser.Email,
+                    PhoneNumber = idUser.PhoneNumber,
                     EducationName = o.Education.Course.CourseName,
                     SemesterName = o.Education.Semester.SemesterName 
                 })
@@ -46,19 +46,18 @@ namespace KoLappen.Models
             //};
         }
         
-        public List<ProfileVM> GetOneClass(int edu)
+        public List<ProfileVM> GetOneClass(int courseId, int semesterId)
         {
             var idUser = identityContext.Users.ToList();
-            var u = context.Users;
-            var users = context.Users
-                //.Where(o => o.Education.EducationID == edu)
+            
+            var users = context.Consultant
+                .Where(o => o.Education.CourseId == courseId && o.Education.SemesterId == semesterId)
                 .Select(o => new ProfileVM
                 {
-                    UserName = o.UserName,
-                    Name = o.Firstname,
-                    LastName = o.Lastname,
-
-                    //Education = o.Education
+                    UserName = o.User.UserName,
+                    Name = o.User.Firstname,
+                    LastName = o.User.Lastname,
+                    Image = o.User.ProfilePic
                 })
                 .ToList();
 
@@ -70,19 +69,18 @@ namespace KoLappen.Models
                 selectedClass.AddRange(identityContext.Users
                 .Where(i => i.UserName == item.UserName)
                 .Select(i => new ProfileVM
-                {
+                {               
                     Name = item.Name,
-                    LastName = item.LastName,
-                    UserName = i.UserName,
+                    LastName = item.LastName,                    
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    //Education = item.Education
+                    Image = item.Image,
+                    UserJobLocation = item.UserJobLocation                    
                 })
                 .ToList());
             }
 
             return selectedClass;            
-        }
-        
+        }        
     }
 }

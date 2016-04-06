@@ -24,14 +24,14 @@ namespace KoLappen.Controllers
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
             IdentityDbContext contextIdentity,
-            IAccountRepository usersRepository
+            IAccountRepository accountRepository
             )
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.contextIdentity = contextIdentity;
-            this.accountRepository = usersRepository;
+            this.accountRepository = accountRepository;
         }
         // GET: /<controller>/
         public IActionResult Index()
