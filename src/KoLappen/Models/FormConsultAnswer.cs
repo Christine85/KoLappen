@@ -7,6 +7,7 @@ namespace KoLappen.Models
 {
     public class FormConsultAnswer
     {
+        public int FormConsultAnswerId { get; set; }
         public User User { get; set; }
         public FormQuestion FormQuestion { get; set; }
         public int QuestionId { get; set; }

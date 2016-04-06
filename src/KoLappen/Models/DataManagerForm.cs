@@ -107,6 +107,47 @@ namespace KoLappen.Models
             }
         }
 
+        public List<MakeFormVM> ShowEvaluationForm(MakeFormVM viewModel)
+        {
+            //Hitta Id för vilken klass som skall ha utvärdering
+            var educationId = context.Education
+                .Where(o => o.Course.CourseName == viewModel.CourseName && o.Semester.SemesterName == viewModel.SemesterName)
+                .Select(o => o.EducationId)
+                .SingleOrDefault();
+
+            //Hitta formuläret med educationId och EducationWeek
+            var formId = context.Forms
+                .Where(o => o.EducationId == educationId && o.EducationWeek == viewModel.EducationWeek)
+                .Select(o => o.EducationId)
+                .SingleOrDefault();
+
+            //Hämta frågorna som finns för detta formId
+            var takeQuestionFromDB = context.Forms
+                .Where(o => o.FormId == formId)
+                .OrderBy(o => o.FormQuestion.QuestionId)
+                .Select(o => new MakeFormVM
+                {
+                    Question = o.FormQuestion.Question,
+                    FormQuestionToOptionId = o.FormQuestionToOption.FormQuestionToOptionId
+                })
+                .ToList();
+
+            //Hämta flervalen som finns till detta formId
+            var showEvaluationForm = context.Forms
+                .Where(o => o.FormId == formId)                
+                .Select(o => new MakeFormVM
+                {
+                    Option = o.FormOption.Option,
+                    FormQuestionToOptionId = o.FormQuestionToOption.FormQuestionToOptionId
+                })
+                .ToList();
+
+            
+
+
+            return showEvaluationForm;
+        }
+
         //Skapa tentaformulär
         public void MakeExamForm(MakeFormVM viewModel)
         {

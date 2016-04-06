@@ -11,5 +11,6 @@ namespace KoLappen.Models
         public FormQuestion FormQuestion { get; set; }
         public int OptionId { get; set; }
         public int QuestionId { get; set; }
+        public int FormQuestionToOptionId { get; set; }
     }
 }
