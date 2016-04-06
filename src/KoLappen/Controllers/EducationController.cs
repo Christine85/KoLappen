@@ -12,7 +12,6 @@ namespace KoLappen.Controllers
     public class EducationController : Controller
     {
         DBContext dbContext;
-        //IUsersRepository usersRepository;
         IProfileRepository profileDataManager;
         IEducationRepository educationRepository;
 
@@ -73,7 +72,7 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
 
-            //usersRepository.AddCourse(viewModel);
+            educationRepository.AddCourse(viewModel);
 
             return View(viewModel);
         }

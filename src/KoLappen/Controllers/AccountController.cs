@@ -100,9 +100,6 @@ namespace KoLappen.Controllers
 
             else
                 return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
-
-
-
         }
 
 
