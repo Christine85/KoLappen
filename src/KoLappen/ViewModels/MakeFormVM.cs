@@ -13,5 +13,7 @@ namespace KoLappen.ViewModels
         public int EducationWeek { get; set; }        
         public string Question { get; set; }
         public List<FormOption> FormOption { get; set; }
+        public int FormQuestionToOptionId { get; set; }
+        public string Option { get; set; }
     }
 }
