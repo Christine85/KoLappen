@@ -12,5 +12,6 @@ namespace KoLappen.Models
         public Education Education { get; set; }
         public bool NeedHelp { get; set; }
         public DateTime HelpTime { get; set; }
+        public List<UserJobLocation> UserJobLocations { get; set; }
     }
 }

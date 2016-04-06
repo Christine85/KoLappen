@@ -38,6 +38,7 @@ namespace KoLappen.Controllers
         [HttpPost]
         public IActionResult EditProfile(ProfileVM model)
         {
+
             return RedirectToAction(nameof(ProfileController.Profile));
         }
 

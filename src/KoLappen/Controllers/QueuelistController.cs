@@ -24,7 +24,7 @@ namespace KoLappen.Controllers
             var dataManager = new DataManager(context);
             //Hämta lista på folk i kö
             var queueList = dataManager.GetQueue(User.Identity.Name);
-            return PartialView(/*"_QueueForm", queueList*/);
+            return PartialView("_QueueForm", queueList);
         }
 
         [HttpPost]

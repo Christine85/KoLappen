@@ -7,8 +7,13 @@
     </div>*@
     @foreach (var item in Model)
     {
+
         <div class="col-md-1"></div>
         <div class="container col-md-3">
+        <div class="avatar-flip">
+            <img src="@item.Image" height="150" width="150">
+            <img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+        </div>
 
         <h2>@item.EducationName</h2>
         <h2>@item.SemesterName</h2>
@@ -17,7 +22,7 @@
         <h4>@item.LastName</h4>
         <h4>@item.Email</h4>
         <h4>@item.PhoneNumber</h4>
-        <h4>@item.JobAreas</h4>
+        <h4>@item.UserJobLocation</h4>
 
         </div>
     }

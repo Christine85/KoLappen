@@ -47,13 +47,25 @@ namespace KoLappen.Models
 
         public void AddCourse(AddCourseVM model)
         {
-            var course = new Education();
+            var education = new Education();
+            var course = new Course();
+            var semester = new Semester();
+            var location = new Location();
 
             //course.CourseName = model.CourseName;
             //course.Semester = model.Semester;
             //course.Location = model.Location;
 
-            dbContext.Education.Add(course);
+            course.CourseName = model.CourseName;
+            semester.SemesterName = model.Semester;
+            location.City = model.Location;
+
+            dbContext.Course.Add(course);            
+            dbContext.Semester.Add(semester);            
+            dbContext.Location.Add(location);
+            dbContext.SaveChanges();            
+
+            dbContext.Education.Add(education);
             dbContext.SaveChanges();
         }
     }

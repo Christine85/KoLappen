@@ -76,14 +76,14 @@ namespace KoLappen.Controllers
                 var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 
                 //om admin eller lärare loggar in, skall de få en annan view
-                if (await userManager.IsInRoleAsync(aspUser, "Admin"))
-                {
-                    return RedirectToAction(nameof(AdminController.Index), "Admin");
-                }
-                else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
-                {
-                    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
-                }
+                //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
+                //{
+                //    return RedirectToAction(nameof(AdminController.Index), "Admin");
+                //}
+                //else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
+                //{
+                //    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
+                //}
                 return RedirectToAction(nameof(HomeController.Index), "home");
             }
 
@@ -100,9 +100,6 @@ namespace KoLappen.Controllers
 
             else
                 return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
-
-
-
         }
 
 

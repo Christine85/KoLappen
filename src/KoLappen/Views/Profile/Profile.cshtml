@@ -1,26 +1,26 @@
 ﻿@using KoLappen.ViewModels
 @model ProfileVM
+<div id="mainScrollable">
+    <div class="col-md-1"></div>
+    <div class="container col-md-3">
+        <div class="avatar-flip">
+            <img src="@Model.Image" height="150" width="150">
+            <img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+        </div>
+        <h2>@Model.Name @Model.LastName</h2>
+        <h4>@Model.EducationName @Model.SemesterName</h4>
+        <h3>Kontakt</h3>
+        <p>Email: @Model.Email</p>
+        <p>Telefonnummer: @Model.PhoneNumber</p>
+        <h3>Region</h3>
+        <ul>
+            @foreach (var location in Model.UserJobLocation)
+            {
+                <li>
+                    @location.City
+                </li>
 
-<div class="col-md-1"></div>
-<div class="container col-md-3">
-    <div class="avatar-flip">
-        <img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg" height="150" width="150">
-        <img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+            }
+        </ul>
     </div>
-    <h2>@Model.Name @Model.LastName</h2>
-    <h4>@Model.Education.CourseName @Model.Education.Semester</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna ip sum dolore.</p>
-    <p>Connec dolore ipsum faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla.</p>
-</div>
-<div>
-    <div>
-        <img src="@Model.Image" />
-    </div>
-    <p></p>
-    <p>@Model.Email</p>
-    <p>@Model.PhoneNumber</p>
-    <h6>Klass</h6>
-    <p></p>
-    <h6>Region</h6>
-    <p>@Model.UserJobLocation</p>
 </div>
