@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KoLappen.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace KoLappen.Models
         {
             this.context = context;
         }
-        public void MakeEvaluationForm()
+        public List<MakeFormVM> MakeEvaluationForm(MakeFormVM makeEvaluationForm)
         {
             ////Hämtar användaren som skall ändras i DB
             //var user = context.Users.SingleOrDefault(o => o.UserName == userName);
@@ -28,6 +29,8 @@ namespace KoLappen.Models
             //    user.NeedHelp = needHelp;
             //    context.SaveChanges();
             //}
+
+            return evaluationForm;
         }
     }
 }

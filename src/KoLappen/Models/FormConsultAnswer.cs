@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
-    public class EvaluationAnswer
+    public class FormConsultAnswer
     {
-        public Evaluation Evaluation { get; set; }
+        public User User { get; set; }
+        public FormQuestion FormQuestion { get; set; }
+        public int QuestionId { get; set; }
         public string UserId { get; set; }
-        public int EvaluationId { get; set; }
         public int Score { get; set; }
         public string Comment { get; set; }
     }
