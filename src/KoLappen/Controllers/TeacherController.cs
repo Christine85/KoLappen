@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using KoLappen.Models;
+using KoLappen.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,12 +26,13 @@ namespace KoLappen.Controllers
             return View();
         }
 
-        public IActionResult EvaluationForm()
-        {
-            var dataTeacherManager = new DataTeacherManager(context);
-            //Hämta lista på folk i kö
-            //var evaluationForm = dataTeacherManager.MakeEvaluationForm(User.Identity.Name);
-            return PartialView("_QueueForm");
-        }
+        //public IActionResult EvaluationForm(MakeFormVM viewModel)
+        //{
+        //    var dataTeacherManager = new DataTeacherManager(context);
+        //    //Hämta lista på folk i kö
+        //    //var evaluationForm = dataTeacherManager.MakeEvaluationForm(viewModel);
+
+        //    //return View(evaluationForm);
+        //}
     }
 }
