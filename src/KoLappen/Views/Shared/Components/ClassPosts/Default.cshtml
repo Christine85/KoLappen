@@ -5,7 +5,7 @@
 <div>
     @foreach (var item in Model)
     {
-        <b>@item.Firstname @item.Lastname - </b>
+        <b>@item.PostedByFirstname @item.PostedByLastname - </b>
         @item.PostText;
         <br />
         <a href="@item.Link" target="_blank">@item.Link</a>;
