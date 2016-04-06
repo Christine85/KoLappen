@@ -1,4 +1,4 @@
-﻿@model EducationVM[]
+﻿@model AlumnerVM[]
 
 <h2 style="color:#00aa3c">ALUMNER</h2>
 <h3 style="color:#00aa3c">TERMIN</h3>
@@ -13,9 +13,9 @@
     
     @*<p><b><a href="@Url.Action("Katalog", "Account", new { id = 1 })" style="color:#00aa3c">test</a></b></p>*@
     
-    @foreach (var item in Model.Where(i => i.CourseName == "C#"))
+    @foreach (var item in Model)
     {
-        <p><b><a href="/Account/Katalog/@item.EducationID" style="color:#00aa3c">@item.Semester</a></b></p>
+        <p><b><a href="/Account/Katalog/@item.CourseID" style="color:#00aa3c">@item.Semester</a></b></p>
     }
    
     @*<p><b><a href="/Account/Katalog/2" style="color:#00aa3c">VT 16</a></b></p>

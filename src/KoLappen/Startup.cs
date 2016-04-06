@@ -43,7 +43,7 @@ namespace KoLappen
                 .AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
 
-            services.AddTransient<IUsersRepository, DbUsersRepository>();
+            services.AddTransient<IAccountRepository, DbAccountRepository>();
             services.AddTransient<IProfileRepository, ProfileDataManager>();
 
 
