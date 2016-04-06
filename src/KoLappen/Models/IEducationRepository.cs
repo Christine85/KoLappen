@@ -1,4 +1,5 @@
 ﻿using KoLappen.ViewModels;
+using Microsoft.AspNet.Mvc.Rendering;
 using System;
 using System.Linq;
 
@@ -9,6 +10,7 @@ namespace KoLappen.Models
         AlumnerVM[] GetAllCourses();
         void AddCourse(AddCourseVM viewModel);
         AlumnerVM[] GetAllSemesters(int courseId);
+        AddCourseVM GetRegistrationCourseOptions();
     }
 
     public class DbEducationRepository : IEducationRepository
@@ -72,13 +74,43 @@ namespace KoLappen.Models
             education.LocationId = 1;
             //education.CourseId = 1;
             //course.Educations.Add(education);
-          
+
             //location.Education.Add(education);
             //semester.Education.Add(education);
             //dbContext.Course.Add(course);
-                
+
+
+
             dbContext.Education.Add(education);
             dbContext.SaveChanges();
+        }
+
+        public AddCourseVM GetRegistrationCourseOptions()
+        {
+            //Sätt kurser i en drodown list
+            var courseOptions = dbContext.Course.Select(e =>
+            new SelectListItem
+            {
+                Value = e.CourseId.ToString(),
+                Text = $"{e.CourseName}"
+            });
+
+            //Sätt städer i en dropdown list                    
+            var locOption = dbContext.Location.Select(l =>
+                        new SelectListItem
+                        {
+                            Value = l.LocationId.ToString(),
+                            Text = $"{l.City}"
+                        });
+
+            //Sätt de nya listorna till vy modellen
+            var regOptions = new AddCourseVM()
+            {
+                CourseNames = courseOptions,
+                Locations = locOption
+            };
+
+            return regOptions;
         }
     }
 }
