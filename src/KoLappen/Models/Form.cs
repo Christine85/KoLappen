@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace KoLappen.Models
 {
-    public class Evaluation
+    public class Form
     {
-        public int EvaluationId { get; set; }
+        public Education Education { get; set; }
+        public FormType FormType { get; set; }
+        public int FormId { get; set; }
         public int EducationId { get; set; }
         public int EducationWeek { get; set; }
-        public string Question { get; set; }
-        public bool SaveQuestion { get; set; }
-        public int MaxScore { get; set; }
+        public int FormTypeId { get; set; }
     }
 }

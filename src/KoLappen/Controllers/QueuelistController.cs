@@ -18,13 +18,13 @@ namespace KoLappen.Controllers
         {
             this.context = context;
         }
-        // GET: /<controller>/
+        //GET: /<controller>/
         public IActionResult GetQueuelist()
         {
             var dataManager = new DataManager(context);
             //Hämta lista på folk i kö
             var queueList = dataManager.GetQueue(User.Identity.Name);
-            return PartialView("_QueueForm", queueList);
+            return PartialView(/*"_QueueForm", queueList*/);
         }
 
         [HttpPost]

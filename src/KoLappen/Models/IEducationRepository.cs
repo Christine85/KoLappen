@@ -5,8 +5,9 @@ namespace KoLappen.Models
 {
     public interface IEducationRepository
     {
-        EducationVM[] GetAllCourses();
+        AlumnerVM[] GetAllCourses();
         void AddCourse(AddCourseVM viewModel);
+        AlumnerVM[] GetAllSemesters(int courseId);
     }
 
     public class DbEducationRepository : IEducationRepository
@@ -19,17 +20,31 @@ namespace KoLappen.Models
         }
 
 
-        public EducationVM[] GetAllCourses()
+        public AlumnerVM[] GetAllCourses()
         {
-            return dbContext.Education
-                .Select(o => new EducationVM
+            return dbContext.Course
+                .Select(o => new AlumnerVM
                 {
-                    //CourseName = o.CourseName,
+                    CourseName = o.CourseName,
                     //Semester = o.Semester,
-                    //EducationID = o.EducationID
+                    CourseID = o.CourseId
                 })
                 .ToArray();
         }
+
+        public AlumnerVM[] GetAllSemesters(int courseID)
+        {
+            return dbContext.Education
+                .Where(i => i.CourseId == courseID)
+                .Select(o => new AlumnerVM
+                {                    
+                    Semester = o.Semester.SemesterName,
+                    CourseID = courseID,
+                    SemesterId = o.SemesterId
+                })
+                .ToArray();
+        }
+
         public void AddCourse(AddCourseVM model)
         {
             var course = new Education();

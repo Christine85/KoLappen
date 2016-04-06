@@ -12,7 +12,7 @@ namespace KoLappen.Controllers
     public class EducationController : Controller
     {
         DBContext dbContext;
-        IUsersRepository usersRepository;
+        //IUsersRepository usersRepository;
         IProfileRepository profileDataManager;
         IEducationRepository educationRepository;
 
@@ -32,22 +32,27 @@ namespace KoLappen.Controllers
         {
             return View();
         }
-
+        //public IActionResult Semester()
+        //{
+        //    return View();
+        //}
         public IActionResult Alumner()
         {
             var viewModel = educationRepository.GetAllCourses();
             return View(viewModel);
         }
-        public IActionResult Semester()
+
+        
+        public IActionResult Semester(int courseID)
         {
-            var viewModel = educationRepository.GetAllCourses();
+            var viewModel = educationRepository.GetAllSemesters(courseID);
             return View(viewModel);
         }
 
         public IActionResult Katalog(int id)
         {
-            var viewModel = profileDataManager.GetOneClass(id);
-            return View(viewModel);
+            //var viewModel = profileDataManager.GetOneClass(id);
+            return View(/*viewModel*/);
         }
 
         [AllowAnonymous]

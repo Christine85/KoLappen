@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace KoLappen.ViewModels
 {
-    public class MakeEvaluationFormVM
-    {
+    public class MakeFormVM
+    {        
         public int EducationId { get; set; }
-        public int EducationWeek { get; set; }
-        public List<Evaluation> Question { get; set; }
-        public int MyProperty { get; set; }
+        public int EducationWeek { get; set; }        
+        public int FormTypeId { get; set; }
     }
 }
