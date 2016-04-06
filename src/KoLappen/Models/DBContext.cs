@@ -29,8 +29,8 @@ namespace KoLappen.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().ToTable("Users").HasKey("UserId");
-            modelBuilder.Entity<Teacher>().ToTable("Teachers").HasKey("TeacherId");
-            modelBuilder.Entity<Consultant>().ToTable("Consultants").HasKey("ConsultantId");
+            modelBuilder.Entity<Teacher>().ToTable("Teachers").HasKey("UserId");
+            modelBuilder.Entity<Consultant>().ToTable("Consultants").HasKey("UserId");
             modelBuilder.Entity<TeacherEducation>().ToTable("TeacherEducations").HasKey("TeacherEducationId");
             modelBuilder.Entity<TeacherRole>().ToTable("TeacherRoles").HasKey("TeacherRoleId");
             modelBuilder.Entity<Education>().ToTable("Educations").HasKey("EducationId");

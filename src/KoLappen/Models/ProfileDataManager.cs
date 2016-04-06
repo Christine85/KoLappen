@@ -19,11 +19,15 @@ namespace KoLappen.Models
             this.identityContext = identityContext;
         }
 
+        public void EditProfile(EditProfileVM model)
+        {
+
+        }
+
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
             var consultant = context.Consultant
-
                 .Where(o => o.User.UserName == userName)
                 .Select(o => new ProfileVM
                 {
@@ -32,9 +36,23 @@ namespace KoLappen.Models
                     Email = idUser.Email,
                     PhoneNumber = idUser.PhoneNumber,
                     EducationName = o.Education.Course.CourseName,
-                    SemesterName = o.Education.Semester.SemesterName 
+                    SemesterName = o.Education.Semester.SemesterName,
+                    Image = o.User.ProfilePic
+
                 })
                 .SingleOrDefault();
+
+            var locations = context.UserJobLocation
+                .Where(o => o.UserId == idUser.Id)
+                .Select(o => new Location
+                {
+                    City = o.Location.City,
+                    Education = null,
+                    LocationId = 0
+                })
+                .ToList();
+
+            consultant.UserJobLocation = locations;
 
             return consultant;
             //return new ProfileVM
