@@ -14,23 +14,20 @@ namespace KoLappen.Models
         {
             this.context = context;
         }
-        public List<MakeFormVM> MakeEvaluationForm(MakeFormVM makeEvaluationForm)
+        public /*List<MakeFormVM>*/ void MakeEvaluationForm(MakeFormVM makeEvaluationForm)
         {
-            ////Hämtar användaren som skall ändras i DB
-            //var user = context.Users.SingleOrDefault(o => o.UserName == userName);
+            //Hämtar användaren som skall ändras i DB
+            var evaluationForm = context.Consultant.SingleOrDefault(o => o.User.UserName == "Christine");
 
-            ////Om användaren hittas, uppdatera DB (HelpTime och NeedHelp)
-            //if (user != null)
-            //{
-            //    if (needHelp == true)
-            //    {
-            //        user.HelpTime = DateTime.Now;
-            //    }
-            //    user.NeedHelp = needHelp;
-            //    context.SaveChanges();
-            //}
+            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp)
+            if (evaluationForm != null)
+            {
+                evaluationForm.HelpTime = DateTime.Now;
 
-            return evaluationForm;
+                context.SaveChanges();
+            }
+
+            //return evaluationForm;
         }
     }
 }
