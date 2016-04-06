@@ -1,0 +1,15 @@
+﻿@model KoLappen.ViewModels.CreateUserViewModel[]
+@addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
+
+@{
+    ViewBag.Title = "AWA Intranet";
+}
+
+<div>
+    @foreach (var item in Model)
+    {
+        <b>@item.Firstname</b>
+        <br />
+
+    }
+</div>

@@ -46,20 +46,17 @@ namespace KoLappen.Models
             //};
         }
         
-        public List<ProfileVM> GetOneClass(int semesterId, int courseId)
+        public List<ProfileVM> GetOneClass(int edu)
         {
             var idUser = identityContext.Users.ToList();
-            
-            var users = context.Consultant
+            var u = context.Users;
+            var users = context.Users
                 //.Where(o => o.Education.EducationID == edu)
-                .Where(o => o.Education.CourseId == courseId && o.Education.SemesterId == semesterId)
                 .Select(o => new ProfileVM
                 {
-                    UserName = o.User.UserName,
-                    Name = o.User.Firstname,
-                    LastName = o.User.Lastname,
-                    Image = o.User.ProfilePic
-
+                    UserName = o.UserName,
+                    Name = o.Firstname,
+                    LastName = o.Lastname,
 
                     //Education = o.Education
                 })
@@ -79,7 +76,7 @@ namespace KoLappen.Models
                     UserName = i.UserName,
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    //Education = item.Education
+                    Education = item.Education
                 })
                 .ToList());
             }

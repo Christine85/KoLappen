@@ -18,36 +18,36 @@ namespace KoLappen.Controllers
         {
             this.context = context;
         }
-        // GET: /<controller>/
-        //public IActionResult GetQueuelist()
-        //{
-        //    var dataManager = new DataManager(context);
-        //    //Hämta lista på folk i kö
-        //    var queueList = dataManager.GetQueue(User.Identity.Name);
-        //    return PartialView(/*"_QueueForm", queueList*/);
-        //}
+        //GET: /<controller>/
+        public IActionResult GetQueuelist()
+        {
+            var dataManager = new DataManager(context);
+            //Hämta lista på folk i kö
+            var queueList = dataManager.GetQueue(User.Identity.Name);
+            return PartialView("_QueueForm", queueList);
+        }
 
-        //[HttpPost]
-        //public IActionResult DeQueue()
-        //{
-        //    return UpdateNeedHelp(false);
-        //}
+        [HttpPost]
+        public IActionResult DeQueue()
+        {
+            return UpdateNeedHelp(false);
+        }
 
-        //[HttpPost]
-        //public IActionResult EnQueue()
-        //{
-        //    return UpdateNeedHelp(true);
-        //}
+        [HttpPost]
+        public IActionResult EnQueue()
+        {
+            return UpdateNeedHelp(true);
+        }
 
-        //private IActionResult UpdateNeedHelp(bool isEnqueue)
-        //{
-        //    var dataManager = new DataManager(context);
+        private IActionResult UpdateNeedHelp(bool isEnqueue)
+        {
+            var dataManager = new DataManager(context);
 
-        //    //Sätt värde i DB till true eller false för användaren
-        //    dataManager.HelpTrueOrFalse(User.Identity.Name, isEnqueue);
-        //    //Hämta ny updaterad lista
-        //    var queueList = dataManager.GetQueue(User.Identity.Name);
-        //    return PartialView("_QueueForm", queueList);
-        //}
+            //Sätt värde i DB till true eller false för användaren
+            dataManager.HelpTrueOrFalse(User.Identity.Name, isEnqueue);
+            //Hämta ny updaterad lista
+            var queueList = dataManager.GetQueue(User.Identity.Name);
+            return PartialView("_QueueForm", queueList);
+        }
     }
 }
