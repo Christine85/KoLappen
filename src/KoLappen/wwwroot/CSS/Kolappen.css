@@ -186,9 +186,9 @@ body, html {
     overflow: hidden;
 }*/
 
-body {
+/*body {
     overflow: hidden;
-}
+}*/
 
 #mainScrollable {
     overflow-y: scroll;
