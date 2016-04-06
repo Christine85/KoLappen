@@ -26,13 +26,24 @@ namespace KoLappen.Controllers
             return View();
         }
 
-        //public IActionResult EvaluationForm(MakeFormVM viewModel)
-        //{
-        //    var dataTeacherManager = new DataTeacherManager(context);
-        //    //Hämta lista på folk i kö
-        //    //var evaluationForm = dataTeacherManager.MakeEvaluationForm(viewModel);
+        //Skapa tentaformulär
+        public IActionResult MakeExamForm(MakeFormVM viewModel)
+        {
+            var dataManagerForm = new DataManagerForm(context);           
+            /*var examForm = */dataManagerForm.MakeExamForm(viewModel);
 
-        //    //return View(evaluationForm);
-        //}
+            return View(/*examForm*/);
+        }
+
+    
+        public IActionResult GetListOfExamForm()
+        {
+            var dataManagerForm = new DataManagerForm(context);
+           
+            /*var examForm = */
+            //dataManagerForm.MakeExamForm();
+
+            return View(/*examForm*/);
+        }
     }
 }
