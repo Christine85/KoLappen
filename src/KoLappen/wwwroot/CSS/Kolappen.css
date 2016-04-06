@@ -1,4 +1,159 @@
-﻿.calendarPosition {
+﻿#evaluationTextarea {
+    width: 400px;
+    /*min-width: 300px;*/
+    min-height: 80px;
+}
+
+#evaluationInput {
+    width: 400px;
+}
+
+
+#createdQuestion {
+    color: white;
+}
+
+/*#removeAnswer {
+    color: #fff;
+    background-color: red;
+}
+
+#addAnswer {
+    background-color: green;
+}*/
+
+
+#evalRadius {
+    border-radius: 5px;
+}
+
+
+btn-evaluation {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #5a5a5a;
+}
+
+.btn-evaluation:focus,
+.btn-evaluation.focus {
+    color: #fff;
+    background-color: #17AD4C;
+    border-color: #5a5a5a;
+}
+
+.btn-evaluation:hover {
+    color: #fff;
+    background-color: #17AD4C;
+    border-color: #5a5a5a;
+}
+
+.btn-evaluation:active,
+.btn-evaluation.active,
+.open > .dropdown-toggle.btn-evaluation {
+    color: #fff;
+    background-color: #17AD4C;
+    border-color: #5a5a5a;
+}
+
+    .btn-evaluation:active:hover,
+    .btn-evaluation.active:hover,
+    .open > .dropdown-toggle.btn-evaluation:hover,
+    .btn-evaluation:active:focus,
+    .btn-evaluation.active:focus,
+    .open > .dropdown-toggle.btn-evaluation:focus,
+    .btn-evaluation:active.focus,
+    .btn-evaluation.active.focus,
+    .open > .dropdown-toggle.btn-evaluation.focus {
+        color: #fff;
+        background-color: #17AD4C;
+        border-color: #5a5a5a;
+    }
+
+.btn-evaluation:active,
+.btn-evaluation.active,
+.open > .dropdown-toggle.btn-evaluation {
+    background-image: none;
+}
+
+.btn-evaluation.disabled:hover,
+.btn-evaluation[disabled]:hover,
+fieldset[disabled] .btn-evaluation:hover,
+.btn-evaluation.disabled:focus,
+.btn-evaluation[disabled]:focus,
+fieldset[disabled] .btn-evaluation:focus,
+.btn-evaluation.disabled.focus,
+.btn-evaluation[disabled].focus,
+fieldset[disabled] .btn-evaluation.focus {
+    background-color: #17AD4C;
+    border-color: #5a5a5a;
+}
+
+.btn-evaluation .badge {
+    color: #17AD4C;
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: #000;  Sets the text hover color on navbar
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: white; BACKGROUND color for active
+background-color: #030033;
+}
+
+  .navbar-default {
+    background-color: #0f006f;
+    border-color: #030033;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: #262626;
+   text-decoration: none;
+  background-color: #66CCFF;  change color of links in drop down here
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; Change rollover cell color here
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: white; Change active text color here
+    }
+  
+
+ -------------- För att ordna med navbar till utvärderingen ------------- */
+
+
+
+
+
+.calendarPosition {
     position: absolute;
     right: 5%;
     bottom: 5%;
@@ -233,19 +388,20 @@ body, html {
 #QueueBtn {
     position: absolute;
     top: 300px;
-    left: 30%;    
+    left: 30%;
 }
 
 
 #QueueName {
     position: absolute;
-    top: 350px;       
+    top: 350px;
 }
-#QueueTable {    
+
+#QueueTable {
     width: 280px;
     margin-left: 40px;
     margin-right: 40px;
-    top: 450px;  
+    top: 450px;
 }
 
 
