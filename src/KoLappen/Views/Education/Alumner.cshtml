@@ -21,10 +21,10 @@
     @foreach (var item in Model)
     {
         @*<h2>@item.CourseName</h2>*@
-        @*<p><b><a href="/Account/Semester" style="color:#00aa3c">@item</a></b></p>*@
+        <p><b><a href="/Account/Semester/@item.CourseID" style="color:#00aa3c">@item.CourseName</a></b></p>
+        
 
-
-        <p><b><a asp-controller="Education" asp-action="Semester" asp-route-id="@item.CourseID" style="color:#00aa3c">@item.CourseName</a></b></p>
+        <p><b><a asp-controller="Education" asp-action="Semester" asp-route-CourseID="@item.CourseID" style="color:#00aa3c">@item.CourseName</a></b></p>
     }
 </div>
 

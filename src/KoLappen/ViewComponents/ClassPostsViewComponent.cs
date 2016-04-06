@@ -17,8 +17,8 @@ namespace KoLappen.ViewComponents
         // GET: /<controller>/
         public IViewComponentResult Invoke()
         {
-            var model = _postsRepository.GetAll();
-            return View(model);
+            //var model = _postsRepository.GetAll();
+            return View(/*model*/);
         }
 
 

@@ -22,25 +22,28 @@ namespace KoLappen.Models
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
-            var user = context.Users.SingleOrDefault(o => o.UserName == userName);
-                //.Where(o => o.UserName == userName)
-                //.Select(o => new ProfileVM
-                //{
-                //    Name = o.Firstname,
-                //    LastName = o.Lastname,
-                //    Email = idUser.Email,
-                //    PhoneNumber = idUser.PhoneNumber,
-                //    Education = o.Education
-                //})
-                //.Single();
-            return new ProfileVM
+            var consultant = context.Consultant
+
+                .Where(o => o.User.UserName == userName)
+                .Select(o => new ProfileVM
             {
-                Name = user.Firstname,
-                LastName = user.Lastname,
+                    Name = o.User.Firstname,
+                    LastName = o.User.Lastname,
                 Email = idUser.Email,
                 PhoneNumber = idUser.PhoneNumber,
-                //Education = user.Education
-            };
+                    EducationName = o.Education.Course.CourseName,
+                    SemesterName = o.Education.Semester.SemesterName 
+                })
+                .SingleOrDefault();
+
+            return consultant;
+            //return new ProfileVM
+            //{
+            //    Name = consultant.User.Firstname,
+            //    LastName = consultant.User.Lastname,
+            //    Email = idUser.Email,
+            //    PhoneNumber = idUser.PhoneNumber 
+            //};
         }
         
         public List<ProfileVM> GetOneClass(int edu)
@@ -73,7 +76,7 @@ namespace KoLappen.Models
                     UserName = i.UserName,
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    Education = item.Education
+                    //Education = item.Education
                 })
                 .ToList());
             }
