@@ -11,7 +11,8 @@ using KoLappen.ViewModels;
 
 namespace KoLappen.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    // -------------------------- ALLA KOMMER ÅT ADMIN SIDORNA NU UNDER TEST...... KOMMENTERA BORT NEDAN!!!! ------------------------- //
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         DBContext context;
@@ -31,10 +32,18 @@ namespace KoLappen.Controllers
             var dataManagerForm = new DataManagerForm(context);
 
             //Skapa utvärderingsformulär
-            /*var evaluationForm = */dataManagerForm.MakeEvaluationForm(viewModel);
+            /*var evaluationForm = */
+            dataManagerForm.MakeEvaluationForm(viewModel);
 
             return View(/*evaluationForm*/);
         }
+
+
+        public IActionResult AddEvaluation()
+        {
+            return View();
+        }
+
 
     }
 }

@@ -2,32 +2,35 @@
 @{
     ViewBag.Title = "Uppdatera profil";
 }
-
-<div asp-validation-summary="ValidationSummary.All"></div>
-<form asp-controller="profile" asp-action="editprofile" enctype="multipart/form-data">
-    <label asp-for="Firstname"></label>
-    <br />
-    <input asp-for="Firstname" />
-    <span asp-validation-for="Firstname"></span>
-    <br /><br />
-    <label asp-for="Lastname"></label>
-    <br />
-    <input asp-for="Lastname" />
-    <span asp-validation-for="Lastname"></span>
-    <br /><br />
-    <label asp-for="Email"></label>
-    <br />
-    <input asp-for="Email" />
-    <span asp-validation-for="Email"></span>
-    <br /><br />
-    <label asp-for="Phonenumber"></label>
-    <br />
-    <input asp-for="Phonenumber" />
-    <span asp-validation-for="Phonenumber"></span>
-    <br /><br />
-    @*<label asp-for="OldPassword"></label>
-    <br />
-    <input asp-for="OldPassword" />
-    <span asp-validation-for="OldPassword"></span>*@
-    <input type="submit" value="Uppdatera" />
-</form>
+<div style="height: 70px"></div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-5">
+        <div asp-validation-summary="ValidationSummary.All"></div>
+        <form asp-controller="profile" asp-action="editprofile" enctype="multipart/form-data">
+            <label asp-for="Firstname"></label>
+            <br />
+            <input asp-for="Firstname" class="form-control" id="textboxWidth"/>
+            <span asp-validation-for="Firstname"></span>
+            <br />
+            <label asp-for="Lastname"></label>
+            <input asp-for="Lastname"  class="form-control" id="textboxWidth"/>
+            <span asp-validation-for="Lastname"></span>
+            <br />
+            <label asp-for="Email"></label>
+            <br />
+            <input asp-for="Email" class="form-control" id="textboxWidth"/>
+            <span asp-validation-for="Email"></span>
+            <br />
+            <label asp-for="Phonenumber"></label>
+            <br />
+            <input asp-for="Phonenumber" class="form-control"  id="textboxWidth"/>
+            <span asp-validation-for="Phonenumber"></span>
+            <br /><br />
+            @*<label asp-for="OldPassword"></label>
+                <br />
+                <input asp-for="OldPassword" />
+                <span asp-validation-for="OldPassword"></span>*@
+            <center><input type="submit" value="Uppdatera" class="btn btn-default" id="editProfileBtnPlacement" /></center>
+        </form>
+    </div>
+</div>
