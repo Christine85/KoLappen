@@ -17,12 +17,12 @@
     <title>@ViewBag.Title</title>
 </head>
 
-<body>
+<body id="mainBodyScrollStopHorizontal">
 
     @* row för loggan *@
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
-            <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
+            <a href="~/home/index" style="cursor: default"><img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" /></a>
         </div>
         <div class="col-md-2" style="text-align: right">
             <h1 style="float: right; color: #17AD4C">The <b style="border: thick solid; color: #000000">ORIGINAL</b> AWA Intranet</h1>
@@ -38,17 +38,17 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="~/home/index">AWA Int 1.0</a>
+                        <a class="navbar-brand" href="~/home/index"><span class="glyphicon glyphicon-home" id="settingsIcon"></span></a>
                     </div>
                     <ul class="nav navbar-nav">
                         @*<li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mina sidor<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="~/profile/profile">Min profil</a></li>
-                                <li><a href="~/home/calendar">Kalender</a></li>
-                                <li><a href="#">Undermeny 3</a></li>
-                            </ul>
-                        </li>*@
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mina sidor<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="~/profile/profile">Min profil</a></li>
+                                    <li><a href="~/home/calendar">Kalender</a></li>
+                                    <li><a href="#">Undermeny 3</a></li>
+                                </ul>
+                            </li>*@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="~/profile/profile">Mina sidor<span class="caret"></span></a>
                             <ul class="dropdown-menu">
