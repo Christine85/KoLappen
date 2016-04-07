@@ -6,7 +6,6 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using KoLappen.Models;
 using KoLappen.ViewModels;
-using Microsoft.AspNet.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,29 +31,10 @@ namespace KoLappen.Controllers
             var dataManagerForm = new DataManagerForm(context);
 
             //Skapa utvärderingsformulär
-            dataManagerForm.MakeEvaluationForm(viewModel);
-            var showEvaluationForm = dataManagerForm.ShowEvaluationForm(viewModel);
+            /*var evaluationForm = */dataManagerForm.MakeEvaluationForm(viewModel);
 
-            return View();
+            return View(/*evaluationForm*/);
         }
-
-        public IActionResult AddEvaluation()
-        {
-            //var model = new MakeFormVM();
-            //model.EducLocationItems = new SelectListItem[]
-            //{
-            //    new SelectListItem { Text = "Stockholm", Value = "Stockholm" },
-            //    new SelectListItem { Text = "Göteborg", Value = "Göteborg" }
-            //};
-            //return View(model);
-            return View();
-        }
-
-
 
     }
-
-
-
 }
-

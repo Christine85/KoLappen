@@ -1,6 +1,4 @@
 ﻿using KoLappen.ViewModels;
-using Microsoft.AspNet.Mvc.Rendering;
-using System;
 using System.Linq;
 
 namespace KoLappen.Models
@@ -10,7 +8,6 @@ namespace KoLappen.Models
         AlumnerVM[] GetAllCourses();
         void AddCourse(AddCourseVM viewModel);
         AlumnerVM[] GetAllSemesters(int courseId);
-        AddCourseVM GetRegistrationCourseOptions();
     }
 
     public class DbEducationRepository : IEducationRepository
@@ -50,67 +47,14 @@ namespace KoLappen.Models
 
         public void AddCourse(AddCourseVM model)
         {
-            var education = new Education();
-            //var course = dbContext.Course
-            //    .FirstOrDefault(c => c.CourseName == model.CourseName);
-
-            var course = new Course();
-            var semester = new Semester();
-            var location = new Location();
+            var course = new Education();
 
             //course.CourseName = model.CourseName;
-            ////course.Semester = model.Semester;
-            ////course.Location = model.Location;
+            //course.Semester = model.Semester;
+            //course.Location = model.Location;
 
-            //course.CourseName = model.CourseName;
-            //semester.SemesterName = model.Semester;
-            //location.City = model.Location;
-
-            //education.startDate = DateTime.Now;
-            //education.endDate = DateTime.Now.AddDays(7);
-
-            education.Course = course;
-            education.SemesterId = 1;
-            education.LocationId = 1;
-            //education.CourseId = 1;
-            //course.Educations.Add(education);
-
-            //location.Education.Add(education);
-            //semester.Education.Add(education);
-            //dbContext.Course.Add(course);
-
-
-
-            dbContext.Education.Add(education);
+            dbContext.Education.Add(course);
             dbContext.SaveChanges();
-        }
-
-        public AddCourseVM GetRegistrationCourseOptions()
-        {
-            //Sätt kurser i en drodown list
-            var courseOptions = dbContext.Course.Select(e =>
-            new SelectListItem
-            {
-                Value = e.CourseId.ToString(),
-                Text = $"{e.CourseName}"
-            });
-
-            //Sätt städer i en dropdown list                    
-            var locOption = dbContext.Location.Select(l =>
-                        new SelectListItem
-                        {
-                            Value = l.LocationId.ToString(),
-                            Text = $"{l.City}"
-                        });
-
-            //Sätt de nya listorna till vy modellen
-            var regOptions = new AddCourseVM()
-            {
-                CourseNames = courseOptions,
-                Locations = locOption
-            };
-
-            return regOptions;
         }
     }
 }

@@ -42,16 +42,18 @@ namespace KoLappen
                 .AddSqlServer()
                 .AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
-
             services.AddTransient<IAccountRepository, DbAccountRepository>();
             services.AddTransient<IProfileRepository, ProfileDataManager>();
 
 
-            // Test
-            //services.AddTransient<IPostsRepository, TestPostsRepository>();
-            // Kopplat mot DB
-            services.AddTransient<IPostsRepository, DbPostsRepository>();
+            // ------------------ Patrik som håller på och testar med inlägg ------------------- //
 
+            // Test
+            services.AddTransient<IPostsRepository, TestPostsRepository>();
+            // Kopplat mot DB
+            //services.AddTransient<IPostsRepository, DbPostsRepository>();
+
+            // ------------------ Patrik som håller på och testar med inlägg ------------------- //
 
 
             services.AddTransient<IEducationRepository, DbEducationRepository>();

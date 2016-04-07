@@ -8,12 +8,8 @@ namespace KoLappen.ViewModels
 {
     public class MakeFormVM
     {        
-        public string CourseName { get; set; }
-        public string SemesterName { get; set; }
+        public int EducationId { get; set; }
         public int EducationWeek { get; set; }        
-        public string Question { get; set; }
-        public List<FormOption> FormOption { get; set; }
-        public int FormQuestionToOptionId { get; set; }
-        public string Option { get; set; }
+        public int FormTypeId { get; set; }
     }
 }

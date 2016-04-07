@@ -55,10 +55,12 @@ namespace KoLappen.Models
                     HelpTime = DateTime.Now,
                     NeedHelp = needHelp
                 })
-                .FirstOrDefault();
+                .SingleOrDefault();
 
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
+
         }
     }
+}
 }

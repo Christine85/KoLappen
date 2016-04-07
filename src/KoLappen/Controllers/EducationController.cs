@@ -12,6 +12,7 @@ namespace KoLappen.Controllers
     public class EducationController : Controller
     {
         DBContext dbContext;
+        //IUsersRepository usersRepository;
         IProfileRepository profileDataManager;
         IEducationRepository educationRepository;
 
@@ -42,25 +43,22 @@ namespace KoLappen.Controllers
         }
 
         
-        public IActionResult Semester(int id)
+        public IActionResult Semester(int courseID)
         {
-            var viewModel = educationRepository.GetAllSemesters(id);
+            var viewModel = educationRepository.GetAllSemesters(courseID);
             return View(viewModel);
         }
 
-
-        [Route("education/course/{courseId:int}/sem/{semesterId:int}")]
-        public IActionResult Katalog(int semesterId, int courseId)
+        public IActionResult Katalog(int id)
         {
-            var viewModel = profileDataManager.GetOneClass(semesterId, courseId);
-            return View(viewModel);
+            //var viewModel = profileDataManager.GetOneClass(id);
+            return View(/*viewModel*/);
         }
 
         [AllowAnonymous]
         public ActionResult AddCourse()
         {
-            var model = educationRepository.GetRegistrationCourseOptions();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -73,7 +71,7 @@ namespace KoLappen.Controllers
                 return View(viewModel);
             }
 
-            educationRepository.AddCourse(viewModel);
+            //usersRepository.AddCourse(viewModel);
 
             return View(viewModel);
         }
