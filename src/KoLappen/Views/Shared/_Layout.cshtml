@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -23,6 +28,7 @@
             <h1 style="float: right; color: #17AD4C">The <b style="border: thick solid; color: #000000">ORIGINAL</b> AWA Intranet</h1>
         </div>
     </div>
+
 
 
     @* row för navbar *@
@@ -53,6 +59,8 @@
                         <li><a href="#">Meny 3</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+
+                        @*kolla om man kan kicka igång modal på onclick på kalenderikonen*@
 
                         <li class="dropdown">
                             <a href="~/home/calendar" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-calendar" id="settingsIcon"></span></a>
@@ -87,13 +95,13 @@
             <div class="col-md-2" id="theQLappBackground">
 
                 @*Här displayas infon för köplappen*@
-                <div id="Queue" > 
+                <div id="Queue">
                 </div>
 
-                 <br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br />
                 @*<div id="calendarPositioning">
-                    <iframe src="https://calendar.google.com/calendar/embed?title=AWA%20VT16%20-%20C%23%20.NET&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=200&amp;wkst=2&amp;hl=sv&amp;bgcolor=%23FFFFFF&amp;src=qd4g3h2qi5vh2t873katrenqko%40group.calendar.google.com&amp;color=%23060D5E&amp;src=en.swedish%23holiday%40group.v.calendar.google.com&amp;color=%23711616&amp;src=e_2_en%23weeknum%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FStockholm" style="border-width:0" width="267" height="200" frameborder="0" scrolling="no"></iframe>
-                </div>*@
+                        <iframe src="https://calendar.google.com/calendar/embed?title=AWA%20VT16%20-%20C%23%20.NET&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=200&amp;wkst=2&amp;hl=sv&amp;bgcolor=%23FFFFFF&amp;src=qd4g3h2qi5vh2t873katrenqko%40group.calendar.google.com&amp;color=%23060D5E&amp;src=en.swedish%23holiday%40group.v.calendar.google.com&amp;color=%23711616&amp;src=e_2_en%23weeknum%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FStockholm" style="border-width:0" width="267" height="200" frameborder="0" scrolling="no"></iframe>
+                    </div>*@
             </div>
         </div>
     </div>
@@ -103,9 +111,8 @@
 
     <script type="text/javascript">
 
-        //Funktion för knapptrycken 
-        function updateNeedHelp(isEqueue)
-        {
+        //Funktion för knapptrycken
+        function updateNeedHelp(isEqueue) {
             var action = isEqueue ? "EnQueue" : "DeQueue";
             $.post("/Queuelist/" + action, function (html) {
                 $("#Queue").html(html);
@@ -114,7 +121,7 @@
 
         //Uppdaterar Köplappen inom ett visst tidintervall (kallar på Controllerna/Action för att hämta listan)
         var refreshQueue = function () {
-            $.get("/Queuelist/GetQueuelist", function (html) {                
+            $.get("/Queuelist/GetQueuelist", function (html) {
                 $("#Queue").html(html);
             });
         };
@@ -122,8 +129,9 @@
         window.setInterval("refreshQueue()", 30000);
 
     </script>
-        
+
 </body>
+
 </html>
 
 
