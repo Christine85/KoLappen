@@ -36,15 +36,36 @@ namespace KoLappen.Controllers
 
             return View();
         }
-        public IActionResult GetLocationForForm()
+        public IActionResult GetListOfLocationForForm()
         {
             var dataManagerForm = new DataManagerForm(context);
 
             //Hämta lista på location          
-            var listOfLocation = dataManagerForm.GetActivLocation();
+            var listOfLocations = dataManagerForm.GetActivLocations();
 
-            return View(listOfLocation);
+            return View(listOfLocations);
         }
+
+        public IActionResult GetListOfCoursesForForm(string location)
+        {
+            var dataManagerForm = new DataManagerForm(context);
+
+            //Hämta lista på kurser på vald location        
+            var listOfCourses = dataManagerForm.GetActivCourses(location);
+
+            return View(listOfCourses);
+        }
+        public IActionResult MakeForm(FormVM.MakeFormVM viewModel)
+        {
+            var dataManagerForm = new DataManagerForm(context);
+
+            //Hämta lista på kurser på vald location        
+            var listOfQuestions = dataManagerForm.CreateForm(viewModel);
+
+            return View(listOfQuestions);
+        }
+
+
 
         public IActionResult AddEvaluation()
         {
