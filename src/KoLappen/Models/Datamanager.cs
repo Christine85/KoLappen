@@ -1,4 +1,5 @@
 ﻿using KoLappen.ViewModels;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,10 +44,10 @@ namespace KoLappen.Models
 
         public void HelpTrueOrFalse(string userName, bool needHelp)
         {
-            //Hämtar användaren som skall ändras i DB
-            var user = context.Consultant.SingleOrDefault(o => o.User.UserName == userName);
-
-            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp)
+            //Hämtar användaren som skall ändras i DB 
+            var user = context.Consultant
+                .SingleOrDefault(o => o.User.UserName == userName);
+            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp) 
             if (user != null)
             {
                 if (needHelp == true)
@@ -56,6 +57,23 @@ namespace KoLappen.Models
                 user.NeedHelp = needHelp;
                 context.SaveChanges();
             }
+
+            //Ändra användaren i DB
+            //var user = context.Consultant
+            //    .Where(o => o.User.UserName == userName)
+            //    .Select(o => new Consultant
+            //    {
+            //        ConsultantId = o.ConsultantId,
+            //        UserId = o.UserId,
+            //        EducationId = o.EducationId,
+            //        HelpTime = DateTime.UtcNow,
+            //        NeedHelp = needHelp
+            //    })
+            //    .SingleOrDefault();
+
+            //context.Entry(user).State = EntityState.Modified;
+            //context.SaveChanges();
         }
     }
 }
+

@@ -46,14 +46,12 @@ namespace KoLappen
             services.AddTransient<IProfileRepository, ProfileDataManager>();
 
 
-            // ------------------ Patrik som håller på och testar med inlägg ------------------- //
 
             // Test
-            services.AddTransient<IPostsRepository, TestPostsRepository>();
+            //services.AddTransient<IPostsRepository, TestPostsRepository>();
             // Kopplat mot DB
-            //services.AddTransient<IPostsRepository, DbPostsRepository>();
+            services.AddTransient<IPostsRepository, DbPostsRepository>();
 
-            // ------------------ Patrik som håller på och testar med inlägg ------------------- //
 
 
             services.AddTransient<IEducationRepository, DbEducationRepository>();

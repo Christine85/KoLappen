@@ -145,7 +145,7 @@ namespace KoLappen.Controllers
                 Email = model.Email
             };
 
-            var passReset = userManager.GeneratePasswordResetTokenAsync(user);
+            //var passReset = userManager.GeneratePasswordResetTokenAsync(user);
 
 
             //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
