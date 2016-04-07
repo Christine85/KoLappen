@@ -110,7 +110,7 @@ namespace KoLappen.Models
         public List<string> GetActivLocations()
         {
             var listOfLocations = context.Education
-                .Where(o => o.StartDate >= DateTime.Now && o.EndDate <= DateTime.Now)
+                .Where(o => o.StartDate >= DateTime.no && o.EndDate <= DateTime.Now)
                 .Select(o => o.Location.City)
                 .ToList();
 
