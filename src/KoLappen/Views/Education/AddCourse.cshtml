@@ -20,8 +20,8 @@
         </header>
         <section class="loginimg">
             <center>
-                <form asp-controller="Account" asp-action="AddCourse">                                        
-                    <label asp-for="CourseName"></label>
+                <form asp-controller="Education" asp-action="AddCourse">                                        
+                    @*<label asp-for="CourseName"></label>
                     <input asp-for="CourseName" class="form-control custom" placeholder="Kurs namn" />
                     <span asp-validation-for="CourseName"></span>
                     <br />
@@ -32,6 +32,16 @@
                     <label asp-for="Location"></label>
                     <input asp-for="Location" class="form-control custom" placeholder="Plats" />
                     <span asp-validation-for="Location"></span>
+                    <br />*@
+                    <br />
+                    @Html.LabelFor(m => m.CourseName)
+                    @Html.DropDownListFor(m => m.CourseName, Model.CourseNames)
+                    <br />
+                    @Html.LabelFor(m => m.Semester)
+                    @Html.DropDownListFor(m => m.Semester, Model.Semesters)                   
+                    <br />
+                    @Html.LabelFor(m => m.Location)
+                    @Html.DropDownListFor(m => m.Location, Model.Locations)
                     <br />
                     <button type="submit" value="Register" class="btn btn-success">Registrera</button>
                 </form>

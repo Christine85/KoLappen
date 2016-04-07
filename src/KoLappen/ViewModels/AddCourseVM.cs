@@ -1,4 +1,5 @@
 ﻿using KoLappen.Models;
+using Microsoft.AspNet.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,13 +15,18 @@ namespace KoLappen.ViewModels
         [Display(Name = "Kurs namn")]
         [Required]
         public string CourseName { get; set; }
+        public IEnumerable<SelectListItem> CourseNames { get; set; }
 
         [Display(Name = "Termin")]
         [Required]
         public string Semester { get; set; }
+        public IEnumerable<SelectListItem> Semesters { get; set; }
 
         [Display(Name = "Plats")]
         [Required]
         public string Location { get; set; }
+        public IEnumerable<SelectListItem> Locations { get; set; }
+
+
     }
 }
