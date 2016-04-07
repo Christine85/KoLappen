@@ -44,15 +44,15 @@ namespace KoLappen.Models
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
-            var consultant = context.Consultant
-                .Where(o => o.User.UserName == userName)
+            var consultant = context.Users
+                .Where(o => o.UserName == userName)
                 .Select(o => new ProfileVM
                 {
-                    Name = o.User.Firstname,
-                    LastName = o.User.Lastname,
+                    Name = o.Firstname,
+                    LastName = o.Lastname,
                     Email = idUser.Email,
                     PhoneNumber = idUser.PhoneNumber,
-                    EducationName = o.Education.Course.CourseName,
+                    EducationName = o.Course.CourseName,
                     SemesterName = o.Education.Semester.SemesterName,
                     Image = o.User.ProfilePic,
                     UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
