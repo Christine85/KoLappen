@@ -1,6 +1,7 @@
 ﻿using KoLappen.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,63 +24,86 @@ namespace KoLappen.Models
             this.aspNetUserCon = aspNetUserCon;
         }
 
-        public void EditProfile(EditProfileVM model)
+        public async Task<int> EditProfile(EditProfileVM model)
         {
-            var aspNetUser = aspNetUserCon.Users
-                .Where(o=>o.UserName== model.UserId)
-                .Single();
-
-            var user = context.Users
-                .Where(o=>o.UserName == model.UserId)
-                .Single();
+            var user = await context.Users.SingleAsync(o => o.UserName == model.UserId);
             user.Firstname = model.Firstname;
             user.Lastname = model.Lastname;
+            context.Entry(user).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+
+            var aspNetUser = await aspNetUserCon.FindByNameAsync(model.UserId);
             aspNetUser.Email = model.Email;
             aspNetUser.PhoneNumber = model.Phonenumber;
+            await aspNetUserCon.UpdateAsync(aspNetUser);
+            return await identityContext.SaveChangesAsync();
+            //var aspNetUser = aspNetUserCon.Users
+            //    .Where(o=>o.UserName== model.UserId)
+            //    .Single();
+            //var aspUser = await aspNetUserCon.Users.SingleAsync(o=>o.UserName == model.UserId);
 
-            context.SaveChanges();
+            //aspUser.Email = model.Email;
+            //aspUser.PhoneNumber = model.Phonenumber;
+
+            //await aspNetUserCon.UpdateAsync(aspUser);
+
+            //var user = context.Users
+            //    .Where(o => o.UserId == "anv2@test.com")
+            //    //.Where(o => o.UserName == model.UserId)
+            //    .Select(o => new User
+            //    {
+            //        UserId = o.UserId,
+            //        Firstname = model.Firstname,
+            //        Lastname = model.Lastname,
+            //        ProfilePic = o.ProfilePic,
+            //        RegistrationComplete = o.RegistrationComplete,
+            //        UserName = o.UserName
+            //    })
+
+            //            .Single();
+
+            //user.Firstname = model.Firstname;
+            //user.Lastname = model.Lastname;
+            //aspNetUser.Email = model.Email;
+            //aspNetUser.PhoneNumber = model.Phonenumber;
+
 
         }
 
         public ProfileVM GetProfile(string userName)
         {
             var idUser = identityContext.Users.Single(o => o.UserName == userName);
-            var consultant = context.Users
-                .Where(o => o.UserName == userName)
+            var consultant = context.Consultant
+                .Where(o => o.User.UserName == userName)
                 .Select(o => new ProfileVM
                 {
-                    Name = o.Firstname,
-                    LastName = o.Lastname,
+                    Name = o.User.Firstname,
+                    LastName = o.User.Lastname,
                     Email = idUser.Email,
                     PhoneNumber = idUser.PhoneNumber,
-                    //EducationName = o.Course.CourseName,
-                    //SemesterName = o.Education.Semester.SemesterName,
-                    //Image = o.User.ProfilePic,
-                    //UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
+                    EducationName = o.Education.Course.CourseName,
+                    SemesterName = o.Education.Semester.SemesterName,
+                    Image = o.User.ProfilePic
 
                 })
                 .SingleOrDefault();
 
-            //var locations = context.UserJobLocation
-            //    .Where(o => o.UserId == idUser.Id)
-            //    .Select(o => new Location
-            //    {
-            //        City = o.Location.City,
-            //        Education = null,
-            //        LocationId = 0
-            //    })
-            //    .ToArray();
-
-            //consultant.UserJobLocation = locations;
+            consultant.UserJobLocation = GetLocations(idUser);
 
             return consultant;
-            //return new ProfileVM
-            //{
-            //    Name = consultant.User.Firstname,
-            //    LastName = consultant.User.Lastname,
-            //    Email = idUser.Email,
-            //    PhoneNumber = idUser.PhoneNumber 
-            //};
+        }
+
+        private Location[] GetLocations(IdentityUser idUser)
+        {
+            return context.UserJobLocation
+                .Where(o => o.UserId == idUser.Id)
+                .Select(o => new Location
+                {
+                    City = o.Location.City,
+                    Education = null,
+                    LocationId = 0
+                })
+                .ToArray();
         }
 
         public List<ProfileVM> GetOneClass(int semesterId, int courseId)
@@ -125,7 +149,7 @@ namespace KoLappen.Models
             var user = context.Users.Where(o => o.UserName == userName)
                 .Select(o => new EditProfileVM
                 {
-                    Firstname = o.UserName,
+                    Firstname = o.Firstname,
                     Lastname = o.Lastname,
                     Email = aspNetUser.Email,
                     Phonenumber = aspNetUser.PhoneNumber,
