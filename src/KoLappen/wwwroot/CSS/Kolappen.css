@@ -1,4 +1,11 @@
-﻿.calendarPosition {
+﻿#postTextboxSize{
+    width: 200px;
+    height: 70px;
+}
+
+
+
+.calendarPosition {
     position: absolute;
     right: 5%;
     bottom: 5%;
