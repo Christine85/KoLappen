@@ -66,42 +66,42 @@ namespace KoLappen.Controllers
             }
             */
 
+            var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
+
+            if (result.Succeeded)
+            {
             var user = dbContext.Users.Single(o => o.UserName == viewModel.UserName);
             var aspUser = userManager.Users.Single(o => o.UserName == viewModel.UserName);
             //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
              
-
             // Om användarprofilen ('Users' tabellen) är komplett så loggas användaren in
             if (user.RegistrationComplete == true)
             {
-                var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
-
                 //om admin eller lärare loggar in, skall de få en annan view
-                if (await userManager.IsInRoleAsync(aspUser, "Admin"))
-                {
-                    return RedirectToAction(nameof(AdminController.Index), "Admin");
-                }
-                else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
-                {
-                    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
-                }
+                //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
+                //{
+                //    return RedirectToAction(nameof(AdminController.Index), "Admin");
+                //}
+                //else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
+                //{
+                //    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
+                //}
                 return RedirectToAction(nameof(HomeController.Index), "home");
             }
 
             // Annars uppmanas användaren att färdigställa sin profil
 
             if (aspUser.EmailConfirmed == true && user.RegistrationComplete == false)
-            {
                 return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
-            }
 
             if (aspUser.EmailConfirmed == false)
                 return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
-
-
             else
                 return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
 
+            }
+            else
+                return RedirectToAction(nameof(AccountController.Login));
 
 
         }
@@ -144,6 +144,15 @@ namespace KoLappen.Controllers
                 UserName = model.Email,
                 Email = model.Email
             };
+
+            var passReset = userManager.GeneratePasswordResetTokenAsync(user);
+
+
+            //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
+            //u.ResetPassword();
+
+
+
             var result = await userManager.CreateAsync(user, "P@ssw0rd");
 
             if (result.Succeeded)
@@ -184,9 +193,22 @@ namespace KoLappen.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult CompleteRegistration(CompleteRegistrationViewModel model)
+        public async Task<ActionResult> CompleteRegistration(CompleteRegistrationViewModel model)
         {
+            var result = await signInManager.PasswordSignInAsync(
+                model.Email, model.VerificationPassword, false, false);
+
+            if (result.Succeeded)
+        {
+                var user = await userManager.FindByNameAsync(model.Email);
+
+                var passResult = await userManager.ChangePasswordAsync(user, model.VerificationPassword, model.Password);
+
+
+                if (passResult.Succeeded)
             accountRepository.CompleteRegistration(model);
+
+            }
             return View();
         }
     }
