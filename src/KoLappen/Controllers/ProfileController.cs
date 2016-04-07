@@ -33,12 +33,13 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public IActionResult EditProfile()
         {
-            return View();
+            return View(dataManager.GetProfileToEdit(User.Identity.Name));
         }
         [HttpPost]
-        public IActionResult EditProfile(ProfileVM model)
+        public IActionResult EditProfile(EditProfileVM model)
         {
-
+            model.UserId = User.Identity.Name;
+            dataManager.EditProfile(model);
             return RedirectToAction(nameof(ProfileController.Profile));
         }
 

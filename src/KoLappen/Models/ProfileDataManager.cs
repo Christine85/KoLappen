@@ -1,4 +1,5 @@
 ﻿using KoLappen.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,32 @@ namespace KoLappen.Models
     {
         DBContext context;
         IdentityDbContext identityContext;
+        UserManager<IdentityUser> aspNetUserCon;
 
         public ProfileDataManager(DBContext context,
-            IdentityDbContext identityContext)
+            IdentityDbContext identityContext,
+            UserManager<IdentityUser> aspNetUserCon)
         {
             this.context = context;
             this.identityContext = identityContext;
+            this.aspNetUserCon = aspNetUserCon;
         }
 
         public void EditProfile(EditProfileVM model)
         {
+            var aspNetUser = aspNetUserCon.Users
+                .Where(o=>o.UserName== model.UserId)
+                .Single();
+
+            var user = context.Users
+                .Where(o=>o.UserName == model.UserId)
+                .Single();
+            user.Firstname = model.Firstname;
+            user.Lastname = model.Lastname;
+            aspNetUser.Email = model.Email;
+            aspNetUser.PhoneNumber = model.Phonenumber;
+
+            context.SaveChanges();
 
         }
 
@@ -30,29 +47,30 @@ namespace KoLappen.Models
             var consultant = context.Consultant
                 .Where(o => o.User.UserName == userName)
                 .Select(o => new ProfileVM
-            {
+                {
                     Name = o.User.Firstname,
                     LastName = o.User.Lastname,
-                Email = idUser.Email,
-                PhoneNumber = idUser.PhoneNumber,
+                    Email = idUser.Email,
+                    PhoneNumber = idUser.PhoneNumber,
                     EducationName = o.Education.Course.CourseName,
                     SemesterName = o.Education.Semester.SemesterName,
-                    Image = o.User.ProfilePic
+                    Image = o.User.ProfilePic,
+                    UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
 
                 })
                 .SingleOrDefault();
 
-            var locations = context.UserJobLocation
-                .Where(o => o.UserId == idUser.Id)
-                .Select(o => new Location
-                {
-                    City = o.Location.City,
-                    Education = null,
-                    LocationId = 0
-                })
-                .ToList();
+            //var locations = context.UserJobLocation
+            //    .Where(o => o.UserId == idUser.Id)
+            //    .Select(o => new Location
+            //    {
+            //        City = o.Location.City,
+            //        Education = null,
+            //        LocationId = 0
+            //    })
+            //    .ToArray();
 
-            consultant.UserJobLocation = locations;
+            //consultant.UserJobLocation = locations;
 
             return consultant;
             //return new ProfileVM
@@ -63,7 +81,7 @@ namespace KoLappen.Models
             //    PhoneNumber = idUser.PhoneNumber 
             //};
         }
-        
+
         public List<ProfileVM> GetOneClass(int edu)
         {
             var idUser = identityContext.Users.ToList();
@@ -99,8 +117,24 @@ namespace KoLappen.Models
                 .ToList());
             }
 
-            return selectedClass;            
+            return selectedClass;
         }
-        
+
+        public EditProfileVM GetProfileToEdit(string userName)
+        {
+            var aspNetUser = aspNetUserCon.Users.Single(o => o.UserName == userName);
+            var user = context.Users.Where(o => o.UserName == userName)
+                .Select(o => new EditProfileVM
+                {
+                    Firstname = o.UserName,
+                    Lastname = o.Lastname,
+                    Email = aspNetUser.Email,
+                    Phonenumber = aspNetUser.PhoneNumber,
+                    UserId = o.UserId
+                })
+                .Single();
+
+            return user;
+        }
     }
 }

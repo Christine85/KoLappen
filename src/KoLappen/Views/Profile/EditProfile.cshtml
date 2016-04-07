@@ -1,29 +1,29 @@
-﻿@model ProfileVM
+﻿@model EditProfileVM
 @{
     ViewBag.Title = "Uppdatera profil";
 }
 
 <div asp-validation-summary="ValidationSummary.All"></div>
 <form asp-controller="profile" asp-action="editprofile" enctype="multipart/form-data">
-    <label asp-for="Name"></label>
+    <label asp-for="Firstname"></label>
     <br />
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
+    <input asp-for="Firstname" />
+    <span asp-validation-for="Firstname"></span>
     <br /><br />
-    <label asp-for="LastName"></label>
+    <label asp-for="Lastname"></label>
     <br />
-    <input asp-for="LastName" />
-    <span asp-validation-for="LastName"></span>
+    <input asp-for="Lastname" />
+    <span asp-validation-for="Lastname"></span>
     <br /><br />
     <label asp-for="Email"></label>
     <br />
     <input asp-for="Email" />
     <span asp-validation-for="Email"></span>
     <br /><br />
-    <label asp-for="PhoneNumber"></label>
+    <label asp-for="Phonenumber"></label>
     <br />
-    <input asp-for="PhoneNumber" />
-    <span asp-validation-for="PhoneNumber"></span>
+    <input asp-for="Phonenumber" />
+    <span asp-validation-for="Phonenumber"></span>
     <br /><br />
     @*<label asp-for="OldPassword"></label>
     <br />

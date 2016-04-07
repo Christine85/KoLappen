@@ -7,5 +7,6 @@ namespace KoLappen.Models
         public int LocationId { get; set; }
         public string City { get; set; }
         public List<Education> Education { get; set; }
+        public ICollection<UserJobLocation> UserJobLocations { get; set; }
     }
 }

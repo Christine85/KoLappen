@@ -16,21 +16,21 @@ namespace KoLappen.Controllers
         DBContext dbContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
-        IdentityDbContext contextIdentity;
+        //IdentityDbContext contextIdentity;
         IAccountRepository accountRepository;
 
         public AccountController(
             DBContext dbContext,
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
-            IdentityDbContext contextIdentity,
+            //IdentityDbContext contextIdentity,
             IAccountRepository accountRepository
             )
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.contextIdentity = contextIdentity;
+            //this.contextIdentity = contextIdentity;
             this.accountRepository = accountRepository;
         }
         // GET: /<controller>/
@@ -67,7 +67,8 @@ namespace KoLappen.Controllers
             */
 
             var user = dbContext.Users.Single(o => o.UserName == viewModel.UserName);
-            var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
+            var aspUser = userManager.Users.Single(o => o.UserName == viewModel.UserName);
+            //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
              
 
             // Om användarprofilen ('Users' tabellen) är komplett så loggas användaren in
@@ -135,7 +136,7 @@ namespace KoLappen.Controllers
                 return View(model);
 
             // Skapa DB-schemat
-            await contextIdentity.Database.EnsureCreatedAsync();
+            //await contextIdentity.Database.EnsureCreatedAsync();
 
             // Skapa användaren
             IdentityUser user = new IdentityUser
