@@ -1,4 +1,4 @@
-﻿@model KoLappen.ViewModels.FormVM
+﻿@model List<FormVM.CreateEvaluationVM>
 
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
@@ -30,7 +30,12 @@
 
                 här ska det in....
 
+        @foreach (var cities in Model)
+        {
+            <input id="Button1" type="button" value=cities />
+            <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />cities</div>
 
+        }
 
 
 
