@@ -27,13 +27,9 @@
         @Html.LabelFor(m => m.Location)
         @Html.DropDownListFor(m => m.Location, Model.Locations)*@
 
-
-                här ska det in....
-
-        @foreach (var cities in Model)
+        @foreach (var city in Model)
         {
-            <input id="Button1" type="button" value=cities />
-            <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />cities</div>
+            <input id="Button1" type="button" value=@city.City />
 
         }
 
