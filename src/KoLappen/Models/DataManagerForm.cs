@@ -109,11 +109,6 @@ namespace KoLappen.Models
 
         public List<FormVM.CreateEvaluationVM> GetActivLocations()
         {
-            var listOfLocations = context.Education
-                .Where(o => o.StartDate >= DateTime.no && o.EndDate <= DateTime.Now)
-                .Select(o => o.Location.City)
-                .ToList();
-
             var listLocations = context.Education
                 .Where(o => o.StartDate <= DateTime.Now && o.EndDate >= DateTime.Now)
                 .Select(o => new FormVM.CreateEvaluationVM
@@ -121,10 +116,7 @@ namespace KoLappen.Models
                     Cities = o.Location.City
                 })
                 .ToList();
-
-
-    
-
+            
             return listLocations;
         }
 
