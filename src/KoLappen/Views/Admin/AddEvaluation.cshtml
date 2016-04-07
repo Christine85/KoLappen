@@ -1,4 +1,4 @@
-﻿@model KoLappen.ViewModels.FormVM
+﻿@model List<FormVM.CreateEvaluationVM>
 
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
@@ -27,12 +27,19 @@
         @Html.LabelFor(m => m.Location)
         @Html.DropDownListFor(m => m.Location, Model.Locations)*@
 
+        <input id="Button1" type="button" value="Stockholm" onclick="getActiveCourses('Stockholm')" />
 
-                här ska det in....
+        @foreach (var city in Model)
+        {
+            <input id="Button1" type="button" value=@city.City onclick="getActiveCourses('@city.City')"/>
+        }
 
-
-
-
+        <div id="Courses">
+            @foreach (var course in Model)
+            {
+                <input id="Button1" type="button" value=@course.Course onclick="getActiveCourses(@course.Course)" />
+            }
+        </div>
 
 
         <div class="form-group">
@@ -192,5 +199,26 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+
+
+    //function GetActiveCourses(location) {
+    //    // Clears the crud table to prevend multiple creation of elements
+    //    $("#Courses").empty();
+    //    // Gets column length
+    //    var columnLength = $("#idtHeaderRow th").length;
+
+    //    // For each column there is, creates a row containing the column headings and a textbox and puts it in the crud table.
+    //    for (var i = 0; i < columnLength; i++) {
+    //        var columnName = $("#idtHeaderRow th")[i].innerHTML;
+    //        var tmpRow = $('<tr><td><label for="' + columnName + '">' + columnName + ': </label></td> <td><input type="text" id="idb' + columnName + '"/></td></tr>');
+    //        $("#idtCrud").append(tmpRow);
+    //    }
+</script>
+
+
 
 

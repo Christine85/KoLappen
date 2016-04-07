@@ -132,6 +132,15 @@
         refreshQueue();
         window.setInterval("refreshQueue()", 30000);
 
+
+
+    function getActiveCourses(location) {
+        $.alert("hej");
+        $.post("/admin/GetListOfCoursesForForm", {location : location} , function(html) {
+            $("#Courses").html(html);
+        });
+    }
+
     </script>
 
 </body>

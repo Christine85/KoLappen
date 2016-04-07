@@ -107,21 +107,27 @@ namespace KoLappen.Models
         //    }
         //}
 
-        public List<string> GetActivLocations()
+        public List<FormVM.CreateEvaluationVM> GetActivLocations()
         {
-            var listOfLocations = context.Education
-                .Where(o => o.StartDate >= DateTime.Now && o.EndDate <= DateTime.Now)
-                .Select(o => o.Location.City)
+            var listLocations = context.Education
+                .Where(o => o.StartDate <= DateTime.Now && o.EndDate >= DateTime.Now)
+                .Select(o => new FormVM.CreateEvaluationVM
+                {
+                    City = o.Location.City
+                })
                 .ToList();
-
-            return listOfLocations;
+            
+            return listLocations;
         }
 
-        public List<string> GetActivCourses(string location)
+        public List<FormVM.CreateEvaluationVM> GetActivCourses(string location)
         {
             var listOfCourses = context.Education
                 .Where(o => o.StartDate >= DateTime.Now && o.EndDate <= DateTime.Now && o.Location.City == location)
-                .Select(o => o.Course.CourseName)
+                .Select(o => new FormVM.CreateEvaluationVM
+                {
+                    Course = o.Course.CourseName
+                })
                 .ToList();
 
             return listOfCourses;

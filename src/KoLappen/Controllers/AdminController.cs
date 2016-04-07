@@ -67,7 +67,10 @@ namespace KoLappen.Controllers
 
         public IActionResult AddEvaluation()
         {
-            return View();
+            var dataManagerForm = new DataManagerForm(context);
+
+            var model = dataManagerForm.GetActivLocations();
+            return View(model);
         }
 
     }
