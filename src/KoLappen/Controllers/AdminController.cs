@@ -46,5 +46,10 @@ namespace KoLappen.Controllers
             return View(listOfLocation);
         }
 
+        public IActionResult AddEvaluation()
+        {
+            return View();
+        }
+
     }
 }
