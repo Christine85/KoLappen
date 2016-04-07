@@ -53,6 +53,14 @@ section.loginImg {
     width: 360px;
 }
 
+#textboxWidth{
+    width: 300px;
+}
+
+#editProfileBtnPlacement{
+    margin-left: 100px;
+}
+
 #settingsIcon {
     font-size: 25px;
 }
@@ -186,7 +194,7 @@ body, html {
     overflow: hidden;
 }*/
 
-body {
+/*body {
     overflow: hidden;
 }
 
@@ -197,7 +205,7 @@ body {
 
 #noScroll {
     overflow: hidden;
-}
+}*/
 
 #personInfo {
     width: 90%;
