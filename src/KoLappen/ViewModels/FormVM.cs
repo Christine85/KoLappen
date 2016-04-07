@@ -34,7 +34,8 @@ namespace KoLappen.ViewModels
 
         public class CreateEvaluationVM
         {
-            public string Cities { get; set; }
+            public string City { get; set; }
+            public string Course { get; set; }
 
         }
     }

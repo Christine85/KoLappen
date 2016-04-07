@@ -27,13 +27,14 @@
         @Html.LabelFor(m => m.Location)
         @Html.DropDownListFor(m => m.Location, Model.Locations)*@
 
-
-                här ska det in....
-
-        @foreach (var cities in Model)
+        @foreach (var city in Model)
         {
-            <input id="Button1" type="button" value=@cities.Cities />
+            <input id="Button1" type="button" value=@city.City />
+
         }
+
+
+
 
         <div class="form-group">
             <div class="btn-group" data-toggle="buttons">
