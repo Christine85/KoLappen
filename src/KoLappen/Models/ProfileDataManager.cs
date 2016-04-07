@@ -85,16 +85,15 @@ namespace KoLappen.Models
         public List<ProfileVM> GetOneClass(int semesterId, int courseId)
         {
             var idUser = identityContext.Users.ToList();
-            var u = context.Users;
-            var users = context.Users
-                //.Where(o => o.Education.EducationID == edu)
+
+            var users = context.Consultant
+                .Where(o => o.Education.CourseId == courseId && o.Education.SemesterId == semesterId)
                 .Select(o => new ProfileVM
                 {
-                    UserName = o.UserName,
-                    Name = o.Firstname,
-                    LastName = o.Lastname,
-
-                    //Education = o.Education
+                    UserName = o.User.UserName,
+                    Name = o.User.Firstname,
+                    LastName = o.User.Lastname,
+                    Image = o.User.ProfilePic
                 })
                 .ToList();
 
@@ -109,10 +108,10 @@ namespace KoLappen.Models
                 {
                     Name = item.Name,
                     LastName = item.LastName,
-                    UserName = i.UserName,
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    //Education = item.Education
+                    Image = item.Image,
+                    UserJobLocation = item.UserJobLocation
                 })
                 .ToList());
             }
