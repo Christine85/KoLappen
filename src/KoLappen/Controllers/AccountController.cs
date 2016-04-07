@@ -146,7 +146,6 @@ namespace KoLappen.Controllers
 
             var passReset = userManager.GeneratePasswordResetTokenAsync(user);
 
-            us
 
             //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
             //u.ResetPassword();
