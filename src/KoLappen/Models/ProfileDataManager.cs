@@ -52,10 +52,10 @@ namespace KoLappen.Models
                     LastName = o.Lastname,
                     Email = idUser.Email,
                     PhoneNumber = idUser.PhoneNumber,
-                    EducationName = o.Course.CourseName,
-                    SemesterName = o.Education.Semester.SemesterName,
-                    Image = o.User.ProfilePic,
-                    UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
+                    //EducationName = o.Course.CourseName,
+                    //SemesterName = o.Education.Semester.SemesterName,
+                    //Image = o.User.ProfilePic,
+                    //UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
 
                 })
                 .SingleOrDefault();
