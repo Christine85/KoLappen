@@ -26,15 +26,24 @@ namespace KoLappen.Controllers
         }
 
         //Skapa utvärderingformulär
-        public IActionResult MakeEvaluationForm(MakeFormVM viewModel)
+        public IActionResult MakeEvaluationForm(FormVM.MakeFormVM viewModel)
         {
             var dataManagerForm = new DataManagerForm(context);
 
             //Skapa utvärderingsformulär
-            dataManagerForm.MakeEvaluationForm(viewModel);
-            var showEvaluationForm = dataManagerForm.ShowEvaluationForm(viewModel);
+            //dataManagerForm.MakeEvaluationForm(viewModel);
+            //var showEvaluationForm = dataManagerForm.ShowEvaluationForm(viewModel);
 
             return View();
+        }
+        public IActionResult GetLocationForForm()
+        {
+            var dataManagerForm = new DataManagerForm(context);
+
+            //Hämta lista på location          
+            var listOfLocation = dataManagerForm.GetActivLocation();
+
+            return View(listOfLocation);
         }
 
     }

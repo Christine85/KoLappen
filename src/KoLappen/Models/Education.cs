@@ -1,4 +1,6 @@
-﻿namespace KoLappen.Models
+﻿using System;
+
+namespace KoLappen.Models
 {
     public class Education
     {
@@ -9,5 +11,8 @@
         public Semester Semester { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
     }
 }

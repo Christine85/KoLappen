@@ -16,7 +16,7 @@ namespace KoLappen.Models
         }
         
         //Skapa utvärderingformulär
-        public void MakeEvaluationForm(MakeFormVM viewModel)
+        public void MakeEvaluationForm(FormVM.MakeFormVM viewModel)
         {
             //Hitta Id för vilken klass som skall ha utvärdering
             var educationId = context.Education
@@ -68,7 +68,7 @@ namespace KoLappen.Models
             context.SaveChanges();
 
             //Skapa flervalen till frågan
-            foreach (var item in viewModel.FormOption)
+            foreach (var item in viewModel.Options)
             {
                 var formOption = new FormOption();
                 formOption.Option = item.Option;
@@ -107,51 +107,83 @@ namespace KoLappen.Models
             }
         }
 
-        public List<MakeFormVM> ShowEvaluationForm(MakeFormVM viewModel)
+        public List<string> GetActivLocation()
         {
-            //Hitta Id för vilken klass som skall ha utvärdering
-            var educationId = context.Education
-                .Where(o => o.Course.CourseName == viewModel.CourseName && o.Semester.SemesterName == viewModel.SemesterName)
-                .Select(o => o.EducationId)
-                .SingleOrDefault();
-
-            //Hitta formuläret med educationId och EducationWeek
-            var formId = context.Forms
-                .Where(o => o.EducationId == educationId && o.EducationWeek == viewModel.EducationWeek)
-                .Select(o => o.EducationId)
-                .SingleOrDefault();
-
-            //Hämta frågorna som finns för detta formId
-            var takeQuestionFromDB = context.Forms
-                .Where(o => o.FormId == formId)
-                .OrderBy(o => o.FormQuestion.QuestionId)
-                .Select(o => new MakeFormVM
-                {
-                    Question = o.FormQuestion.Question,
-                    FormQuestionToOptionId = o.FormQuestionToOption.FormQuestionToOptionId
-                })
+            var listOfLocation = context.Education
+                .Where(o => o.StartDate >= DateTime.Now && o.EndDate <= DateTime.Now)
+                .Select(o => o.Location.City)
                 .ToList();
 
-            //Hämta flervalen som finns till detta formId
-            var showEvaluationForm = context.Forms
-                .Where(o => o.FormId == formId)                
-                .Select(o => new MakeFormVM
-                {
-                    Option = o.FormOption.Option,
-                    FormQuestionToOptionId = o.FormQuestionToOption.FormQuestionToOptionId
-                })
-                .ToList();
-
-            
-
-
-            return showEvaluationForm;
+            return listOfLocation;
         }
+
+        //public List<FormVM.EvaluationFormVM> ShowEvaluationForm(FormVM.EvaluationFormVM viewModel)
+        //{
+        //    //Hitta Id för vilken klass som skall ha utvärdering
+        //    var educationId = context.Education
+        //        .Where(o => o.Course.CourseName == viewModel.CourseName && o.Semester.SemesterName == viewModel.SemesterName)
+        //        .Select(o => o.EducationId)
+        //        .SingleOrDefault();
+
+        //    //Hitta formuläret med educationId och EducationWeek
+        //    var formId = context.Forms
+        //        .Where(o => o.EducationId == educationId && o.EducationWeek == viewModel.EducationWeek)
+        //        .Select(o => o.EducationId)
+        //        .SingleOrDefault();
+
+        //    //Hämta frågorna som finns för detta formId
+        //    var takeQuestionFromDB = context.FormToQuestions
+        //        .Where(o => o.FormId == formId)
+        //        .OrderBy(o => o.FormQuestion.QuestionId)
+        //        .Select(o => new FormVM.EvaluationFormVM
+        //        {
+        //            Question = o.FormQuestion.Question,
+        //            QuestionId = o.FormQuestion.QuestionId
+        //        })
+        //        .ToList();
+
+        //    var takeOptionFromDB = new List<FormVM.EvaluationFormVM>();
+
+        //    //Hämta flervalen som finns till detta formId
+        //    foreach (var item in takeQuestionFromDB)
+        //    {
+        //        var options = context.FormQuestionToOptions.Where(o => o.QuestionId == item.QuestionId).ToList()
+        //            .Select(o=> new FormOption
+        //            {
+        //                OptionId = o.FormOption.OptionId,
+        //                Option =o.FormOption.Option,
+        //                Score = o.FormOption.Score
+        //            }).ToList();
+
+        //        var makeForm = new MakeFormVM()
+        //        {
+        //            Question = item.Question,
+        //            Options = options
+        //        };
+
+        //        takeOptionFromDB.Add(makeForm);
+
+        //        //takeOptionFromDB.AddRange(context.FormQuestionToOptions
+        //        //.Where(o => o.QuestionId == item.QuestionId)
+        //        //.Select(o => new MakeFormVM
+        //        //{
+        //        //    Option = o.FormOption.Option,
+        //        //    FormQuestionToOptionId = o.FormQuestionToOption.FormQuestionToOptionId
+        //        //})
+        //        //.ToList());
+        //    }
+
+
+        //    showEvaluationForm;
+
+
+        //    return showEvaluationForm;
+        //}
 
         //Skapa tentaformulär
-        public void MakeExamForm(MakeFormVM viewModel)
-        {
+        //public void MakeExamForm(MakeFormVM viewModel)
+        //{
            
-        }
+        //}
     }
 }

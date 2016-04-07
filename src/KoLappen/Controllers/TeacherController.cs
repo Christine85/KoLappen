@@ -27,10 +27,10 @@ namespace KoLappen.Controllers
         }
 
         //Skapa tentaformulär
-        public IActionResult MakeExamForm(MakeFormVM viewModel)
+        public IActionResult MakeExamForm(FormVM.MakeFormVM viewModel)
         {
-            var dataManagerForm = new DataManagerForm(context);           
-            /*var examForm = */dataManagerForm.MakeExamForm(viewModel);
+            //var dataManagerForm = new DataManagerForm(context);           
+            ///*var examForm = */dataManagerForm.MakeExamForm(viewModel);
 
             return View(/*examForm*/);
         }
