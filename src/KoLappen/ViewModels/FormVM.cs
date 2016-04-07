@@ -31,5 +31,11 @@ namespace KoLappen.ViewModels
             public int QuestionId { get; set; }
             public List<FormOption> Options { get; set; }
         }
+
+        public class CreateEvaluationVM
+        {
+            public string Cities { get; set; }
+
+        }
     }
 }
