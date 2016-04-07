@@ -1,7 +1,6 @@
 ﻿using KoLappen.Models;
 using KoLappen.ViewModels;
 using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
@@ -73,7 +72,7 @@ namespace KoLappen.Controllers
             {
                 return View(viewModel);
             }
-            
+
             educationRepository.AddCourse(viewModel);
 
             return View(viewModel);

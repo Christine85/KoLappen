@@ -18,7 +18,6 @@ namespace KoLappen.ViewModels
         [Display(Name = "Termin")]
         [Required]
         public string Semester { get; set; }
-        public IEnumerable<SelectListItem> Semesters { get; set; }
 
         [Display(Name = "Plats")]
         [Required]
