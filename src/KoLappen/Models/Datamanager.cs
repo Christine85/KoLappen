@@ -25,7 +25,7 @@ namespace KoLappen.Models
                 .Select(o => new QueueListVM
                 {
                     Firstname = o.User.Firstname,
-                    Lastname = o.User.Lastname,                   
+                    Lastname = o.User.Lastname,
                     HelpTime = o.HelpTime,
                     IsUserItem = o.User.UserName == userName ? true : false
                 })
@@ -55,10 +55,11 @@ namespace KoLappen.Models
                     HelpTime = DateTime.Now,
                     NeedHelp = needHelp
                 })
-                .FirstOrDefault();
+                .SingleOrDefault();
 
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
+
         }
     }
 }
