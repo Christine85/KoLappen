@@ -5,52 +5,30 @@
     Layout = null;
 }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Registrera kurs</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="~/css/kolappen.css" rel="stylesheet" />
-
-</head>
-<body>
-    <div style="background-image: url(../images/academicwork_background2.jpg); background-position: 50% 50%;">
-        <header class="mainHeader">
-            <img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" />
-        </header>
-        <section class="loginimg">
-            <center>
-                <form asp-controller="Account" asp-action="CompleteRegistration">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control custom" placeholder="Email" value="Test" />
-                    <span asp-validation-for="Email"></span>
-                    <br />
-                    <label asp-for="Firstname"></label>
-                    <input asp-for="Firstname" class="form-control custom" placeholder="Namn" value="Test" />
-                    <span asp-validation-for="Firstname"></span>
-                    <br />
-                    <label asp-for="Lastname"></label>
-                    <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="Testsson" />
-                    <span asp-validation-for="Lastname"></span>
-                    <br />
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control custom" placeholder="Nytt lösenord" value="P@ssw0rd" />
-                    <span asp-validation-for="Password"></span>
-                    <br />
-                    <label asp-for="ConfirmPassword"></label>
-                    <input asp-for="ConfirmPassword" class="form-control custom" placeholder="Bekräfta lösenord" value="P@ssw0rd" />
-                    <span asp-validation-for="ConfirmPassword"></span>
-                    <br />
-                    <label asp-for="VerificationPassword"></label>
-                    <input asp-for="VerificationPassword" class="form-control custom" placeholder="Verifikations lösenord" value="P@ssw0rd" />
-                    <span asp-validation-for="VerificationPassword"></span>
-                    <br />
-                    <button type="submit" value="CompleteRegistration" class="btn btn-success">Bekräfta</button>
-                </form>
-            </center>
-        </section>
-    </div>
-    <footer class="mainFooter">
-        <p>HOME OF THE YOUNG PROFESSIONALS</p>
-    </footer>
-</body>
-</html>
+<form asp-controller="Account" asp-action="CompleteRegistration">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control custom" placeholder="Email" value="Test" />
+    <span asp-validation-for="Email"></span>
+    <br />
+    <label asp-for="Firstname"></label>
+    <input asp-for="Firstname" class="form-control custom" placeholder="Namn" value="Test" />
+    <span asp-validation-for="Firstname"></span>
+    <br />
+    <label asp-for="Lastname"></label>
+    <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="Testsson" />
+    <span asp-validation-for="Lastname"></span>
+    <br />
+    <label asp-for="Password"></label>
+    <input asp-for="Password" class="form-control custom" placeholder="Nytt lösenord" value="P@ssw0rd" />
+    <span asp-validation-for="Password"></span>
+    <br />
+    <label asp-for="ConfirmPassword"></label>
+    <input asp-for="ConfirmPassword" class="form-control custom" placeholder="Bekräfta lösenord" value="P@ssw0rd" />
+    <span asp-validation-for="ConfirmPassword"></span>
+    <br />
+    <label asp-for="VerificationPassword"></label>
+    <input asp-for="VerificationPassword" class="form-control custom" placeholder="Verifikations lösenord" value="P@ssw0rd" />
+    <span asp-validation-for="VerificationPassword"></span>
+    <br />
+    <button type="submit" value="CompleteRegistration" class="btn btn-success">Bekräfta</button>
+</form>

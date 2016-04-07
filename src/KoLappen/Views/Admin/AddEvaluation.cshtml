@@ -6,26 +6,41 @@
     ViewBag.Title = "Utvärderingar";
 }
 
-@*      Propparna som finns i klassen Evaluation
 
-    public int EvaluationId { get; set; }
-    public int EducationId { get; set; }
-    public int EducationWeek { get; set; }
-    public string Question { get; set; }
-    public bool SaveQuestion { get; set; }
-    public int MaxScore { get; set; }
-
-*@
 
 <link href="~/css/kolappen.css" rel="stylesheet" />
 <link href="~/css/bootstrap.css" rel="stylesheet" />
 
-@* row för utbildningsval *@
+@* div för att välja location *@
 <div class="row">
     <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Utbildning</div>
     <div class="col-md-9">
+
+        @*<label asp-for="SelectedEducLocation"></label>
+        <select asp-for="SelectedEducLocation"
+                asp-items="Model.EducLocationItems"></select>
+        <span asp-validation-for="SelectedEducLocation"></span>*@
+
+        @*@Html.LabelFor(m => m.CourseName)
+        @Html.DropDownListFor(m => m.CourseName, Model.CourseNames)
+        <br />
+        @Html.LabelFor(m => m.Location)
+        @Html.DropDownListFor(m => m.Location, Model.Locations)*@
+
+
+                här ska det in....
+
+
+
+
+
+
         <div class="form-group">
             <div class="btn-group" data-toggle="buttons">
+
+
+
+
 
                 <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET VT-16</div>
                 <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET SOM-16</div>
@@ -47,7 +62,7 @@
 
 
 
-@* row för veckoval *@
+@* div för veckoval *@
 <div class="row">
     <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Vecka</div>
     <div class="col-md-9">
@@ -83,100 +98,6 @@
     </div>
 </div>
 
-@*<div class="row">
-    <div class="col-md-12">
-
-
-        <div asp-validation-summary="ValidationSummary.All"></div>
-        <form asp-controller="Post" asp-action="AddPost">
-            <label asp-for="Question"></label>
-            <br />
-            <textarea asp-for="Question" id="evaluationTextarea"></textarea>
-            <span asp-validation-for="Question"></span>
-
-            <br /><br />
-            <label asp-for="Answer"></label>
-            <br />
-            <input asp-for="Answer" id="evaluationInput" />
-            <div style="height: 3px"></div>
-            <input asp-for="Answer" id="evaluationInput" />
-
-
-
-
-            <br />
-            <span class="glyphicon glyphicon-plus" style="font-size: 18px; vertical-align: bottom"></span>
-            <span class="glyphicon glyphicon-minus" style="font-size: 18px; vertical-align: bottom"></span>
-
-
-            <br /><br />
-            <input type="reset" value="Avbryt" class="btn btn-danger" />
-            <input type="submit" value="Skapa fråga" class="btn btn-success" />
-        </form>*@
-
-
-
-
-
-
-@*
-
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addQuestion">Nytt inlägg</button>
-
-
-
-                <!-- Modal -->
-                <div id="addQuestion" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="font-weight: bold">Skapa en ny fråga</h4>
-                            </div>
-                            <div class="modal-body">
-                                <b>Fråga</b>
-                                <textarea class="form-control" rows="7" style="min-width: 100%"></textarea>
-                                <br />
-                                <b>Länk</b>
-                                <textarea class="form-control" rows="1" style="min-width: 100%"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
-
-                                <div asp-validation-summary="ValidationSummary.All"></div>
-                                <form asp-controller="Post" asp-action="AddPost">
-                                    <label asp-for="Question"></label>
-                                    <input asp-for="Question" />
-                                    <span asp-validation-for="Question"></span>
-
-                                    <br />
-                                    <label asp-for="Answer"></label>
-                                    <input asp-for="Answer" />
-                                    <span asp-validation-for="Answer"></span>
-                                    <br />
-
-
-                                    <input type="submit" value="Posta inlägg" />
-                                </form>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-
-        </div>
-    </div>
-
-
-*@
-
 
 
 
@@ -208,7 +129,7 @@
 
         $("#removeAnswer").click(function () {
             if (answerNr == 1) {
-                alert("Det finns inget att ta bort.");
+                alert("Det finns inget svarsalternativ att ta bort.");
                 return false;
             }
 
@@ -218,11 +139,11 @@
 
         });
 
-        $("#getButtonValue").click(function () {
+        $("#getAnswer").click(function () {
 
             var msg = '';
             for (i = 1; i < answerNr; i++) {
-                msg += "\n Svar #" + i + " : " + $('#text' + i).val();
+                msg += "\n Svar #" + i + " " + $('#textbox' + i).val();
             }
             alert(msg);
         });
@@ -251,7 +172,7 @@
         <input type='button' value='Lägg till' class='btn btn-success' id='addAnswer'>
         <input type='button' value='Ta bort' class='btn btn-danger' id='removeAnswer'>
     </div>
-    @*<input type='button' value='Get TextBox Value' id='getButtonValue'>*@
+    <input type='button' value='Visa svar' id='getAnswer'>
     <br /><br />
     <div id='AnswerTextBoxGroup'>
         <div id="AnswerTextBoxNr1">
@@ -273,161 +194,3 @@
 </div>
 
 
-
-
-
-
-@*@using (Html.BeginForm())
-    {
-        <div class="form-group">
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default">
-                    @Html.RadioButton("rating", 5,
-                new { rate = 5 }) Male
-                </label>
-                <br />
-                <br />
-                <label class="btn btn-default">
-                    @Html.RadioButton("rating", 4,
-                new { rate = 4 }) Male
-                </label>
-                <br />
-                <br />
-                <label class="btn btn-default">
-                    @Html.RadioButton("rating", 3,
-                new { rate = 3 }) Male
-                </label>
-                <br />
-                <br />
-                <label class="btn btn-default">
-                    @Html.RadioButton("rating", 2,
-                new { rate = 1 }) Male
-                </label>
-                <br />
-                <br />
-                <label class="btn btn-default">
-                    @Html.RadioButton("rating", 1,
-                new { rate = 1 }) Male
-                </label>
-                <br />
-                <br />
-
-            </div>
-        </div>
-    }
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            Här ska innehållet för de olika veckorna in....
-            <br /><br />
-
-
-            <div class="btn btn-default">
-                Lägg till fråga
-            </div>
-            <br />
-            <br />
-
-
-
-            <div asp-validation-summary="ValidationSummary.All"></div>
-            <form asp-controller="" asp-action="">
-                <label asp-for="Question"></label>
-                <br />
-                <input asp-for="Question" />
-                <span asp-validation-for="Question"></span>
-                <br /><br />
-
-
-
-
-
-
-                    <label asp-for="LastName"></label>
-                    <br />
-                    <input asp-for="LastName" />
-                    <span asp-validation-for="LastName"></span>
-                    <br /><br />
-                    <label asp-for="Email"></label>
-                    <br />
-                    <input asp-for="Email" />
-                    <span asp-validation-for="Email"></span>
-                    <br /><br />
-                    <label asp-for="PhoneNumber"></label>
-                    <br />
-                    <input asp-for="PhoneNumber" />
-                    <span asp-validation-for="PhoneNumber"></span>
-                    <br /><br />
-
-
-
-                <input type="submit" value="Skapa fråga" />
-            </form>
-
-
-
-
-
-
-
-        </div>
-    </div>*@
-
-
-
-@*<div class="row">
-    <div class="col-md-12">
-        <br /><br />
-
-
-        <div class="btn btn-default">
-        </div>
-        <br />
-        <br />
-
-
-
-        <div asp-validation-summary="ValidationSummary.All"></div>
-        <form asp-controller="" asp-action="">
-            <label asp-for="Question"></label>
-            <br />
-            <input asp-for="Question" />
-            <span asp-validation-for="Question"></span>
-            <br /><br />
-
-
-
-
-
-
-            <label asp-for="LastName"></label>
-            <br />
-            <input asp-for="LastName" />
-            <span asp-validation-for="LastName"></span>
-            <br /><br />
-            <label asp-for="Email"></label>
-            <br />
-            <input asp-for="Email" />
-            <span asp-validation-for="Email"></span>
-            <br /><br />
-            <label asp-for="PhoneNumber"></label>
-            <br />
-            <input asp-for="PhoneNumber" />
-            <span asp-validation-for="PhoneNumber"></span>
-            <br /><br />
-
-
-
-            <input type="submit" value="Skapa fråga" />
-        </form>
-
-
-
-
-
-
-
-    </div>
-</div>*@

@@ -31,15 +31,9 @@ namespace KoLappen.Controllers
             var dataManagerForm = new DataManagerForm(context);
 
             //Skapa utvärderingsformulär
-            dataManagerForm.MakeEvaluationForm(viewModel);
-            var showEvaluationForm = dataManagerForm.ShowEvaluationForm(viewModel);
+            /*var evaluationForm = */dataManagerForm.MakeEvaluationForm(viewModel);
 
-            return View();
-        }
-
-        public IActionResult AddEvaluation()
-        {
-            return View();
+            return View(/*evaluationForm*/);
         }
 
     }

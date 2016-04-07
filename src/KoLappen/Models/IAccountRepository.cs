@@ -39,6 +39,7 @@ namespace KoLappen.Models
 
             var consultant = new Consultant
             {
+                ConsultantId = 0,
                 UserId = userId,
                 EducationId = model.Education,
                 HelpTime = DateTime.Now

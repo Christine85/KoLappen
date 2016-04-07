@@ -44,21 +44,36 @@ namespace KoLappen.Models
 
         public void HelpTrueOrFalse(string userName, bool needHelp)
         {
-            //Ändra användaren i DB
+            //Hämtar användaren som skall ändras i DB 
             var user = context.Consultant
-                .Where(o => o.User.UserName == userName)
-                .Select(o => new Consultant
+                .SingleOrDefault(o => o.User.UserName == userName);
+            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp) 
+            if (user != null)
+            {
+                if (needHelp == true)
                 {
-                    ConsultantId = o.ConsultantId,
-                    UserId = o.UserId,
-                    EducationId = o.EducationId,
-                    HelpTime = DateTime.Now,
-                    NeedHelp = needHelp
-                })
-                .FirstOrDefault();
+                    user.HelpTime = DateTime.Now;
+                }
+                user.NeedHelp = needHelp;
+                context.SaveChanges();
+            }
 
-            context.Entry(user).State = EntityState.Modified;
-            context.SaveChanges();
+            //Ändra användaren i DB
+            //var user = context.Consultant
+            //    .Where(o => o.User.UserName == userName)
+            //    .Select(o => new Consultant
+            //    {
+            //        ConsultantId = o.ConsultantId,
+            //        UserId = o.UserId,
+            //        EducationId = o.EducationId,
+            //        HelpTime = DateTime.UtcNow,
+            //        NeedHelp = needHelp
+            //    })
+            //    .SingleOrDefault();
+
+            //context.Entry(user).State = EntityState.Modified;
+            //context.SaveChanges();
         }
     }
 }
+

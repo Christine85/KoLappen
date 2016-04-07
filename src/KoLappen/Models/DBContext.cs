@@ -28,16 +28,16 @@ namespace KoLappen.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Teacher>().ToTable("Teachers");
-            modelBuilder.Entity<Consultant>().ToTable("Consultants");
-            modelBuilder.Entity<TeacherEducation>().ToTable("TeacherEducations");
-            modelBuilder.Entity<TeacherRole>().ToTable("TeacherRoles");
-            modelBuilder.Entity<Education>().ToTable("Educations");
-            modelBuilder.Entity<Location>().ToTable("Locations");
-            modelBuilder.Entity<Course>().ToTable("Courses");
-            modelBuilder.Entity<Semester>().ToTable("Semesters");
-            modelBuilder.Entity<UserJobLocation>().ToTable("UserJobLocations");
+            modelBuilder.Entity<User>().ToTable("Users")/*.HasKey("UserId")*/;
+            modelBuilder.Entity<Teacher>().ToTable("Teachers")/*.HasKey("UserId")*/;
+            modelBuilder.Entity<Consultant>().ToTable("Consultants")/*.HasKey("UserId")*/;
+            modelBuilder.Entity<TeacherEducation>().ToTable("TeacherEducations")/*.HasKey("TeacherEducationId")*/;
+            modelBuilder.Entity<TeacherRole>().ToTable("TeacherRoles")/*.HasKey("TeacherRoleId")*/;
+            modelBuilder.Entity<Education>().ToTable("Educations")/*.HasKey("EducationId")*/;
+            modelBuilder.Entity<Location>().ToTable("Locations")/*.HasKey("LocationId")*/;
+            modelBuilder.Entity<Course>().ToTable("Courses")/*.HasKey("CourseId")*/;
+            modelBuilder.Entity<Semester>().ToTable("Semesters")/*.HasKey("SemesterId")*/;
+            modelBuilder.Entity<UserJobLocation>().ToTable("UserJobLocations")/*.HasKey("UserJobLocationId")*/;
             modelBuilder.Entity<Post>().ToTable("Posts");
 
             //Forms i DB
