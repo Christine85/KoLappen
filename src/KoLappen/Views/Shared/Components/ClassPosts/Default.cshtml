@@ -6,11 +6,14 @@
     @foreach (var item in Model)
     {
         <b>@item.PostedByFirstname @item.PostedByLastname - </b>
-        @item.PostText;
+        @item.PostText
+        if (@item.Link != null)
+        {
+            <br />
+            <a href="@item.Link" target="_blank">@item.Link</a>;
+        }
         <br />
-        <a href="@item.Link" target="_blank">@item.Link</a>;
-        <br />
-        @item.TimePosted
+        <div style="color: #999999">@item.TimePosted</div>
         <br />
         <br />
     }

@@ -31,7 +31,7 @@
 
     <div class="col-md-6" id="commentLeftBorder">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right">Nytt inlägg</button>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
         <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Klassens inlägg</h2></center>
     </div>
 
@@ -47,6 +47,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <br />
 
 <div class="row">
@@ -54,7 +62,7 @@
 
 
 
-                <!-- Modal -->
+        <!-- Modal -->
         <div id="newPost" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -79,8 +87,8 @@
                             <span asp-validation-for="Link"></span>
                             <br />
                             <br />
-                            <input type="submit" value="Posta inlägg" class="btn btn-success" />
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 100px">Avbryt</button>
+                            <input type="submit" value="Posta inlägg" class="btn btn-success" style="margin-left: 100px" />
                         </form>
                         <script src="~/scripts/jquery.min.js"></script>
                         <script src="~/scripts/jquery.validate.min.js"></script>
