@@ -9,7 +9,7 @@ namespace KoLappen.Models
     public interface IProfileRepository
     {
         ProfileVM GetProfile(string userName);
-        void EditProfile(EditProfileVM model);
+        Task<int> EditProfile(EditProfileVM model);
         EditProfileVM GetProfileToEdit(string userName);
         List<ProfileVM> GetOneClass(int semesterId, int courseId);
     }
