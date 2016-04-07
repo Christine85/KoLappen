@@ -1,15 +1,196 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model KoLappen.ViewModels.MakeFormVM
+
+@addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
+
 @{
+    ViewBag.Title = "Utvärderingar";
 }
 
 
-<html>
-<head>
-    <title>admin</title>
-</head>
-<body>
-    
-</body>
-</html>
+
+<link href="~/css/kolappen.css" rel="stylesheet" />
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+
+@* div för att välja location *@
+<div class="row">
+    <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Utbildning</div>
+    <div class="col-md-9">
+
+        @*<label asp-for="SelectedEducLocation"></label>
+        <select asp-for="SelectedEducLocation"
+                asp-items="Model.EducLocationItems"></select>
+        <span asp-validation-for="SelectedEducLocation"></span>*@
+
+        @*@Html.LabelFor(m => m.CourseName)
+        @Html.DropDownListFor(m => m.CourseName, Model.CourseNames)
+        <br />
+        @Html.LabelFor(m => m.Location)
+        @Html.DropDownListFor(m => m.Location, Model.Locations)*@
+
+
+                här ska det in....
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="btn-group" data-toggle="buttons">
+
+
+
+
+
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET VT-16</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET SOM-16</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET HT-16</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />Java HT-16</div>
+                @*<div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v5</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v6</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v7</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v8</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v9</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v10</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v11</div>
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v12</div>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* div för veckoval *@
+<div class="row">
+    <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Vecka</div>
+    <div class="col-md-9">
+        <div class="form-group">
+            <div class="btn-group" data-toggle="buttons">
+
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v1</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v2</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v3</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v4</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v5</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v6</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v7</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v8</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v9</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v10</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v11</div>
+                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v12</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><br>
+
+
+
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1" style="background-color: red" id="createdQuestion">
+
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var answerNr = 6;
+
+        $("#addAnswer").click(function () {
+
+            if (answerNr > 10) {
+                alert("Max 10 val tillåtna.");
+                return false;
+            }
+
+            var newTextBoxDiv = $(document.createElement('div'))
+                 .attr("id", 'AnswerTextBoxNr' + answerNr);
+
+            newTextBoxDiv.after().html('<label>Svar #' + answerNr + '</label>' +
+                  '<input type="text" name="textbox' + answerNr +
+                  '" id="textbox' + answerNr + '" value="" >');
+
+            newTextBoxDiv.appendTo("#AnswerTextBoxGroup");
+
+
+            answerNr++;
+        });
+
+        $("#removeAnswer").click(function () {
+            if (answerNr == 1) {
+                alert("Det finns inget svarsalternativ att ta bort.");
+                return false;
+            }
+
+            answerNr--;
+
+            $("#AnswerTextBoxNr" + answerNr).remove();
+
+        });
+
+        $("#getAnswer").click(function () {
+
+            var msg = '';
+            for (i = 1; i < answerNr; i++) {
+                msg += "\n Svar #" + i + " " + $('#textbox' + i).val();
+            }
+            alert(msg);
+        });
+    });
+</script>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
+
+
+        <p style="font-weight: bold">Fråga</p>
+        <textarea id="evaluationTextarea"></textarea>
+        <br /><br />
+
+    </div>
+
+    <div class="col-md-11 col-md-offset-1">
+        <p style="font-weight: bold">Svarsalternativ</p>
+
+
+        <input type='button' value='Lägg till' class='btn btn-success' id='addAnswer'>
+        <input type='button' value='Ta bort' class='btn btn-danger' id='removeAnswer'>
+    </div>
+    <input type='button' value='Visa svar' id='getAnswer'>
+    <br /><br />
+    <div id='AnswerTextBoxGroup'>
+        <div id="AnswerTextBoxNr1">
+            <label>Svar #1 </label><input type='text' id='textbox1'>
+        </div>
+        <div id="AnswerTextBoxNr2">
+            <label>Svar #2 </label><input type='text' id='textbox2'>
+        </div>
+        <div id="AnswerTextBoxNr3">
+            <label>Svar #3 </label><input type='text' id='textbox3'>
+        </div>
+        <div id="AnswerTextBoxNr4">
+            <label>Svar #4 </label><input type='text' id='textbox4'>
+        </div>
+        <div id="AnswerTextBoxNr5">
+            <label>Svar #5 </label><input type='text' id='textbox5'>
+        </div>
+    </div>
+</div>
+
+
