@@ -35,7 +35,7 @@ namespace KoLappen.Models
             for (int i = 0; i < queueList.Length; i++)
             {
                 queueList[i].QueueNr = i + 1;
-                TimeSpan result = DateTime.UtcNow - queueList[i].HelpTime;
+                TimeSpan result = DateTime.Now - queueList[i].HelpTime;
                 int resultInMin = Convert.ToInt32(result.TotalMinutes);
                 queueList[i].TimeWaitedInMin = resultInMin;
             }
@@ -44,35 +44,35 @@ namespace KoLappen.Models
 
         public void HelpTrueOrFalse(string userName, bool needHelp)
         {
-            ////Hämtar användaren som skall ändras i DB 
-            //var user = context.Consultant
-            //    .SingleOrDefault(o => o.User.UserName == userName);
-            ////Om användaren hittas, uppdatera DB (HelpTime och NeedHelp) 
-            //if (user != null)
-            //{
-            //    if (needHelp == true)
-            //    {
-            //        user.HelpTime = DateTime.Now;
-            //    }
-            //    user.NeedHelp = needHelp;
-            //    context.SaveChanges();
-            //} 
+            //Hämtar användaren som skall ändras i DB 
+            var user = context.Consultant
+                .SingleOrDefault(o => o.User.UserName == userName);
+            //Om användaren hittas, uppdatera DB (HelpTime och NeedHelp) 
+            if (user != null)
+            {
+                if (needHelp == true)
+                {
+                    user.HelpTime = DateTime.Now;
+                }
+                user.NeedHelp = needHelp;
+                context.SaveChanges();
+            }
 
             //Ändra användaren i DB
-            var user = context.Consultant
-                .Where(o => o.User.UserName == userName)
-                .Select(o => new Consultant
-                {
-                    ConsultantId = o.ConsultantId,
-                    UserId = o.UserId,
-                    EducationId = o.EducationId,
-                    HelpTime = DateTime.UtcNow,
-                    NeedHelp = needHelp
-                })
-                .SingleOrDefault();
+            //var user = context.Consultant
+            //    .Where(o => o.User.UserName == userName)
+            //    .Select(o => new Consultant
+            //    {
+            //        ConsultantId = o.ConsultantId,
+            //        UserId = o.UserId,
+            //        EducationId = o.EducationId,
+            //        HelpTime = DateTime.UtcNow,
+            //        NeedHelp = needHelp
+            //    })
+            //    .SingleOrDefault();
 
-            context.Entry(user).State = EntityState.Modified;
-            context.SaveChanges();
+            //context.Entry(user).State = EntityState.Modified;
+            //context.SaveChanges();
         }
     }
 }
