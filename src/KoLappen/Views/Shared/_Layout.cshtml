@@ -134,10 +134,9 @@
 
 
 
-    function getActiveCourses(location) {
-        $.alert("hej");
-        $.post("/admin/GetListOfCoursesForForm", {location : location} , function(html) {
-            $("#Courses").html(html);
+    function getActiveCourses(location) {        
+        $.get("/admin/GetListOfCoursesForForm", {location : location} , function(result) {
+            $("#Courses").html(JSON.Parse(result));
         });
     }
 
