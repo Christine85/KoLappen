@@ -12,6 +12,6 @@ namespace KoLappen.Models
         void EditProfile(EditProfileVM model);
         EditProfileVM GetProfileToEdit(string userName);
 
-        List<ProfileVM> GetOneClass(int edu);
+        List<ProfileVM> GetOneClass(int semesterId, int courseId);
     }
 }

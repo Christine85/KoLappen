@@ -82,7 +82,7 @@ namespace KoLappen.Models
             //};
         }
 
-        public List<ProfileVM> GetOneClass(int edu)
+        public List<ProfileVM> GetOneClass(int semesterId, int courseId)
         {
             var idUser = identityContext.Users.ToList();
             var u = context.Users;
