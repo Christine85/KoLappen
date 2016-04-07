@@ -60,7 +60,8 @@ namespace KoLappen.Controllers
         [AllowAnonymous]
         public ActionResult AddCourse()
         {
-            return View();
+            var model = educationRepository.GetRegistrationCourseOptions();
+            return View(model);
         }
 
         [HttpPost]
