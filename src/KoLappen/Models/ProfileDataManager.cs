@@ -50,12 +50,12 @@ namespace KoLappen.Models
                 {
                     Name = o.Firstname,
                     LastName = o.Lastname,
-                    Email = idUser.Email,
-                    PhoneNumber = idUser.PhoneNumber,
-                    EducationName = o.Course.CourseName,
-                    SemesterName = o.Education.Semester.SemesterName,
-                    Image = o.User.ProfilePic,
-                    UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
+                    //Email = idUser.Email,
+                    //PhoneNumber = idUser.PhoneNumber,
+                    //EducationName = o.Course.CourseName,
+                    //SemesterName = o.Education.Semester.SemesterName,
+                    //Image = o.User.ProfilePic,
+                    //UserJobLocation = o.User.UserJobLocations.Select(l=>l.Location).ToArray()
 
                 })
                 .SingleOrDefault();
