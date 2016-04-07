@@ -36,10 +36,10 @@ namespace KoLappen.Controllers
             return View(dataManager.GetProfileToEdit(User.Identity.Name));
         }
         [HttpPost]
-        public IActionResult EditProfile(EditProfileVM model)
+        public async Task<IActionResult> EditProfile(EditProfileVM model)
         {
             model.UserId = User.Identity.Name;
-            dataManager.EditProfile(model);
+            await dataManager.EditProfile(model);
             return RedirectToAction(nameof(ProfileController.Profile));
         }
 
