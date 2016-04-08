@@ -13,87 +13,84 @@
 
 @* div för att välja location *@
 <div class="row">
-    <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Utbildning</div>
+    @*<div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Stad</div>*@
     <div class="col-md-9">
 
         @*<label asp-for="SelectedEducLocation"></label>
-        <select asp-for="SelectedEducLocation"
-                asp-items="Model.EducLocationItems"></select>
-        <span asp-validation-for="SelectedEducLocation"></span>*@
+            <select asp-for="SelectedEducLocation"
+                    asp-items="Model.EducLocationItems"></select>
+            <span asp-validation-for="SelectedEducLocation"></span>*@
 
         @*@Html.LabelFor(m => m.CourseName)
-        @Html.DropDownListFor(m => m.CourseName, Model.CourseNames)
-        <br />
-        @Html.LabelFor(m => m.Location)
-        @Html.DropDownListFor(m => m.Location, Model.Locations)*@
+            @Html.DropDownListFor(m => m.CourseName, Model.CourseNames)
+            <br />
+            @Html.LabelFor(m => m.Location)
+            @Html.DropDownListFor(m => m.Location, Model.Locations)*@
 
-        <input id="Button1" type="button" value="Stockholm" onclick="getActiveCourses('Stockholm')" />
+        <div class="col-md-4">
+            @*DropDown för stad*@
+            <div style="font-weight: bold; color: #464646">Stad</div>
+            <select class="form-control" onclick="return getActiveCourses(this.value)" data-val="true" data-val-required="V&#xE4;lj stad." id="LocationName" name="LocationName">
+                <option>Välj stad</option>
+                @foreach (var city in Model)
+                {
+                    <option value=@city.City>@city.City</option>
+                    //<input id="Button1" type="button" value=@city.City onclick="return getActiveCourses('@city.City')" />
+                }
+            </select> 
+            <br />
 
-        @foreach (var city in Model)
-        {
-            <input id="Button1" type="button" value=@city.City onclick="return getActiveCourses('@city.City')"/>
-        }
-        <br />
+        @*DropDown för kurser*@
+      
+            <div style="font-weight: bold; color: #464646">Kurs</div>
+            <select id="Courses" class="form-control" data-val="true" data-val-required="Välj kurs" name="CourseName"></select>
+            <br />
+        
+        @*DropDown för vecka*@
+        
+            <div style="font-weight: bold; color: #464646">Vecka</div>
 
-        <div id="Courses">
-            @*@foreach (var course in Model)
-            {
-                <input id="Button1" type="button" value=@course.Course onclick="return getActiveCourses('@course.Course')" />
-            }*@
+            <select id="Courses" class="form-control" data-val="true" data-val-required="Välj kurs" name="CourseName">
+                
+                @for (int i = 0; i < 12; i++)
+                {
+                    if (i == 0)
+                    {
+                        <option>Välj vecka</option>
+                    }
+                    <option value=@(i+1)>@(i+1)</option>
+                }
+            </select>
         </div>
-
+        <br />
 
         <div class="form-group">
             <div class="btn-group" data-toggle="buttons">
-
-
-
-
-
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET VT-16</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET SOM-16</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />C# .NET HT-16</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />Java HT-16</div>
-                @*<div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v5</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v6</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v7</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v8</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v9</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v10</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v11</div>
-                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v12</div>*@
 
             </div>
         </div>
     </div>
 </div>
-
+<br />
 
 
 @* div för veckoval *@
-<div class="row">
-    <div class="col-md-1 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Vecka</div>
+@*<div class="row">
+    <div class="col-md-4 col-md-offset-2 btn" style="font-weight: bold; color: #464646">Vecka</div>
+    <br />
     <div class="col-md-9">
         <div class="form-group">
             <div class="btn-group" data-toggle="buttons">
 
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v1</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v2</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v3</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v4</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v5</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v6</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v7</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v8</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v9</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v10</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v11</div>
-                <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v12</div>
+                @for (int i = 0; i < 12; i++)
+                {
+                    <div class="btn btn-evaluation" id="evalRadius"><input type="radio" />v@(i+1)</div>
+                }              
 
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <br /><br>
 
@@ -156,6 +153,23 @@
             alert(msg);
         });
     });
+
+    function getActiveCourses(location) {
+        $("#Courses").empty();
+        $.get("/admin/GetListOfCoursesForForm", { "location": location }, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                if (i == 0) {
+                    $("#Courses").append("<option>Välj kurs</option>");
+                }
+                $("#Courses").append("<option value='" + result[i].Course + "'>" + result[i].Course + "</option>'");
+            }
+            return false;
+        });
+    }
+
+    //"<select class='" + form-control + "' data-val='" + true +"' data-val-required='" + Välj + kurs + "' id='" + CourseName +"' name='" + CourseName + "'>" +
+    // <input id='Button' type='button' value='" + result[i].Course + "' onclick='return getActiveCourses('" + result[i].Course + "')' />"
+
 </script>
 
 

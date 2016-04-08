@@ -7,6 +7,8 @@
 
 <html>
 <head>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea.tinymcePostArea' });</script>
     <link rel="icon" type="image/png" href="~/Images/favicon.png" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,11 +23,9 @@
 
     @* dig med AWA logo & original texten *@
     <div class="row">
-        <div class="col-md-8 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1">
             <a href="~/home/index" style="cursor: default"><img src="http://academy.academicwork.se/wp-content/uploads/2016/02/Academy_250x100.png" /></a>
-        </div>
-        <div class="col-md-2" style="text-align: right">
-            <h1 style="float: right; color: #17AD4C">The <b style="border: thick solid; color: #000000">ORIGINAL</b> AWA Intranet</h1>
+            <img src="~/Images/awa_original_intra.png" style="float: right" />
         </div>
     </div>
 
@@ -43,14 +43,6 @@
                             <a class="navbar-brand" href="~/home/index"><span class="glyphicon glyphicon-home" id="settingsIcon"></span></a>
                         </div>
                         <ul class="nav navbar-nav">
-                            @*<li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mina sidor<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="~/profile/profile">Min profil</a></li>
-                                        <li><a href="~/home/calendar">Kalender</a></li>
-                                        <li><a href="#">Undermeny 3</a></li>
-                                    </ul>
-                                </li>*@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="~/profile/profile">Mina sidor<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -63,7 +55,6 @@
                             <li><a href="#">Meny 3</a></li>
                             <li><a href="#">Meny 3</a></li>
                             <li><a href="#">Admin inloggad</a></li>
-                            @*<li><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newAdminPost" style="float: right; margin-top: 25px">Nytt inlägg</button></li>*@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -102,7 +93,6 @@
                             <li><a href="#">Meny 3</a></li>
                             <li><a href="#">Meny 3</a></li>
                             <li><a href="#">Inte admin som är inne</a></li>
-                            @*<li><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button></li>*@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -142,9 +132,6 @@
                 </div>
 
                 <br /><br /><br /><br /><br /><br /><br /><br />
-                @*<div id="calendarPositioning">
-                        <iframe src="https://calendar.google.com/calendar/embed?title=AWA%20VT16%20-%20C%23%20.NET&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=200&amp;wkst=2&amp;hl=sv&amp;bgcolor=%23FFFFFF&amp;src=qd4g3h2qi5vh2t873katrenqko%40group.calendar.google.com&amp;color=%23060D5E&amp;src=en.swedish%23holiday%40group.v.calendar.google.com&amp;color=%23711616&amp;src=e_2_en%23weeknum%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FStockholm" style="border-width:0" width="267" height="200" frameborder="0" scrolling="no"></iframe>
-                    </div>*@
             </div>
         </div>
     </div>
@@ -170,18 +157,6 @@
         };
         refreshQueue();
         window.setInterval("refreshQueue()", 30000);
-
-
-
-        function getActiveCourses(location) {
-            $.get("/admin/GetListOfCoursesForForm", { "location": location }, function (result) {
-                for (var i = 0; i < result.length; i++) {
-                    $("#Courses").append("<input id='Button' type='button' value='" + result[i].Course + "' onclick='return getActiveCourses('" + result[i].Course + "')' />");
-                }
-
-                return false;
-            });
-        }
 
     </script>
 

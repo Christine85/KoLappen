@@ -5,17 +5,14 @@
 <div>
     @foreach (var item in Model)
     {
-        <b>@item.PostedByFirstname @item.PostedByLastname - </b>
-        @item.PostText
+        <b>@item.PostedByFirstname @item.PostedByLastname</b>
+        @Html.Raw(item.PostText)
         if (@item.Link != null)
         {
-            <br />
-            <a href="@item.Link" target="_blank">@item.Link</a>;
+            <a href="@item.Link" target="_blank">@item.Link</a>
         }
-        <br />
         <div style="color: #999999">@item.TimePosted</div>
         <br />
         <br />
     }
 </div>
-

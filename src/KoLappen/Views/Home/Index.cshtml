@@ -13,7 +13,7 @@
     <div class="col-md-6" id="commentRightBorder">
         @if (User.IsInRole("Admin"))
         {
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newAdminPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
         }
         <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Emelie informerar</h2></center>
         <div>
@@ -43,106 +43,79 @@
 
 
 
+@if (User.IsInRole("Admin"))
+{
+    <div id="newPost" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-
-<br />
-
-<div class="row">
-    <div class="col-md-1 col-md-offset-11">
-
-
-
-        <!-- Modal admin posts -->
-        <div id="newAdminPost" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" style="font-weight: bold">Nytt inlägg</h4>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div asp-validation-summary="ValidationSummary.All"></div>
-                        <form asp-controller="AdminPost" asp-action="AddPost">
-                            <label asp-for="PostText"></label>
-                            <br />
-                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" /></textarea>
-                            <span asp-validation-for="PostText"></span>
-                            <br /><br>
-                            <label asp-for="Link"></label>
-                            <br />
-                            <input asp-for="Link" style="width: 100%" />
-                            <span asp-validation-for="Link"></span>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 100px">Avbryt</button>
-                            <input type="submit" value="Posta inlägg" class="btn btn-success" style="margin-left: 100px" />
-                        </form>
-                        <script src="~/scripts/jquery.min.js"></script>
-                        <script src="~/scripts/jquery.validate.min.js"></script>
-                        <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Nytt inlägg</h4>
                 </div>
-
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Modal class posts -->
-        <div id="newPost" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" style="font-weight: bold">Nytt inlägg</h4>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div asp-validation-summary="ValidationSummary.All"></div>
-                        <form asp-controller="Post" asp-action="AddPost">
-                            <label asp-for="PostText"></label>
-                            <br />
-                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" /></textarea>
-                            <span asp-validation-for="PostText"></span>
-                            <br /><br>
-                            <label asp-for="Link"></label>
-                            <br />
-                            <input asp-for="Link" style="width: 100%" />
-                            <span asp-validation-for="Link"></span>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 100px">Avbryt</button>
-                            <input type="submit" value="Posta inlägg" class="btn btn-success" style="margin-left: 100px" />
-                        </form>
-                        <script src="~/scripts/jquery.min.js"></script>
-                        <script src="~/scripts/jquery.validate.min.js"></script>
-                        <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                    </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ValidationSummary.All"></div>
+                    <form asp-controller="AdminPost" asp-action="AddPost">
+                        <label asp-for="PostText"></label>
+                        <br />
+                        <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" class="tinymcePostArea"></textarea>
+                        <span asp-validation-for="PostText"></span>
+                        <br /><br>
+                        <label asp-for="Link"></label>
+                        <br />
+                        <input asp-for="Link" style="width: 100%" />
+                        <span asp-validation-for="Link"></span>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 100px">Avbryt</button>
+                        <input type="submit" value="Posta inlägg" class="btn btn-success" style="margin-left: 100px" />
+                    </form>
+                    <script src="~/scripts/jquery.min.js"></script>
+                    <script src="~/scripts/jquery.validate.min.js"></script>
+                    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
                 </div>
-
+                <div class="modal-footer">
+                </div>
             </div>
+
         </div>
-
-
     </div>
-</div>
+}
+else if (!User.IsInRole("Admin"))
+{
+    <div id="newPost" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold">Nytt inlägg</h4>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ValidationSummary.All"></div>
+                    <form asp-controller="Post" asp-action="AddPost">
+                        <label asp-for="PostText"></label>
+                        <br />
+                        <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" class="tinymcePostArea"></textarea>
+                        <span asp-validation-for="PostText"></span>
+                        <br /><br>
+                        <label asp-for="Link"></label>
+                        <br />
+                        <input asp-for="Link" style="width: 100%" />
+                        <span asp-validation-for="Link"></span>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 100px">Avbryt</button>
+                        <input type="submit" value="Posta inlägg" class="btn btn-success" style="margin-left: 100px" />
+                    </form>
+                    <script src="~/scripts/jquery.min.js"></script>
+                    <script src="~/scripts/jquery.validate.min.js"></script>
+                    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
