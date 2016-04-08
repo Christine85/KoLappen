@@ -31,7 +31,7 @@ namespace KoLappen.Controllers
         {
             return View(dataManager.GetProfile(User.Identity.Name));
         }
-        [Route("Redigera/Profil")]
+        [Route("Redigera")]
         // GET: /<controller>/
         public IActionResult EditProfile()
         {
