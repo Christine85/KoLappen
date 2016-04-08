@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using KoLappen.Models;
 using KoLappen.ViewModels;
+using Microsoft.AspNet.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KoLappen.Controllers
 {
+    [Authorize]
     public class QueuelistController : Controller
     {
         DBContext context;
