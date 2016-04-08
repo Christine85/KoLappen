@@ -11,7 +11,7 @@ using KoLappen.ViewModels;
 
 namespace KoLappen.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         DBContext context;
