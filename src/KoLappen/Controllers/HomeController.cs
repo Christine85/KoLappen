@@ -24,13 +24,13 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
-            var autoLogin = true;
+            //var autoLogin = true;
 
-            if (autoLogin)
-            {
-                await signInManager.PasswordSignInAsync("admin@admin.com", "P@ssw0rd", false, false);
-                return View();
-            }
+            //if (autoLogin)
+            //{
+            //    await signInManager.PasswordSignInAsync("admin@admin.com", "P@ssw0rd", false, false);
+            //    return View();
+            //}
 
             return View();
         }

@@ -34,7 +34,7 @@ namespace KoLappen.Models
                 Firstname = null,
                 Lastname = null,
                 ProfilePic = null,
-                RegistrationComplete = true,
+                RegistrationComplete = false,
                 ResetPasswordString = code
             };
 
@@ -121,7 +121,7 @@ namespace KoLappen.Models
                     Firstname=model.Firstname,
                     Lastname = model.Lastname,
                     ProfilePic = u.ProfilePic,
-                    //RegistrationComplete = true ,
+                    RegistrationComplete = true,
                     //ResetPasswordString = null                   
                 }).First();
             dbContext.Entry(user).State = EntityState.Modified;

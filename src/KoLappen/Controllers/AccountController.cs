@@ -27,7 +27,7 @@ namespace KoLappen.Controllers
             DBContext dbContext,
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
-            //IdentityDbContext contextIdentity,
+                                                       //IdentityDbContext contextIdentity,
             IAccountRepository accountRepository
             )
         {
@@ -80,9 +80,9 @@ namespace KoLappen.Controllers
             //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
             // Om användarprofilen ('Users' tabellen) är komplett så loggas användaren in
 
-            if (user.RegistrationComplete == true)
+            if (user.RegistrationComplete)
             {
-            var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
+                var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
                 //om admin eller lärare loggar in, skall de få en annan view
                 //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
                 //{
@@ -92,8 +92,22 @@ namespace KoLappen.Controllers
                 //{
                 //    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
                 //}
-                return RedirectToAction(nameof(HomeController.Index), "home");
+                if (result.Succeeded)
+                    return RedirectToAction(nameof(HomeController.Index), "home");
+                else
+                {
+                    ModelState.AddModelError(nameof(LoginVM.UserName), "FEEEL");
+                    return View(viewModel);
+                }
+
             }
+
+            else
+            {
+                ModelState.AddModelError(nameof(LoginVM.UserName), "Du har inte fullföljt registreringen");
+                return View(viewModel);
+            }
+
 
             // Annars uppmanas användaren att färdigställa sin profil
 
@@ -107,11 +121,6 @@ namespace KoLappen.Controllers
 
             //}
 
-            else
-            {
-                ModelState.AddModelError(nameof(LoginVM.UserName), "FEEEL");
-                return View(viewModel);
-            }
 
 
         }
@@ -153,7 +162,7 @@ namespace KoLappen.Controllers
             {
                 UserName = model.Email,
                 Email = model.Email,
-                EmailConfirmed = false                
+                EmailConfirmed = false
             };
 
             //var passReset = userManager.GeneratePasswordResetTokenAsync(user);
@@ -162,7 +171,7 @@ namespace KoLappen.Controllers
             //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
             //u.ResetPassword();
 
-            
+
             var result = await userManager.CreateAsync(user/*, "P@ssw0rd"*/);
 
             if (result.Succeeded)
@@ -172,7 +181,7 @@ namespace KoLappen.Controllers
                 var gp = new PasswordGenerator();
                 var code = gp.GetPassword();
                 accountRepository.CompleteUser(model, user.Id, code);
-                
+
 
 
                 MailMessage mailMessage = new MailMessage("originalawa@gmail.com", model.Email);
@@ -190,7 +199,7 @@ namespace KoLappen.Controllers
 
                 //new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
 
-                
+
 
                 //await signInManager.PasswordSignInAsync(
                 //    model.Email, "P@ssw0rd", false, false);
@@ -221,9 +230,9 @@ namespace KoLappen.Controllers
             var userProfile = dbContext.Users.FirstOrDefault(u => u.ResetPasswordString == model.ResetPasswordString);
 
             if (userProfile != null)
-        {
+            {
                 model.Email = userProfile.UserName;
-            return View(model);
+                return View(model);
                 //var user = await userManager.FindByNameAsync(userProfile.UserName);
             }
 
@@ -238,13 +247,13 @@ namespace KoLappen.Controllers
             var user = await userManager.FindByNameAsync(model.Email);
             var userProfile = dbContext.Users.Select(u => u.ResetPasswordString == model.ResetPasswordString).Count();
 
-            if (userProfile !=0)
+            if (userProfile != 0)
             {
 
                 await userManager.RemovePasswordAsync(user, CancellationToken.None);
                 var setPassResult = await userManager.AddPasswordAsync(user, model.Password);
                 if (setPassResult.Succeeded)
-        {
+                {
                     accountRepository.CompleteRegistration(model);
                 }
             }
@@ -264,7 +273,7 @@ namespace KoLappen.Controllers
             //}
             await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
             return RedirectToAction(nameof(HomeController.Index), "home");
-            }
+        }
         [AllowAnonymous]
         public ActionResult ViewMe()
         {
