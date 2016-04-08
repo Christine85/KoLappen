@@ -6,11 +6,13 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using KoLappen.ViewModels;
+using Microsoft.AspNet.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KoLappen.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         SignInManager<IdentityUser> signInManager;
@@ -22,7 +24,7 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
-            var autoLogin = true;
+            var autoLogin = false;
 
             if (autoLogin)
             {

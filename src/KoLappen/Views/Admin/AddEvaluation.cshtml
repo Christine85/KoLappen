@@ -33,11 +33,12 @@
         {
             <input id="Button1" type="button" value=@city.City onclick="getActiveCourses('@city.City')"/>
         }
+        <br />
 
         <div id="Courses">
             @foreach (var course in Model)
             {
-                <input id="Button1" type="button" value=@course.Course onclick="getActiveCourses(@course.Course)" />
+                <input id="Button1" type="button" value=@course.Course onclick="getActiveCourses('@course.Course')" />
             }
         </div>
 

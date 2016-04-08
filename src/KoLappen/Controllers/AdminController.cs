@@ -53,7 +53,10 @@ namespace KoLappen.Controllers
             //Hämta lista på kurser på vald location        
             var listOfCourses = dataManagerForm.GetActivCourses(location);
 
-            return View(listOfCourses);
+            //return View(nameof(AdminController.AddEvaluation(listOfCourses)));
+            //return PartialView(@"~/Views/Admin/AddEvaluation.cshtml", listOfCourses);
+            //return Content(listOfCourses)
+            return Json(listOfCourses);
         }
         public IActionResult MakeForm(FormVM.MakeFormVM viewModel)
         {

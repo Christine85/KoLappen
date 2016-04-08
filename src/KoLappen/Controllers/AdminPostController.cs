@@ -13,14 +13,13 @@ using KoLappen.Models;
 
 namespace KoLappen.Controllers
 {
-    [Authorize]
-    public class PostController : Controller
+    public class AdminPostController : Controller
     {
-        IPostsRepository _postsRepository;
-        public PostController(
-            IPostsRepository postsRepository)
+        IAdminPostsRepository _adminPostsRepository;
+        public AdminPostController(
+            IAdminPostsRepository adminPostsRepository)
         {
-            _postsRepository = postsRepository;
+            _adminPostsRepository = adminPostsRepository;
         }
 
         // GET: /<controller>/
@@ -36,13 +35,13 @@ namespace KoLappen.Controllers
         }
         //[Authorize]
         [HttpPost]
-        public IActionResult AddPost(AddPostVM viewModel)
+        public IActionResult AddPost(AddAdminPostVM viewModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }
-            _postsRepository.AddPost(viewModel, User.Identity.Name);
+            _adminPostsRepository.AddPost(viewModel, User.Identity.Name);
             return RedirectToAction("index", "home");
         }
     }
