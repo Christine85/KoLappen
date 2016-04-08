@@ -31,15 +31,15 @@
 
         @foreach (var city in Model)
         {
-            <input id="Button1" type="button" value=@city.City onclick="getActiveCourses('@city.City')"/>
+            <input id="Button1" type="button" value=@city.City onclick="return getActiveCourses('@city.City')"/>
         }
         <br />
 
         <div id="Courses">
-            @foreach (var course in Model)
+            @*@foreach (var course in Model)
             {
-                <input id="Button1" type="button" value=@course.Course onclick="getActiveCourses('@course.Course')" />
-            }
+                <input id="Button1" type="button" value=@course.Course onclick="return getActiveCourses('@course.Course')" />
+            }*@
         </div>
 
 

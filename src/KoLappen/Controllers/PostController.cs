@@ -13,6 +13,7 @@ using KoLappen.Models;
 
 namespace KoLappen.Controllers
 {
+    [Authorize]
     public class PostController : Controller
     {
         IPostsRepository _postsRepository;

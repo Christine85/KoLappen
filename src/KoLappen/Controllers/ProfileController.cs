@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace KoLappen.Controllers
 {
+    [Route("AWA")]
     [Authorize]
     public class ProfileController : Controller
     {
@@ -25,11 +26,12 @@ namespace KoLappen.Controllers
             dataManager = repo;
             //dataManager = new ProfileDataManager(context, identityContext);
         }
-        
+        [Route("Profil")]
         public IActionResult Profile()
         {
             return View(dataManager.GetProfile(User.Identity.Name));
         }
+        [Route("Redigera/Profil")]
         // GET: /<controller>/
         public IActionResult EditProfile()
         {

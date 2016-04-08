@@ -42,7 +42,7 @@ namespace KoLappen.Controllers
             return View(viewModel);
         }
 
-        
+
         public IActionResult Semester(int id)
         {
             var viewModel = educationRepository.GetAllSemesters(id);
@@ -57,26 +57,91 @@ namespace KoLappen.Controllers
             return View(viewModel);
         }
 
-        [AllowAnonymous]
-        public ActionResult AddCourse()
+        [Authorize]
+        public ActionResult AddEducation()
         {
-            var model = educationRepository.GetRegistrationCourseOptions();
+            var model = educationRepository.GetRegisterEducationOptions();
             return View(model);
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public IActionResult AddCourse(AddCourseVM viewModel)
+        public IActionResult AddEducation(AddEducationVM viewModel)
         {
             if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
             {
                 return View(viewModel);
             }
-            
+
+            educationRepository.AddEducation(viewModel);
+
+            return RedirectToAction(nameof(EducationController.AddEducation), "education");
+
+            //return View(viewModel);
+        }
+
+        [Authorize]
+        public ActionResult AddCourse()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCourse(AddEducationVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
             educationRepository.AddCourse(viewModel);
 
-            return View(viewModel);
+            return RedirectToAction(nameof(EducationController.AddEducation), "education");
+        }
+
+        [Authorize]
+        public ActionResult AddSemester()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddSemester(AddEducationVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
+            educationRepository.AddSemester(viewModel);
+
+            return RedirectToAction(nameof(EducationController.AddEducation), "education");
+        }
+
+        [Authorize]
+        public ActionResult AddLocation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddLocation(AddEducationVM viewModel)
+        {
+            if (!ModelState.IsValid)    // kollar valideringen, returnerar ErrorMsges
+            {
+                return View(viewModel);
+            }
+
+            educationRepository.AddLocation(viewModel);
+
+            return RedirectToAction(nameof(EducationController.AddEducation), "education");
         }
     }
 }
