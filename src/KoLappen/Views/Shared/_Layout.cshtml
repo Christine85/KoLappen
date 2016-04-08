@@ -170,19 +170,7 @@
         };
         refreshQueue();
         window.setInterval("refreshQueue()", 30000);
-
-
-
-        function getActiveCourses(location) {
-            $.get("/admin/GetListOfCoursesForForm", { "location": location }, function (result) {
-                for (var i = 0; i < result.length; i++) {
-                    $("#Courses").append("<input id='Button' type='button' value='" + result[i].Course + "' onclick='return getActiveCourses('" + result[i].Course + "')' />");
-                }
-
-                return false;
-            });
-        }
-
+      
     </script>
 
 </body>
