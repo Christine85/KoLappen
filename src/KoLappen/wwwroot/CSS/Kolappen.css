@@ -1,4 +1,4 @@
-﻿#postTextboxSize{
+﻿#postTextboxSize {
     width: 200px;
     height: 70px;
 }
@@ -60,11 +60,11 @@ section.loginImg {
     width: 360px;
 }
 
-#textboxWidth{
+#textboxWidth {
     width: 300px;
 }
 
-#editProfileBtnPlacement{
+#editProfileBtnPlacement {
     margin-left: 100px;
 }
 
@@ -162,7 +162,9 @@ section.loginImg {
             opacity: 0;
         }
 
-
+body {
+    overflow-x: hidden;
+}
 
 
 
@@ -177,13 +179,32 @@ section.loginImg {
 }
 
 #commentRightBorder {
-    border-right: thin solid;
+    border-right: hidden;
+    padding: 20px;
+    width: 100%;
+    height: 600px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
 }
 
+    #commentRightBorder::-webkit-scrollbar {
+        display: none;
+    }
 
 #commentLeftBorder {
-    border-left: thin solid;
+    border-left: hidden;
+    padding: 20px;
+    width: 100%;
+    height: 600px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
 }
+
+    #commentLeftBorder::-webkit-scrollbar {
+        display: none;
+    }
 
 
 
@@ -248,19 +269,20 @@ body, html {
 #QueueBtn {
     position: absolute;
     top: 300px;
-    left: 30%;    
+    left: 30%;
 }
 
 
 #QueueName {
     position: absolute;
-    top: 350px;       
+    top: 350px;
 }
-#QueueTable {    
+
+#QueueTable {
     width: 280px;
     margin-left: 40px;
     margin-right: 40px;
-    top: 450px;  
+    top: 450px;
 }
 
 
