@@ -37,37 +37,6 @@ namespace KoLappen.Models
             aspNetUser.PhoneNumber = model.Phonenumber;
             await aspNetUserCon.UpdateAsync(aspNetUser);
             return await identityContext.SaveChangesAsync();
-            //var aspNetUser = aspNetUserCon.Users
-            //    .Where(o=>o.UserName== model.UserId)
-            //    .Single();
-            //var aspUser = await aspNetUserCon.Users.SingleAsync(o=>o.UserName == model.UserId);
-
-            //aspUser.Email = model.Email;
-            //aspUser.PhoneNumber = model.Phonenumber;
-
-            //await aspNetUserCon.UpdateAsync(aspUser);
-
-            //var user = context.Users
-            //    .Where(o => o.UserId == "anv2@test.com")
-            //    //.Where(o => o.UserName == model.UserId)
-            //    .Select(o => new User
-            //    {
-            //        UserId = o.UserId,
-            //        Firstname = model.Firstname,
-            //        Lastname = model.Lastname,
-            //        ProfilePic = o.ProfilePic,
-            //        RegistrationComplete = o.RegistrationComplete,
-            //        UserName = o.UserName
-            //    })
-
-            //            .Single();
-
-            //user.Firstname = model.Firstname;
-            //user.Lastname = model.Lastname;
-            //aspNetUser.Email = model.Email;
-            //aspNetUser.PhoneNumber = model.Phonenumber;
-
-
         }
 
         public ProfileVM GetProfile(string userName)
