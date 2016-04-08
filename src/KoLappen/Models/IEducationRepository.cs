@@ -60,8 +60,8 @@ namespace KoLappen.Models
             education.SemesterId = Convert.ToInt32(model.SemesterName);
             education.CourseId = Convert.ToInt32(model.CourseName);
 
-            education.StartDate = DateTime.Now;
-            education.EndDate = DateTime.Now;
+            education.StartDate = DateTime.Now.AddDays(-2);
+            education.EndDate = DateTime.Now.AddDays(2);
 
             dbContext.Education.Add(education);
             dbContext.SaveChanges();
