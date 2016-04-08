@@ -17,7 +17,8 @@
 @*Knappar för hjälp eller problemlöst*@
 <div id="QueueBtn">
     <form>
-
+        @if (!User.IsInRole("Admin"))
+        {
         @if (Model.Any(o => o.IsUserItem))
         {
             <input type="button" onclick="updateNeedHelp(false)" style="width:130px" value="Problem löst" class="btn btn-success" />
@@ -25,6 +26,7 @@
         else
         {
             <input type="button" onclick="updateNeedHelp(true)" style="width:130px" value="Hjälp" class="btn btn-success" />
+        }
         }
     </form>
 </div>

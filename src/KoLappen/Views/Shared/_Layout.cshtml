@@ -148,7 +148,7 @@
                 $("#Queue").html(html);
             });
         }
-
+        
         //Uppdaterar Köplappen inom ett visst tidintervall (kallar på Controllerna/Action för att hämta listan)
         var refreshQueue = function () {
             $.get("/Queuelist/GetQueuelist", function (html) {
