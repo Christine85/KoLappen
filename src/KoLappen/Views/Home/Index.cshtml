@@ -11,38 +11,26 @@
 
 <div class="row" id="mainScrollable">
     <div class="col-md-6" id="commentRightBorder">
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newAdminPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
+        @if (User.IsInRole("Admin"))
+        {
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newAdminPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
+        }
         <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Emelie informerar</h2></center>
         <div>
             @Component.Invoke("AdminPosts")
         </div>
-        @*<p>
-                <br /><br />Hemsidan:
-                <br /><br />Kalender, så enkelt som möjligt.
-                <br /><br />(Gemensamt, kopplat till Outlook för att ha i mobilen?)
-                <br /><br />Informationsflöde (Internt, inga kunder.)
-                <br /><br />Kategorisering (För att slippa scrolla.)
-                <br /><br />Utvärderingar (Användarvänligt, kan läsa av resultatet och kunna exportera, excel, pdf.)
-                <br /><br />Fylla i profil om geografisk placering (Lätt att se var folk vill gärna jobba.)
-                <br /><br />Skapa CV/ta in information från Linkedin (Ersätta Cinode? LinkedIn API?)
-                <br /><br />"Titta på" konton (ITT (IT Team Manager) kanske ha konton utöver Admin, Elev, Lärare?Boka in personliga framtida möten efter skolgången, fika etc. (Behålla elever även efter kursen)
-            </p>*@
     </div>
-
-    @*<div class="col-md-2"></div>*@
-
     <div class="col-md-6" id="commentLeftBorder">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
+        @if (!User.IsInRole("Admin"))
+        {
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
+        }
         <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Klassens inlägg</h2></center>
     </div>
-
     <div class="col-md-6" id="commentLeftBorder">
-
         <div>
             @Component.Invoke("ClassPosts")
         </div>
-
     </div>
 </div>
 
@@ -64,7 +52,7 @@
 
 
 
-        <!-- Modal -->
+        <!-- Modal admin posts -->
         <div id="newAdminPost" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -114,7 +102,7 @@
 
 
 
-        <!-- Modal -->
+        <!-- Modal class posts -->
         <div id="newPost" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
