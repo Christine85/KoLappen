@@ -167,7 +167,8 @@ namespace KoLappen.Controllers
             {
                 // Om användaren skapades så skapas även en rad i tabellen 'Users', 'Consultants' och 'UserJobLocation'
 
-                var code = rnd.Next(100, 2000000).ToString() + rnd.Next(100, 2000000).ToString() + rnd.Next(100, 2000000).ToString() + rnd.Next(100, 2000000).ToString();
+                var gp = new PasswordGenerator();
+                var code = gp.GetPassword();
                 accountRepository.CompleteUser(model, user.Id, code);
                 
 
