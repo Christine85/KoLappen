@@ -7,6 +7,7 @@ using Microsoft.AspNet.Authorization;
 using KoLappen.ViewModels;
 using KoLappen.Models;
 using System.Net.Mail;
+using Microsoft.AspNet.Mvc.ModelBinding;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +25,7 @@ namespace KoLappen.Controllers
             DBContext dbContext,
             UserManager<IdentityUser> userManager, //skapa ny användare
             SignInManager<IdentityUser> signInManager, //logga in
-            //IdentityDbContext contextIdentity,
+                                                       //IdentityDbContext contextIdentity,
             IAccountRepository accountRepository
             )
         {
@@ -71,38 +72,42 @@ namespace KoLappen.Controllers
 
             if (result.Succeeded)
             {
-            var user = dbContext.Users.Single(o => o.UserName == viewModel.UserName);
-            var aspUser = userManager.Users.Single(o => o.UserName == viewModel.UserName);
-            //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
-             
-            // Om användarprofilen ('Users' tabellen) är komplett så loggas användaren in
-            if (user.RegistrationComplete == true)
+                var user = dbContext.Users.Single(o => o.UserName == viewModel.UserName);
+                var aspUser = userManager.Users.Single(o => o.UserName == viewModel.UserName);
+                //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
+                // Om användarprofilen ('Users' tabellen) är komplett så loggas användaren in
+
+                if (user.RegistrationComplete == true)
+                {
+                    //om admin eller lärare loggar in, skall de få en annan view
+                    //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
+                    //{
+                    //    return RedirectToAction(nameof(AdminController.Index), "Admin");
+                    //}
+                    //else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
+                    //{
+                    //    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
+                    //}
+                    return RedirectToAction(nameof(HomeController.Index), "home");
+                }
+
+                // Annars uppmanas användaren att färdigställa sin profil
+
+                if (aspUser.EmailConfirmed == true && user.RegistrationComplete == false)
+                    return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
+
+                if (aspUser.EmailConfirmed == false)
+                    return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
+                else
+                    return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
+
+            }
+
+            else
             {
-                //om admin eller lärare loggar in, skall de få en annan view
-                //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
-                //{
-                //    return RedirectToAction(nameof(AdminController.Index), "Admin");
-                //}
-                //else if (await userManager.IsInRoleAsync(aspUser, "Lärare"))
-                //{
-                //    return RedirectToAction(nameof(TeacherController.Index), "Teacher");
-                //}
-                return RedirectToAction(nameof(HomeController.Index), "home");
+                ModelState.AddModelError(nameof(LoginVM.UserName), "FEEEL");
+                return View(viewModel);
             }
-
-            // Annars uppmanas användaren att färdigställa sin profil
-
-            if (aspUser.EmailConfirmed == true && user.RegistrationComplete == false)
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
-
-            if (aspUser.EmailConfirmed == false)
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
-            else
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
-
-            }
-            else
-                return RedirectToAction(nameof(AccountController.Login));
 
 
         }
@@ -144,7 +149,7 @@ namespace KoLappen.Controllers
             {
                 UserName = model.Email,
                 Email = model.Email,
-                EmailConfirmed = false                
+                EmailConfirmed = false
             };
 
             //var passReset = userManager.GeneratePasswordResetTokenAsync(user);
@@ -153,7 +158,7 @@ namespace KoLappen.Controllers
             //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
             //u.ResetPassword();
 
-            
+
             var result = await userManager.CreateAsync(user, "P@ssw0rd");
 
             if (result.Succeeded)
@@ -162,7 +167,7 @@ namespace KoLappen.Controllers
                 accountRepository.CompleteUser(model, user.Id);
 
                 var code = userManager.GeneratePasswordResetTokenAsync(user);
-                
+
                 MailMessage mailMessage = new MailMessage("originalawa@gmail.com", model.Email);
 
                 //var mailSubject = model.MailSubject.Length > 2 ? model.MailSubject : "Email bekräftelse";
@@ -178,7 +183,7 @@ namespace KoLappen.Controllers
 
                 //new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
 
-                
+
 
                 //await signInManager.PasswordSignInAsync(
                 //    model.Email, "P@ssw0rd", false, false);
@@ -226,14 +231,14 @@ namespace KoLappen.Controllers
                 model.Email, model.VerificationPassword, false, false);
 
             if (result.Succeeded)
-        {
+            {
                 var user = await userManager.FindByNameAsync(model.Email);
 
                 var passResult = await userManager.ChangePasswordAsync(user, model.VerificationPassword, model.Password);
 
 
                 if (passResult.Succeeded)
-            accountRepository.CompleteRegistration(model);
+                    accountRepository.CompleteRegistration(model);
 
             }
             return RedirectToAction(nameof(HomeController.Index), "home");

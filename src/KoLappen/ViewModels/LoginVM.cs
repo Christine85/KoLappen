@@ -9,12 +9,13 @@ namespace KoLappen.ViewModels
     public class LoginVM
     {
         [Display(Name = "E-mail")]
-        [Required]
+        [Required(ErrorMessage = "Fyll i din e-postadress.")]
         public string UserName { get; set; }
 
         [Display(Name = "Lösenord")]
-        [Required]
+        [Required(ErrorMessage = "Fyll i ditt lösenord.")]
         [DataType(DataType.Password)]
+
         public string Password { get; set; }
 
         //[Display(Name = "Remember me")]
