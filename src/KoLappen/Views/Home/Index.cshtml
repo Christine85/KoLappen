@@ -68,7 +68,7 @@
                         <form asp-controller="AdminPost" asp-action="AddPost">
                             <label asp-for="PostText"></label>
                             <br />
-                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" /></textarea>
+                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" id="adminPostArea" ></textarea>
                             <span asp-validation-for="PostText"></span>
                             <br /><br>
                             <label asp-for="Link"></label>
@@ -102,6 +102,8 @@
 
 
 
+
+
         <!-- Modal class posts -->
         <div id="newPost" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -118,7 +120,7 @@
                         <form asp-controller="Post" asp-action="AddPost">
                             <label asp-for="PostText"></label>
                             <br />
-                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" /></textarea>
+                            <textarea asp-for="PostText" style="width: 100%; height: 120px; resize: none" ></textarea>
                             <span asp-validation-for="PostText"></span>
                             <br /><br>
                             <label asp-for="Link"></label>
