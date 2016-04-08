@@ -116,7 +116,19 @@ namespace KoLappen.Models
                     City = o.Location.City
                 })
                 .ToList();
-            
+
+            for (int i = 0; i < listLocations.Count; i++)
+            {
+                for (int h = i + 1; h < listLocations.Count; h++)
+                {
+                    if (listLocations[i].City == listLocations[h].City)
+                    {
+                        listLocations.RemoveAt(h);
+                        h--;
+                    }
+                }
+            }
+
             return listLocations;
         }
 
