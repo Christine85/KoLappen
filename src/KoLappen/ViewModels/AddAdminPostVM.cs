@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoLappen.ViewModels
 {
-    public class AddPostVM
+    public class AddAdminPostVM
     {
         [Display(Name = "Text")]
         [Required(ErrorMessage = "Skriv in text som skall publiceras.")]

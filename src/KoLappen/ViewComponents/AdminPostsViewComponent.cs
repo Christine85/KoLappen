@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace KoLappen.ViewComponents
 {
-    public class ClassPostsViewComponent : ViewComponent
+    public class AdminPostsViewComponent : ViewComponent
     {
-        IPostsRepository _postsRepository;
-        public ClassPostsViewComponent(IPostsRepository postsRepository)
+        IAdminPostsRepository _adminPostsRepository;
+        public AdminPostsViewComponent(IAdminPostsRepository adminPostsRepository)
         {
-            _postsRepository = postsRepository;
+            _adminPostsRepository = adminPostsRepository;
         }
         // GET: /<controller>/
         public IViewComponentResult Invoke()
         {
-            var model = _postsRepository.GetAll();
+            var model = _adminPostsRepository.GetAll();
             return View(model);
         }
     }

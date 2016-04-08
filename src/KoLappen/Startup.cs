@@ -51,6 +51,7 @@ namespace KoLappen
             //services.AddTransient<IPostsRepository, TestPostsRepository>();
             // Kopplat mot DB
             services.AddTransient<IPostsRepository, DbPostsRepository>();
+            services.AddTransient<IAdminPostsRepository, DbAdminPostsRepository>();
 
 
 

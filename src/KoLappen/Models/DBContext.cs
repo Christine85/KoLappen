@@ -15,6 +15,7 @@ namespace KoLappen.Models
         public DbSet<Semester> Semester { get; set; }
         public DbSet<UserJobLocation> UserJobLocation { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<AdminPost> AdminPosts { get; set; }
 
         //Forms i DB
         public DbSet<Form> Forms { get; set; }
@@ -39,6 +40,7 @@ namespace KoLappen.Models
             modelBuilder.Entity<Semester>().ToTable("Semesters")/*.HasKey("SemesterId")*/;
             modelBuilder.Entity<UserJobLocation>().ToTable("UserJobLocations")/*.HasKey("UserJobLocationId")*/;
             modelBuilder.Entity<Post>().ToTable("Posts");
+            modelBuilder.Entity<AdminPost>().ToTable("AdminPosts");
 
             //Forms i DB
             modelBuilder.Entity<Form>().ToTable("Forms").HasKey("FormId");

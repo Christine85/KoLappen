@@ -22,7 +22,7 @@ namespace KoLappen.Models
         public PostListVM[] GetAll()
         {
             return _context.Posts
-                .OrderBy(o => o.TimePosted)
+                .OrderByDescending(o => o.TimePosted)
                 .Select(o => new PostListVM
                 {
                     PostText = o.PostText,

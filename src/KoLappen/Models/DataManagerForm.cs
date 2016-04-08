@@ -123,7 +123,7 @@ namespace KoLappen.Models
         public List<FormVM.CreateEvaluationVM> GetActivCourses(string location)
         {
             var listOfCourses = context.Education
-                .Where(o => o.StartDate >= DateTime.Now && o.EndDate <= DateTime.Now && o.Location.City == location)
+                .Where(o => o.StartDate <= DateTime.Now && o.EndDate >= DateTime.Now && o.Location.City == location)
                 .Select(o => new FormVM.CreateEvaluationVM
                 {
                     Course = o.Course.CourseName
