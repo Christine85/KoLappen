@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Authorization;
 using KoLappen.ViewModels;
 using KoLappen.Models;
+using System.Net.Mail;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -142,7 +143,8 @@ namespace KoLappen.Controllers
             IdentityUser user = new IdentityUser
             {
                 UserName = model.Email,
-                Email = model.Email
+                Email = model.Email,
+                EmailConfirmed = false                
             };
 
             //var passReset = userManager.GeneratePasswordResetTokenAsync(user);
@@ -151,8 +153,7 @@ namespace KoLappen.Controllers
             //var u = Membership.GetAllUsers();//("goteborg@goteborg.se");
             //u.ResetPassword();
 
-
-
+            
             var result = await userManager.CreateAsync(user, "P@ssw0rd");
 
             if (result.Succeeded)
@@ -160,8 +161,27 @@ namespace KoLappen.Controllers
                 // Om användaren skapades så skapas även en rad i tabellen 'Users', 'Consultants' och 'UserJobLocation'
                 accountRepository.CompleteUser(model, user.Id);
 
-                await signInManager.PasswordSignInAsync(
-                    model.Email, "P@ssw0rd", false, false);
+                var code = userManager.GeneratePasswordResetTokenAsync(user);
+                
+                MailMessage mailMessage = new MailMessage("originalawa@gmail.com", model.Email);
+
+                //var mailSubject = model.MailSubject.Length > 2 ? model.MailSubject : "Email bekräftelse";
+                //var mailBody = model.MailBody.Length > 2 ? model.MailBody : ($"Du har blivit registrerad på AWA The Original. Ditt användarnamn är {model.Email}, klicka på länken för att fullborda din registration <a href =\\account\\completeregistration\\{model.Email}");
+
+                mailMessage.Subject = "Email bekräftelse";
+                mailMessage.Body = $"Du har blivit registrerad på AWA The Original. Ditt användarnamn är {model.Email}, klicka på länken för att fullborda din registration <a href =\"account/completeregistration/{code}\"";
+                SmtpClient smptClient = new SmtpClient("smtp.gmail.com", 587);
+                smptClient.Credentials = new System.Net.NetworkCredential("originalawa@gmail.com", "academy2016");
+                smptClient.EnableSsl = true;
+                smptClient.Send(mailMessage);
+
+
+                //new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
+
+                
+
+                //await signInManager.PasswordSignInAsync(
+                //    model.Email, "P@ssw0rd", false, false);
 
                 return RedirectToAction(nameof(HomeController.Index), "home");
             }
@@ -185,9 +205,16 @@ namespace KoLappen.Controllers
             return View(model);
         }
 
-        public ActionResult CompleteRegistration()
+        //public ActionResult CompleteRegistration()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult CompleteRegistration(string id)
         {
-            return View();
+            var model = new CompleteRegistrationViewModel();
+            model.PasswordResetToken = id;
+            return View(model);
         }
 
         [HttpPost]
@@ -209,7 +236,7 @@ namespace KoLappen.Controllers
             accountRepository.CompleteRegistration(model);
 
             }
-            return View();
+            return RedirectToAction(nameof(HomeController.Index), "home");
         }
     }
 }

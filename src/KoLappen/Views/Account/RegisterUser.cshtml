@@ -2,27 +2,79 @@
 @addTagHelper"*, Microsoft.AspNet.Mvc.TagHelpers"
 
 @{
-    ViewBag.Title = "AWA Intranet";
+    ViewBag.Title = "Registrera användare";
 }
 
 <form asp-controller="Account" asp-action="Register">
-    <label asp-for="Email"></label>
-    <input asp-for="Email" class="form-control custom" placeholder="E-mail" value="T1@test.com" />
-    <span asp-validation-for="Email"></span>
-    <br />
-    <label asp-for="Firstname"></label>
-    <input asp-for="Firstname" class="form-control custom" placeholder="Namn" value="test" />
-    <span asp-validation-for="Firstname"></span>
-    <br />
-    <label asp-for="Lastname"></label>
-    <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="test" />
-    <span asp-validation-for="Lastname"></span>
-    <br />
-    @Html.LabelFor(m => m.Education)
-    @Html.DropDownListFor(m => m.Education, Model.Educations)
-    <br />
-    @Html.LabelFor(m => m.JobLocation)
-    @Html.DropDownListFor(m => m.JobLocation, Model.JobLocations)
-    <br />
-    <button type="submit" value="Register" class="btn btn-success">Registrera</button>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Obligatoriska uppgifter</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control custom" placeholder="E-mail" value="T1@test.com" />
+                            <span asp-validation-for="Email"></span>
+                            <br />
+                            <label asp-for="Educations"></label>
+                            <select class="form-control" data-val="true" data-val-required="V&#xE4;lj utbildning." id="Education" name="Education">
+                                @foreach (var education in Model.Educations)
+                                {
+                                    <option value="@education.Value">@education.Text</option>
+                                }
+                            </select>
+                            <br />
+                            <label asp-for="JobLocations"></label>
+                            <select class="form-control" data-val="true" data-val-required="V&#xE4;lj jobbomr&#xE5;de." id="JobLocation" name="JobLocation">
+                                @foreach (var jobLocation in Model.JobLocations)
+                                {
+                                    <option value="@jobLocation.Value">@jobLocation.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Valfria uppgifter</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <label asp-for="Firstname"></label>
+                            <input asp-for="Firstname" class="form-control custom" placeholder="Förnamn" value="T1@test.com" />
+                            <span asp-validation-for="Firstname"></span>
+                            <br />
+                            <label asp-for="Lastname"></label>
+                            <input asp-for="Lastname" class="form-control custom" placeholder="Efternamn" value="T1@test.com" />
+                            <span asp-validation-for="Lastname"></span>
+                            <br />
+                            <label asp-for="MailSubject"></label>
+                            <input asp-for="MailSubject" class="form-control custom" placeholder="Ämne" value="T1@test.com" />
+                            <span asp-validation-for="MailSubject"></span>
+                            <br />
+                            <label asp-for="MailBody"></label>
+                            <input asp-for="MailBody" class="form-control custom" placeholder="Medelande" value="T1@test.com" />
+                            <span asp-validation-for="MailBody"></span>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <button type="submit" value="Register" class="btn btn-success">Registrera</button>
+        </div>
+    </div>
 </form>
