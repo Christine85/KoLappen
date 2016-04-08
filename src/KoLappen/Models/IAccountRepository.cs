@@ -34,7 +34,7 @@ namespace KoLappen.Models
                 Firstname = null,
                 Lastname = null,
                 ProfilePic = null,
-                RegistrationComplete = false,
+                RegistrationComplete = true,
                 ResetPasswordString = code
             };
 

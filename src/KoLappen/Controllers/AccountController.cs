@@ -70,10 +70,11 @@ namespace KoLappen.Controllers
             }
             */
 
-            var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
+            //var userProfile = dbContext.Users.Select(u => u.ResetPasswordString == model.ResetPasswordString).Count();
 
-            if (result.Succeeded)
-            {
+
+            //if (result.Succeeded)
+            //{
             var user = dbContext.Users.Single(o => o.UserName == viewModel.UserName);
             var aspUser = userManager.Users.Single(o => o.UserName == viewModel.UserName);
             //var aspUser = contextIdentity.Users.Single(o => o.UserName == viewModel.UserName);
@@ -81,6 +82,7 @@ namespace KoLappen.Controllers
 
             if (user.RegistrationComplete == true)
             {
+            var result = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
                 //om admin eller lärare loggar in, skall de få en annan view
                 //if (await userManager.IsInRoleAsync(aspUser, "Admin"))
                 //{
@@ -95,15 +97,15 @@ namespace KoLappen.Controllers
 
             // Annars uppmanas användaren att färdigställa sin profil
 
-            if (aspUser.EmailConfirmed == true && user.RegistrationComplete == false)
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
+            //if (aspUser.EmailConfirmed == true && user.RegistrationComplete == false)
+            //    return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
 
-            if (aspUser.EmailConfirmed == false)
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
-            else
-                return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
+            //if (aspUser.EmailConfirmed == false)
+            //    return RedirectToAction(nameof(AccountController.CompleteRegistration), "account");
+            //else
+            //    return RedirectToAction(nameof(AccountController.CompleteRegistration), "login");
 
-            }
+            //}
 
             else
             {
@@ -161,7 +163,7 @@ namespace KoLappen.Controllers
             //u.ResetPassword();
 
             
-            var result = await userManager.CreateAsync(user, "P@ssw0rd");
+            var result = await userManager.CreateAsync(user/*, "P@ssw0rd"*/);
 
             if (result.Succeeded)
             {
