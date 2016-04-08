@@ -10,7 +10,7 @@ namespace KoLappen.Models
 {
     public interface IAccountRepository
     {
-        void CompleteUser(RegisterUserViewModel viewModel, string userId);
+        void CompleteUser(RegisterUserViewModel viewModel, string userId, string code);
         RegisterUserViewModel[] GetAllConsultants();
         RegisterUserViewModel GetRegistrationOptions();
         void CompleteRegistration(CompleteRegistrationViewModel model);
@@ -25,7 +25,7 @@ namespace KoLappen.Models
             this.dbContext = dbContext;
         }
 
-        public void CompleteUser(RegisterUserViewModel model, string userId)
+        public void CompleteUser(RegisterUserViewModel model, string userId, string code)
         {
             var user = new User
             {
@@ -34,7 +34,8 @@ namespace KoLappen.Models
                 Firstname = null,
                 Lastname = null,
                 ProfilePic = null,
-                RegistrationComplete = false
+                RegistrationComplete = false,
+                ResetPasswordString = code
             };
 
             var consultant = new Consultant
@@ -115,12 +116,13 @@ namespace KoLappen.Models
                 .Select(u =>
                 new User
                 {
-                    UserId =u.UserId,
+                    UserId = u.UserId,
                     UserName = u.UserName,
                     Firstname=model.Firstname,
                     Lastname = model.Lastname,
                     ProfilePic = u.ProfilePic,
-                    RegistrationComplete = true                    
+                    //RegistrationComplete = true ,
+                    //ResetPasswordString = null                   
                 }).First();
             dbContext.Entry(user).State = EntityState.Modified;
             dbContext.SaveChanges();

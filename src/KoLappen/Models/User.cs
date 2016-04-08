@@ -14,6 +14,7 @@ namespace KoLappen.Models
         public string Lastname { get; set; }
         public string ProfilePic { get; set; }
         public bool RegistrationComplete { get; set; }
+        public string ResetPasswordString { get; set; }
         //public List<UserJobLocation> UserJobLocations { get; set; }
         //public string ConsultantId { get; set; }
         //public Consultant Consultant { get; set; 
