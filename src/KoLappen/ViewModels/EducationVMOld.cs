@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoLappen.ViewModels
 {
-    public class EducationVM
+    public class EducationVMOld
     {
         public string CourseName { get; set; }
 

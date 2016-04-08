@@ -8,9 +8,12 @@ namespace KoLappen.Models
     public interface IEducationRepository
     {
         AlumnerVM[] GetAllCourses();
-        void AddCourse(AddCourseVM viewModel);
+        void AddEducation(AddEducationVM viewModel);
         AlumnerVM[] GetAllSemesters(int courseId);
-        AddCourseVM GetRegistrationCourseOptions();
+        AddEducationVM GetRegisterEducationOptions();
+        void AddLocation(AddEducationVM viewModel);
+        void AddSemester(AddEducationVM viewModel);
+        void AddCourse(AddEducationVM viewModel);
     }
 
     public class DbEducationRepository : IEducationRepository
@@ -40,7 +43,7 @@ namespace KoLappen.Models
             return dbContext.Education
                 .Where(i => i.CourseId == courseID)
                 .Select(o => new AlumnerVM
-                {                    
+                {
                     Semester = o.Semester.SemesterName,
                     CourseID = courseID,
                     SemesterId = o.SemesterId
@@ -48,13 +51,13 @@ namespace KoLappen.Models
                 .ToArray();
         }
 
-        public void AddCourse(AddCourseVM model)
+        public void AddEducation(AddEducationVM model)
         {
-            AddCourseVM acVM = GetRegistrationCourseOptions();
+            AddEducationVM acVM = GetRegisterEducationOptions();
 
             Education education = new Education();
-            education.LocationId = Convert.ToInt32(model.Location); // model.Location;
-            education.SemesterId = Convert.ToInt32(model.Semester);
+            education.LocationId = Convert.ToInt32(model.LocationName); // model.Location;
+            education.SemesterId = Convert.ToInt32(model.SemesterName);
             education.CourseId = Convert.ToInt32(model.CourseName);
 
             education.StartDate = DateTime.Now;
@@ -62,8 +65,8 @@ namespace KoLappen.Models
 
             dbContext.Education.Add(education);
             dbContext.SaveChanges();
-        //    dbContext.Education.Add(new Education
-        //    {
+            //    dbContext.Education.Add(new Education
+            //    {
 
             //        //CourseName = model.CourseName,
             //        //education.Semester.SemesterName = model.Semester,
@@ -107,7 +110,7 @@ namespace KoLappen.Models
 
         }
 
-        public AddCourseVM GetRegistrationCourseOptions()
+        public AddEducationVM GetRegisterEducationOptions()
         {
             //Sätt kurser i en drodown list            
             var courseOptions = dbContext.Course.Select(e =>
@@ -134,15 +137,45 @@ namespace KoLappen.Models
                 });
 
             //Sätt de nya listorna till vy modellen
-            var regOptions = new AddCourseVM()
+            var regOptions = new AddEducationVM()
             {
-                CourseNames = courseOptions,
+                Courses = courseOptions,
                 Semesters = semOptions,
                 Locations = locOption
             };
 
 
-         return regOptions;
+            return regOptions;
+        }
+        public void AddCourse(AddEducationVM model)
+        {
+            Course course = new Course()
+            {
+                CourseName = model.CourseName
+            };
+
+            dbContext.Course.Add(course);
+            dbContext.SaveChanges();
+        }
+        public void AddSemester(AddEducationVM model)
+        {
+            Semester semester = new Semester()
+            {
+                SemesterName = model.SemesterName
+            };
+
+            dbContext.Semester.Add(semester);
+            dbContext.SaveChanges();
+        }
+        public void AddLocation(AddEducationVM model)
+        {
+            Location location = new Location()
+            {
+                City = model.LocationName
+            };
+
+            dbContext.Location.Add(location);
+            dbContext.SaveChanges();
         }
     }
 }

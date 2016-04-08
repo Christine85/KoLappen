@@ -32,21 +32,27 @@ namespace KoLappen.ViewModels
         [Display(Name = "E-mail adress")]
         public string Email { get; set; }
 
-        [Display(Name = "Förnamn (Valfritt)")]
+        [Display(Name = "Förnamn")]
         public string Firstname { get; set; }
 
-        [Display(Name = "Efternamn (Valfritt)")]
+        [Display(Name = "Efternamn")]
         public string Lastname { get; set; }
 
         [Required(ErrorMessage = "Välj utbildning.")]
-        [Display(Name = "Utbildnings ID")]
+        [Display(Name = "Utbildning")]
         public int Education { get; set; }
         public IEnumerable<SelectListItem> Educations { get; set; }
 
         [Required(ErrorMessage = "Välj jobbområde.")]
-        [Display(Name = "Jobbområde")]
+        [Display(Name = "Anställningsstad")]
         public int JobLocation { get; set; }
         public IEnumerable<SelectListItem> JobLocations { get; set; }
+
+        [Display(Name = "Email ämne")]
+        public string MailSubject { get; set; }
+
+        [Display(Name = "Email medelande")]
+        public string MailBody { get; set; }
     }
 
     public class CompleteRegistrationViewModel
@@ -82,5 +88,7 @@ namespace KoLappen.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Verifikations lösenord")]
         public string VerificationPassword { get; set; }
+
+        public string PasswordResetToken { get; set; }
     }
 }
