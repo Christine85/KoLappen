@@ -89,6 +89,6 @@ namespace KoLappen.ViewModels
         [Display(Name = "Verifikations lösenord")]
         public string VerificationPassword { get; set; }
 
-        public string PasswordResetToken { get; set; }
+        public string ResetPasswordString { get; set; }
     }
 }
