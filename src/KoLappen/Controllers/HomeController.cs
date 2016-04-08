@@ -12,7 +12,7 @@ using Microsoft.AspNet.Authorization;
 
 namespace KoLappen.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         SignInManager<IdentityUser> signInManager;
@@ -24,11 +24,11 @@ namespace KoLappen.Controllers
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
-            var autoLogin = false;
+            var autoLogin = true;
 
             if (autoLogin)
             {
-                await signInManager.PasswordSignInAsync("Christine", "Hejsan/7", false, false);
+                await signInManager.PasswordSignInAsync("admin@admin.com", "P@ssw0rd", false, false);
                 return View();
             }
 
