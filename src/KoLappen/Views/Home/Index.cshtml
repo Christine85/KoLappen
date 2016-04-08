@@ -10,25 +10,25 @@
 
 
 <div class="row" id="mainScrollable">
-    <div class="col-md-6" id="commentRightBorder">
+    <div class="col-md-6">
         @if (User.IsInRole("Admin"))
         {
             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
         }
-        <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Emelie informerar</h2></center>
-        <div>
+        <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Ledningen informerar</h2></center>
+        <div id="commentRightBorder">
             @Component.Invoke("AdminPosts")
         </div>
     </div>
-    <div class="col-md-6" id="commentLeftBorder">
+    <div class="col-md-6">
         @if (!User.IsInRole("Admin"))
         {
             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#newPost" style="float: right; margin-top: 25px">Nytt inlägg</button>
         }
         <center><h2 style="font-weight: 700; color: #555555; text-decoration: underline">Klassens inlägg</h2></center>
-    </div>
-    <div class="col-md-6" id="commentLeftBorder">
-        <div>
+        @*</div>
+            <div class="col-md-6" id="commentLeftBorder">*@
+        <div id="commentLeftBorder">
             @Component.Invoke("ClassPosts")
         </div>
     </div>
